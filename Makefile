@@ -3,71 +3,124 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+         #
+#    By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/01/10 14:04:19 by valeriafedo       #+#    #+#              #
-#    Updated: 2024/01/10 14:07:30 by valeriafedo      ###   ########.fr        #
+#    Created: 2022/09/29 16:43:25 by jmabel            #+#    #+#              #
+#    Updated: 2024/01/11 16:48:30 by vfedorov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME			=	minirt
+.PHONY		:	all clean fclean re libft debug
+
+NAME		=	miniRT
+
 HEADER		=	$(addprefix include/,\
 					minirt.h\
 					vector.h\
-					camera.h\
+					parser.h\
 					scene.h\
-					utils.h\
 					get_next_line.h)
-RM				=	rm -rf
-CFLAGS			=	-I include
-CFLAGS			+=	-Lmlx -lmlx -framework OpenGL -framework AppKit
 
+CFLAGS		=	-I include
 
-DIR_SRCS 		= ./srcs/
-SRC				= main.c 
-SRCS			= $(addprefix $(DIR_SRCS), $(SRC))
-#OBJ 			=	$(SRCS:.c=.o)
-OFLAGS 			=	-Wall -Wextra -Werror -Imlx -g #-fsanitize=address
-IFLAGS			=	-Ilibft
-LFLAGS			=	-Llibft -lft
+CFLAGS		+=	-Wall -Wextra -Werror
 
+# CFLAGS		+=	-fsanitize=address
 
+RM			=	rm -rf
 
+LIBFT		=	./libft/libft.a
+LIBFT_H		=	./libft/libft.h
 
-OBJ			=	$(addprefix objects/, $(SRCS:%.c=%.o))
+LIBMLX		=	./mlx/mlx.a
+
+FILE_C		=	main.c
+
+FILE_C		+=	$(addprefix image/,\
+				hook.c\
+				search_objects.c\
+				resize_objects.c\
+				change_objects.c\
+				image.c)
+
+FILE_C		+=	$(addprefix raytracer/,\
+				check_intersection.c\
+				intersection.c\
+				intersection_cylinder.c\
+				raytracer.c\
+				compute_pixel_sphere.c\
+				compute_pixel_plane.c\
+				pixel_computing.c\
+				compute_pixel_cylinder.c\
+				solver.c)
+
+FILE_C		+=	$(addprefix vector/,\
+				scalar_product.c\
+				vector_create.c\
+				vector_length_normalizing.c\
+				vector_linear_operations.c\
+				vector_print.c)
+
+FILE_C		+=	$(addprefix utils/,\
+				get_next_line.c\
+				print_scene.c\
+				print_tips.c)
+				
+FILE_C		+=	$(addprefix parser/,\
+				parser.c\
+				free_scene.c\
+				parser_readscene.c\
+				parser_utils.c\
+				parser_readfloat.c\
+				parser_readplane.c\
+				parser_readsphere.c\
+				parser_readcylinder.c\
+				parser_set_ambinet_light.c)
+
+FILE_C		+=	$(addprefix transformation/,\
+				camera_rotate.c\
+				camera_rotation_utils.c\
+				camera_translate.c)
+
+SRCS		=	$(addprefix src/, $(FILE_C))
+
+OBJ			=	$(addprefix objects/, $(FILE_C:%.c=%.o))
 
 FOLDER		=	$(sort $(dir objects/ $(OBJ)))
-LIBFT		=	./libft/libft.a
 
-%.o: %.c 
-	@cc -c $(CFLAGS) $(IFLAGS) $(DFLAGS)  $< -o $@
+all			:	$(FOLDER) $(LIBFT) $(LIBMLX) $(NAME)
 
-all: $(NAME)
+$(NAME)		:	$(OBJ) $(LIBFT) $(LIBMLX)
+				$(CC) $(CFLAGS) $(DEBF) $(LIBFT) $(LIBMLX) -framework OpenGL -framework AppKit $(OBJ) -o $(NAME)
 
-$(NAME): $(OBJ) libft/libft.a mlx/libmlx.a
-	cc $(CFLAGS) $(IFLAGS) $(OBJ) $(LFLAGS) $(MFLAGS) -o $@
-	@echo "$(YELLOW) Executable file $(NAME) was compiled $(END)"
-
-FORCE:
-
-#libft/libft.a: FORCE
-#	cd libft && make
 $(LIBFT)		:	libft_obj
-			make -C ./libft
+				make -C ./libft
+
 libft_obj	:
 				mkdir libft_obj
 
-mlx/libmlx.a: FORCE
-	cd mlx && make
+$(LIBMLX)		:
+				make -C ./mlx
 
-clean:
-	$(RM) $(OBJ)
-	make -C libft fclean
-	@echo "$(PURPLE) Executable file $(NAME) was deleted$(END)"
 
-fclean:	clean
-	$(RM) $(NAME)
-	@echo "$(END) Executable file $(NAME) was compiled$(END)"
-re:	fclean all
+$(FOLDER)	:
+				mkdir -p $@
 
-.PHONY: all clean fclean re libft bonus
+objects/%.o	:	./src/%.c $(HEADER) Makefile $(LIBFT_H)
+				$(CC) $(CFLAGS) $(DEBF) -c $< -o $@
+
+debug:
+				make DEBF="-g3"
+
+clean		:
+				$(RM) $(OBJ)
+				$(RM) $(FOLDER)
+				make clean -C ./libft
+				make clean -C ./mlx
+				$(RM) libft_obj
+
+fclean		:	clean
+				$(RM) $(NAME)
+				make fclean -C ./libft
+
+re			:	fclean all
