@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strchr.c                                           :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/18 15:01:51 by vfedorov          #+#    #+#             */
-/*   Updated: 2023/01/26 15:21:48 by vfedorov         ###   ########.fr       */
+/*   Created: 2021/10/18 11:49:30 by jmabel            #+#    #+#             */
+/*   Updated: 2022/02/05 15:18:40 by jmabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,17 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	char	*wer;
-	char	rt;
+	char	*str;
+	int		i;
 
-	rt = (char)c;
-	wer = (char *)s;
-	while (*wer != '\0' && rt != *wer)
-		wer++;
-	if (rt == *wer)
-		return ((char *)wer);
-	return (0);
+	i = 0;
+	if (!s)
+		return (NULL);
+	str = (char *)s;
+	while (str[i] != '\0' && str[i] != (char)c)
+		i++;
+	if (str[i] != (char)c)
+		return (NULL);
+	else
+		return ((char *)s + i);
 }
-/*
-#include<stdio.h>
-#include<string.h>
-
-int main()
-{
-	char	dt[] = "ehwof";
-	int		c = 256;
-	printf("%s\n", ft_strchr(dt,c));
-	printf("%s", strchr(dt,c));
-}
-*/

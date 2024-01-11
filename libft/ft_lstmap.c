@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/14 17:52:55 by vfedorov          #+#    #+#             */
-/*   Updated: 2023/02/14 20:09:07 by vfedorov         ###   ########.fr       */
+/*   Created: 2022/03/20 18:56:47 by jmabel            #+#    #+#             */
+/*   Updated: 2022/03/20 18:56:49 by jmabel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,25 @@
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*newl;
-	t_list	*tmp;
+	t_list	*lstnew;
+	t_list	*node;
 
-	if (lst == NULL || f == NULL)
+	if (!lst || !f)
 		return (NULL);
-	newl = NULL;
+	lstnew = NULL;
 	while (lst)
 	{
-		tmp = ft_lstnew((*f)(lst->content));
-		if (tmp == NULL)
+		node = ft_lstnew(f(lst->content));
+		if (!node)
 		{
-			ft_lstclear(&newl, del);
-			return (NULL);
+			if (lstnew)
+			{
+				ft_lstclear(&lstnew, del);
+				return (NULL);
+			}
 		}
-		ft_lstadd_back(&newl, tmp);
-		tmp = tmp->next;
+		ft_lstadd_back(&lstnew, node);
 		lst = lst->next;
 	}
-	return (newl);
+	return (lstnew);
 }

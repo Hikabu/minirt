@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 12:13:38 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/01/11 15:56:00 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/01/11 17:38:38 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 int main(int ac, char **av)
 {
-    if (av[1])
-        parc(av[1]);
+    (void) ac;
+    (void) av;
+    printf("Hello from main");
+    // if (av[1])
+        // parc(av[1]);
     return (0);
 }
