@@ -6,92 +6,12 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 12:20:11 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/01/19 22:10:33 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/01/20 01:36:00 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	initA(t_amlight *list)
-{
-	list->id = 1;
-	list->ratio = 0;
-	list->rgb[0] = 0;
-	list->rgb[1] = 0;
-	list->rgb[2] = 0;
-	list->next = NULL;
-}
-
-void	initC(t_camera *list)
-{
-	list->id = 2;
-	list->xyz[0] = 0;
-	list->xyz[1] = 0;
-	list->xyz[2] = 0;
-	list->norm_vec[0] = 0;
-	list->norm_vec[1] = 0;
-	list->norm_vec[2] = 0;
-	list->fov = 0;
-	list->next = NULL;
-}
-
-void	initL(t_light *list)
-{
-	list->id = 3;
-	list->xyz[0] = 0;
-	list->xyz[1] = 0;
-	list->xyz[2] = 0;
-	list->ratio = 0;
-	list->rgb[0] = 0;
-	list->rgb[1] = 0;
-	list->rgb[2] = 0;
-	list->next = NULL;
-}
-
-void	init_pl(t_plane *list)
-{
-	list->id = 4;
-	list->xyz[0] = 0;
-	list->xyz[1] = 0;
-	list->xyz[2] = 0;
-	list->norm_vec[0] = 0;
-	list->norm_vec[1] = 0;
-	list->norm_vec[2] = 0;
-	list->rgb[0] = 0;
-	list->rgb[1] = 0;
-	list->rgb[2] = 0;
-	list->next = NULL;
-}
-
-void	init_cy(t_cyl *list)
-{
-	list->id = 5;
-	list->xyz[0] = 0;
-	list->xyz[1] = 0;
-	list->xyz[2] = 0;
-	list->norm_vec[0] = 0;
-	list->norm_vec[1] = 0;
-	list->norm_vec[2] = 0;
-	list->diam = 0;
-	list->heig = 0;
-	list->rgb[0] = 0;
-	list->rgb[1] = 0;
-	list->rgb[2] = 0;
-	list->next = NULL;
-}
-
-void	init_sp(t_sphere *list)
-{
-	list->id = 6;
-	list->xyz[0] = 0;
-	list->xyz[1] = 0;
-	list->xyz[2] = 0;
-	list->diametr = 0;
-	list->rgb[0] = 0;
-	list->rgb[1] = 0;
-	list->rgb[2] = 0;
-	list->next = NULL;
-}
 
 void	*to_structA(char **str)
 {
@@ -112,13 +32,15 @@ void	*to_structA(char **str)
 	i = -1;
 	while(++i < 3)
 		l->rgb[i] = ft_atoi(split_str_2[i]);
+	return (l);
 }
 
 void	*to_structC(char **str)
 {
-	t_amlight	ligh;
-	t_amlight	*l;
+	t_camera	ligh;
+	t_camera	*l;
 	int			i;
+	char		**split_str_1;
 	char		**split_str_2;
 
 	initC(&ligh);
@@ -128,95 +50,130 @@ void	*to_structC(char **str)
 		;
 	if (i != 4)
 		error(1); 
-	l->ratio = ft_atoi(str[3]);
+	l->fov = ft_atoi(str[3]);
+	split_str_1 = ft_split(str[1], ',');
 	split_str_2 = ft_split(str[2], ',');
 	i = -1;
 	while(++i < 3)
-		l->rgb[i] = ft_atoi(split_str_2[i]);
+	{
+		l->xyz[i] = ft_atoi(split_str_1[i]);
+		l->norm_vec[i] = ft_atoi(split_str_2[i]);
+	}
+	return (l);
 }
 
 void	*to_structL(char **str)
 {
-	t_amlight	ligh;
-	t_amlight	*l;
+	t_light	ligh;
+	t_light	*l;
 	int			i;
-	char		**split_str_2;
+	char		**split_str_1;
+	char		**split_str_3;
 
 	initL(&ligh);
 	l = &ligh;
 	i = -1;
 	while(str && str[++i])
 		;
-	if (i != 3)
+	if (i != 4)
 		error(1); 
-	l->ratio = ft_atof(str[0]);
-	split_str_2 = ft_split(str[2], ',');
+	l->ratio = ft_atof(str[2]);
+	split_str_1 = ft_split(str[1], ',');
+	split_str_3 = ft_split(str[3], ',');
 	i = -1;
 	while(++i < 3)
-		l->rgb[i] = ft_atoi(split_str_2[i]);
+	{
+		l->xyz[i] = ft_atoi(split_str_1[i]);
+		l->rgb[i] = ft_atoi(split_str_3[i]);
+	}
+	return (l);
 }
 
 void	*to_struct_pl(char **str)
 {
-	t_amlight	ligh;
-	t_amlight	*l;
+	t_plane	ligh;
+	t_plane	*l;
 	int			i;
+	char		**split_str_1;
 	char		**split_str_2;
+	char		**split_str_3;
 
 	init_pl(&ligh);
 	l = &ligh;
 	i = -1;
 	while(str && str[++i])
 		;
-	if (i != 3)
+	if (i != 4)
 		error(1); 
-	l->ratio = ft_atof(str[0]);
+	split_str_1 = ft_split(str[1], ',');
 	split_str_2 = ft_split(str[2], ',');
+	split_str_3 = ft_split(str[3], ',');
 	i = -1;
 	while(++i < 3)
-		l->rgb[i] = ft_atoi(split_str_2[i]);
+	{
+		l->xyz[i] = ft_atoi(split_str_1[i]);
+		l->norm_vec[i] = ft_atoi(split_str_2[i]);
+		l->rgb[i] = ft_atoi(split_str_3[i]);
+	}
+	return (l);
 }
 
 void	*to_struct_cy(char **str)
 {
-	t_amlight	ligh;
-	t_amlight	*l;
+	t_cyl	ligh;
+	t_cyl	*l;
 	int			i;
+	char		**split_str_1;
 	char		**split_str_2;
+	char		**split_str_5;
 
 	init_cy(&ligh);
 	l = &ligh;
 	i = -1;
 	while(str && str[++i])
 		;
-	if (i != 3)
+	if (i != 6)
 		error(1); 
-	l->ratio = ft_atof(str[0]);
+	l->diam = ft_atof(str[3]);
+	l->heig = ft_atof(str[4]);
+	split_str_1 = ft_split(str[1], ',');
 	split_str_2 = ft_split(str[2], ',');
+	split_str_5 = ft_split(str[5], ',');
 	i = -1;
 	while(++i < 3)
-		l->rgb[i] = ft_atoi(split_str_2[i]);
+	{
+		l->xyz[i] = ft_atoi(split_str_1[i]);
+		l->norm_vec[i] = ft_atoi(split_str_2[i]);
+		l->rgb[i] = ft_atoi(split_str_5[i]);
+	}
+	return (l);
 }
 
 void	*to_struct_sp(char **str)
 {
-	t_amlight	ligh;
-	t_amlight	*l;
+	t_sphere	ligh;
+	t_sphere	*l;
 	int			i;
-	char		**split_str_2;
+	char		**split_str_1;
+	char		**split_str_3;
 
 	init_sp(&ligh);
 	l = &ligh;
 	i = -1;
 	while(str && str[++i])
 		;
-	if (i != 3)
+	if (i != 4)
 		error(1); 
-	l->ratio = ft_atof(str[0]);
-	split_str_2 = ft_split(str[2], ',');
+	l->diametr = ft_atof(str[2]);
+	split_str_1 = ft_split(str[1], ',');
+	split_str_3 = ft_split(str[3], ',');
 	i = -1;
 	while(++i < 3)
-		l->rgb[i] = ft_atoi(split_str_2[i]);
+	{
+		l->rgb[i] = ft_atoi(split_str_1[i]);
+		l->rgb[i] = ft_atoi(split_str_3[i]);
+	}
+	return (l);
 }
 
 void	id_check(char **id)
@@ -225,7 +182,7 @@ void	id_check(char **id)
 	
 	list = NULL;
 	if (!ft_strcmp(id[0], "A"))
-		list = to_structA(id);
+		(t_amlight *)list = to_structA(id);
 	else if (!ft_strcmp(id[0], "C"))
 		list = to_structC(id);
 	else if (!ft_strcmp(id[0], "L"))
@@ -240,6 +197,8 @@ void	id_check(char **id)
 		return ;
 	else
 		error(1); ////izmenit
+	
+	printf("%d", ((t_amlight *)list)->rgb[2]);
 }
 
 int	parc(char *line)

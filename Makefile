@@ -6,7 +6,7 @@
 #    By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/19 15:15:41 by valeriafedo       #+#    #+#              #
-#    Updated: 2024/01/19 18:17:44 by valeriafedo      ###   ########.fr        #
+#    Updated: 2024/01/20 01:24:52 by valeriafedo      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,9 @@ FILE_C		+=	$(addprefix parcing/, \
 					get_split.c\
 					parc.c)
 
+
+FILE_C		+=	$(addprefix utils/, \
+					init.c)
 
 OBJ			=	$(addprefix objects/, $(FILE_C:%.c=%.o))
 
