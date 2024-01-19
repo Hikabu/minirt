@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmabel <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: vfedorov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/19 10:29:25 by jmabel            #+#    #+#             */
-/*   Updated: 2021/10/24 15:39:38 by jmabel           ###   ########.fr       */
+/*   Created: 2023/02/02 16:37:27 by vfedorov          #+#    #+#             */
+/*   Updated: 2023/02/10 19:15:38 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,25 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*dest;
-	size_t	i;
+	unsigned int	i;
+	char			*drug_s;
+	size_t			r;
 
-	i = 0;
 	if (!s)
-		return (NULL);
-	if (ft_strlen(s) < (size_t)start)
-		return (ft_strdup(""));
-	if (len > ft_strlen(s) - (size_t)start)
-		len = ft_strlen(s) - (size_t)start;
-	dest = (char *)malloc((len + 1) * sizeof(char));
-	if (dest == NULL)
-		return (NULL);
-	while (i < len)
-		dest[i++] = s[(size_t)start++];
-	dest[i] = '\0';
-	return (dest);
+		return (0);
+	if (len > ft_strlen(s + start))
+		r = ft_strlen(s + start);
+	else
+		r = len;
+	drug_s = malloc (r + 1);
+	if (!drug_s)
+		return (0);
+	i = 0;
+	while (start < ft_strlen(s) && s[start + i] && i < r)
+	{
+		drug_s[i] = s[start + i];
+		i++;
+	}
+	drug_s[i] = '\0';
+	return (drug_s);
 }

@@ -3,26 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vfedorov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/18 18:48:03 by jmabel            #+#    #+#             */
-/*   Updated: 2022/01/01 20:53:37 by jmabel           ###   ########.fr       */
+/*   Created: 2023/01/27 20:36:43 by vfedorov          #+#    #+#             */
+/*   Updated: 2023/01/29 13:47:47 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
 void	*ft_calloc(size_t count, size_t size)
 {
-	void	*dst;
-	size_t	size_max;
+	void	*sra;
 
-	size_max = 18446744073709551615UL;
-	if (count && (size > size_max / count))
+	if (count && size)
+	{
+		if (((count * size) < count) || ((count * size) < size))
+			return (NULL);
+	}
+	sra = malloc (count * size);
+	if (sra == NULL)
 		return (NULL);
-	dst = malloc(count * size);
-	if (dst == NULL)
-		return (NULL);
-	ft_bzero(dst, size * count);
-	return (dst);
+	ft_memset(sra, 0, (size * count));
+	return (sra);
 }

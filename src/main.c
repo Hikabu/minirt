@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 12:13:38 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/01/11 17:38:38 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/01/19 17:49:14 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 
 int main(int ac, char **av)
 {
-    (void) ac;
-    (void) av;
-    printf("Hello from main");
-    // if (av[1])
-        // parc(av[1]);
+	if (ac != 2)
+		error(2);
+	readmap(av[1]);
     return (0);
 }

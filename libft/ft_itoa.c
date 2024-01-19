@@ -3,67 +3,64 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vfedorov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/21 20:24:31 by jmabel            #+#    #+#             */
-/*   Updated: 2021/10/24 11:31:32 by jmabel           ###   ########.fr       */
+/*   Created: 2023/01/30 18:25:49 by vfedorov          #+#    #+#             */
+/*   Updated: 2023/02/10 20:00:57 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	int	ft_intlen(long n)
+char	*ft_strcpy(char *s1, char *s2)
 {
-	int	len;
-
-	len = 0;
-	if (n < 0)
-	{
-		len++;
-		n = -n;
-	}
-	while (n >= 10)
-	{
-		len++;
-		n = n / 10;
-	}
-	return (len + 1);
-}
-
-static	char	*ft_itoa_record(long n, int len, char *str)
-{
-	int	finish;
 	int	i;
 
-	finish = 0;
-	if (n < 0)
+	i = 0;
+	while (s2[i])
 	{
-		str[0] = '-';
-		n = -n;
-		finish = 1;
+		s1[i] = s2[i];
+		i++;
 	}
-	i = len - 1;
-	while (i >= finish)
+	s1[i] = s2[i];
+	return (s1);
+}
+
+char	*ft_nul(int n, char *str)
+{
+	if (n == 0)
 	{
-		str[i] = (n % 10) + '0';
-		n = n / 10;
-		i--;
+		str[0] = '0';
+		str[1] = '\0';
 	}
-	str[len] = '\0';
 	return (str);
 }
 
-char	*ft_itoa(int nb)
+char	*ft_itoa(int n)
 {
+	int		num;
+	int		count;
 	char	*str;
-	long	n;
-	int		len;
 
-	n = nb;
-	len = ft_intlen(n);
-	str = (char *)malloc((len + 1) * sizeof(char));
-	if (str == NULL)
-		return (NULL);
-	str = ft_itoa_record(n, len, str);
+	num = n;
+	count = 0;
+	while (num != 0)
+	{
+		count++;
+		num = num / 10;
+	}
+	count = count + (n <= 0);
+	(str = (char *)malloc(sizeof(char) * count + 1));
+	if (!str)
+		return (str);
+	ft_nul(n, str);
+	str[count] = '\0';
+	if (n < 0)
+		str[0] = '-';
+	while (n != 0)
+	{
+		str[--count] = (n % 10) * (2 * (n > 0) - 1) + '0';
+		n = n / 10;
+	}
 	return (str);
 }

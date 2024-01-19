@@ -3,79 +3,86 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vfedorov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/24 11:44:48 by jmabel            #+#    #+#             */
-/*   Updated: 2022/03/20 18:59:12 by jmabel           ###   ########.fr       */
+/*   Created: 2023/02/06 17:41:27 by vfedorov          #+#    #+#             */
+/*   Updated: 2023/02/10 19:14:40 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	ft_str_count(char const *s, char c)
+int	ft_wordcount(char const *s, char c)
 {
-	size_t	count;
-	size_t	i;
+	int	i;
+	int	wc;
 
 	i = 0;
-	count = 0;
-	while (s[i] != '\0')
+	wc = 0;
+	while (s[i])
 	{
-		if (s[i] != c && (s[i + 1] == c || s[i + 1] == '\0'))
-			count++;
-		i++;
+		if (s[i] == c)
+			i++;
+		if (s[i] != c && s[i])
+			wc++;
+		while (s[i] != c && s[i])
+			i++;
 	}
-	return (count);
+	return (wc);
 }
 
-static void	ft_free_array(char **arr, size_t len)
+static char	*ft_perevmal(char const *s, int start, int end)
 {
-	size_t	i;
+	char	*str;
+	int		i;
 
 	i = 0;
-	while (i < len - 1)
-		free(arr[i++]);
-	free(arr);
+	str = malloc((end - start + 1));
+	while (start < end)
+		str[i++] = s[start++];
+	str [i] = '\0';
+	return (str);
 }
 
-static	char	**ft_make_array(char **arr, char const *s, char c)
+int	ft_len(char const *s, char c)
 {
-	const char	*start;
-	size_t		i;
-	size_t		letter;
+	int		len;
+	char	*d;
 
-	i = 0;
-	while (*s)
+	d = (char *)s;
+	len = 0;
+	while (*d && *d != c)
 	{
-		letter = 0;
-		while (*s == c && *s)
-			s++;
-		start = (char *)s;
-		while (*s != c && *s)
-		{
-			letter++;
-			s++;
-		}
-		if (*(s - 1) != c)
-		{
-			arr[i++] = ft_substr(start, 0, letter);
-			if (arr == NULL)
-				ft_free_array(arr, i);
-		}
+		len++;
+		d++;
 	}
-	arr[i] = NULL;
-	return (arr);
+	return (len);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char		**arr;
+	char	**sst;
+	int		words;
+	int		i;
 
 	if (!s)
 		return (NULL);
-	arr = malloc(sizeof(*arr) * (ft_str_count(s, c) + 1));
-	if (arr == NULL)
+	words = ft_wordcount(s, c);
+	sst = malloc(sizeof(*sst) * (words + 1));
+	if (sst == NULL)
 		return (NULL);
-	arr = ft_make_array(arr, s, c);
-	return (arr);
-}
+	i = 0;
+	while (*s)
+	{
+		while (*s == c && *s)
+			s++;
+		if (*s)
+		{
+			sst[i] = ft_perevmal(s, 0, ft_len(s, c));
+			s = s + ft_len(s, c);
+			i++;
+		}
+	}
+	sst[i] = NULL;
+	return (sst);
+}	

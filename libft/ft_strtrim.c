@@ -3,37 +3,50 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmabel <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: vfedorov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/21 16:53:13 by jmabel            #+#    #+#             */
-/*   Updated: 2021/10/21 19:48:12 by jmabel           ###   ########.fr       */
+/*   Created: 2023/02/02 19:41:06 by vfedorov          #+#    #+#             */
+/*   Updated: 2023/02/14 19:41:08 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+char	ft_kakoyset(char f, char const *set)
+{
+	size_t	i;
+
+	i = 0;
+	while (set[i])
+	{
+		if (set[i] == f)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	size_t	start;
-	size_t	finish;
+	char	*c;
 	size_t	i;
-	char	*dest;
+	size_t	beg;
+	size_t	end;
 
-	if (!s1 || !set)
+	if (s1 == NULL || set == NULL)
 		return (NULL);
-	start = 0;
-	finish = 0;
-	i = ft_strlen(s1) - 1;
-	while (*s1 && ft_strchr(set, *s1))
-	{
-		s1++;
-		start++;
-	}
-	while (i > 0 && ft_strchr(set, s1[i - start]))
-	{
-		finish++;
-		i--;
-	}
-	dest = ft_substr(s1, 0, ft_strlen(s1) - finish);
-	return (dest);
+	beg = 0;
+	while (s1[beg] && ft_kakoyset(s1[beg], set))
+		beg++;
+	end = ft_strlen(s1);
+	while (end > beg && ft_kakoyset(s1[end - 1], set))
+		end--;
+	c = ((char *)malloc(sizeof(*s1) * (end - beg + 1)));
+	if (!c)
+		return (0);
+	i = 0;
+	while (beg < end)
+		c[i++] = s1[beg++];
+	c[i] = 0;
+	return (c);
 }

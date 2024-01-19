@@ -3,12 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jmabel <jmabel@student.42.fr>              +#+  +:+       +#+         #
+#    By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/10/12 16:09:09 by jmabel            #+#    #+#              #
-#    Updated: 2022/09/29 17:33:38 by jmabel           ###   ########.fr        #
+#    Created: 2024/01/19 15:16:34 by valeriafedo       #+#    #+#              #
+#    Updated: 2024/01/19 19:14:26 by valeriafedo      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+
 
 .PHONY		:	all clean fclean re bonus
 
@@ -29,12 +31,12 @@ SRCS		=	ft_isalpha.c	ft_isdigit.c	ft_isalnum.c	ft_isascii.c\
 				ft_atoi.c		ft_calloc.c		ft_strdup.c		ft_substr.c\
 				ft_strjoin.c	ft_strtrim.c	ft_putchar_fd.c	ft_putstr_fd.c\
 				ft_putendl_fd.c	ft_putnbr_fd.c	ft_itoa.c		ft_split.c\
-				ft_striteri.c	ft_strmapi.c\
+				ft_striteri.c	ft_strmapi.c	ft_atof.c\
 				ft_lstnew.c			ft_lstadd_front.c\
 				ft_lstsize.c		ft_lstlast.c\
 				ft_lstadd_back.c	ft_lstdelone.c\
 				ft_lstclear.c		ft_lstiter.c\
-				ft_lstmap.c
+				ft_lstmap.c			ft_strcmp.c
 
 OBJ			=	$(addprefix ../libft_obj/, $(SRCS:.c=.o))
 

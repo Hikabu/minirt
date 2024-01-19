@@ -3,12 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+         #
+#    By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/09/29 16:43:25 by jmabel            #+#    #+#              #
-#    Updated: 2024/01/11 17:39:46 by vfedorov         ###   ########.fr        #
+#    Created: 2024/01/19 15:15:41 by valeriafedo       #+#    #+#              #
+#    Updated: 2024/01/19 18:17:44 by valeriafedo      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+
 
 .PHONY		:	all clean fclean re libft debug
 
@@ -16,14 +18,14 @@ NAME		=	miniRT
 
 HEADER		=	$(addprefix include/,\
 					minirt.h\
-					vector.h\
+					parcing.h\
 					scene.h\
 					get_next_line.h\
 					utils.h)
 
 CFLAGS		=	-I include
 
-CFLAGS		+=	-Wall -Wextra -Werror
+CFLAGS		+=	-Wall -Wextra -Werror -g
 
 # CFLAGS		+=	-fsanitize=address
 
@@ -34,9 +36,16 @@ LIBFT_H		=	./libft/libft.h
 
 LIBMLX		=	./libmlx/libmlx.a
 
+SRCS		=	$(addprefix src/, $(FILE_C))
+
 FILE_C		=	main.c
 
-SRCS		=	$(addprefix src/, $(FILE_C))
+FILE_C		+=	$(addprefix parcing/, \
+					get_next_line.c\
+					get_next_line_utils.c\
+					get_split.c\
+					parc.c)
+
 
 OBJ			=	$(addprefix objects/, $(FILE_C:%.c=%.o))
 

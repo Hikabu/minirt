@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmabel <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: vfedorov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/18 14:22:20 by jmabel            #+#    #+#             */
-/*   Updated: 2021/10/18 15:59:47 by jmabel           ###   ########.fr       */
+/*   Created: 2023/01/25 21:31:12 by vfedorov          #+#    #+#             */
+/*   Updated: 2023/01/26 12:43:45 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,27 @@
 void	*ft_memchr(const void *s, int c, size_t n)
 {
 	size_t			i;
-	unsigned char	*str;
+	unsigned char	*k;
+	unsigned char	l;
 
+	k = (unsigned char *)s;
+	l = (unsigned char )c;
 	i = 0;
-	str = (unsigned char *)s;
 	while (i < n)
 	{
-		if (str[i] == (unsigned char)c)
-			return (str + i);
+		if (k[i] == l)
+			return ((char *)(k + i));
 		i++;
 	}
 	return (NULL);
 }
+/*
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	char	*str = "bcwvcbi";
+	int 	ds = 'v';
+   	int		j = 5;
+	printf("%s", ft_memchr(str, ds, j));   
+}*/

@@ -11,8 +11,7 @@
 # include"../libft/libft.h"
 # include"../libmlx/mlx.h"
 # include"get_next_line.h"
+# include"parcing.h"
 
-int	parc(char *str);
-int a_ligth(char *str);
 
 #endif
