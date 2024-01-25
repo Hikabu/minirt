@@ -12,10 +12,15 @@
 
 #include "minirt.h"
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
+	t_entire	entire;
+	t_entire	*ent;
+
+	init_ent(&entire);
+	ent = &entire;
 	if (ac != 2)
 		error(2);
-	readmap(av[1]);
-    return (0);
+	readmap(av[1], &ent);
+	return (0);
 }

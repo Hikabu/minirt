@@ -21,22 +21,23 @@ void	error(int er)
 	exit(1);
 }
 
-int readmap(char *str)
+int	readmap(char *str, t_entire **ent)
 {
-    int     fd;
-    char    *line;
+	int		fd;
+	char	*line;
 
-    fd = open(str, O_RDONLY);
-    if (fd < 0)
-        error(1);
+	fd = open(str, O_RDONLY);
+	if (fd < 0)
+		error(1);
 	line = get_next_line(fd);
 	if (line == NULL || line[0] == '\0')
 		error(1);
 	while (line)
 	{
 		if (line[0] != '\n')
-			parc(line);
-		break;
+			parc(line, ent);
+		free(line);
+		line = get_next_line(fd);
 	}
 	return (0);
 }

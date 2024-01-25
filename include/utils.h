@@ -3,10 +3,11 @@
 
 # include "minirt.h"
 
-void	initA(t_amlight *list);
-void	initC(t_camera *list);
-void	initL(t_light *list);
+void	init_a(t_amlight *list);
+void	init_c(t_camera *list);
+void	init_l(t_light *list);
 void	init_pl(t_plane *list);
 void	init_cy(t_cyl *list);
 void	init_sp(t_sphere *list);
+void	init_ent(t_entire *ent);
 #endif
