@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 21:13:05 by vfedorov          #+#    #+#             */
-/*   Updated: 2024/01/19 21:37:07 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/01/21 16:23:39 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,22 +37,21 @@ double  ft_af(const char *ptr, int i)
   return (tiv);
 }
 
-double  ft_atof(const char *ptr)
+double	ft_atof(const char *ptr)
 {
-  double  nshan;
-  int    i;
+	double	nshan;
+	int		i;
 
-  i = 0;
-  nshan = 1.;
-  while (ptr[i] == '\t' || ptr[i] == '\n' || ptr[i] == '\v'
-    || ptr[i] == '\f' || ptr[i] == ' ' || ptr[i] == '\r')
-    i++;
-  if (ptr[i] == '+')
-    i++;
-  if (ptr[i] == '-')
-  {
-    nshan = -1.;
-    i++;
-  }
-  return (nshan * ft_af(ptr, i));
+	i = 0;
+	nshan = 1.;
+	while (ptr[i] == '\t' || ptr[i] == '\n' || ptr[i] == '\v' || ptr[i] == '\f' || ptr[i] == ' ' || ptr[i] == '\r')
+		i++;
+	if (ptr[i] == '+')
+		i++;
+	if (ptr[i] == '-')
+	{
+		nshan = -1.;
+		i++;
+	}
+	return (nshan * ft_af(ptr, i));
 }

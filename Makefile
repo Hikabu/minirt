@@ -6,7 +6,7 @@
 #    By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/19 15:15:41 by valeriafedo       #+#    #+#              #
-#    Updated: 2024/01/20 01:24:52 by valeriafedo      ###   ########.fr        #
+#    Updated: 2024/01/25 10:54:16 by valeriafedo      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,15 +40,22 @@ SRCS		=	$(addprefix src/, $(FILE_C))
 
 FILE_C		=	main.c
 
-FILE_C		+=	$(addprefix parcing/, \
-					get_next_line.c\
-					get_next_line_utils.c\
-					get_split.c\
-					parc.c)
+FILE_C		+=	$(addprefix parcing/, 		\
+					get_next_line.c			\
+					get_next_line_utils.c	\
+					get_split.c				\
+					parc.c					\
+					id_check.c				\
+					free_and_to_struct1.c	\
+					free_and_to_struct2.c	\
+					free_and_to_struct3.c)
 
-
+#FILE_C		+=	$(addprefix geometry/, 		\
+#					vector.c)
+#					
 FILE_C		+=	$(addprefix utils/, \
-					init.c)
+					init.c			\
+					init1.c)
 
 OBJ			=	$(addprefix objects/, $(FILE_C:%.c=%.o))
 
