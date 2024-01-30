@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 10:51:31 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/01/25 18:28:50 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/01/25 19:24:55 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	id_check5(char **str, t_entire **ent)
 	else
 		error(1); ////izmenit
 	printf("%d\n", (*ent)->sphere->rgb[2]);
-	printf("is there any merge????\n");
+	// printf("is there any merge????\n");
 }
 
 void	id_check4(char **str, t_entire **ent)

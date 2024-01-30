@@ -12,5 +12,6 @@
 # include"get_next_line.h"
 # include"parcing.h"
 # include"utils.h"
+# include"scene.h"
 
 #endif
