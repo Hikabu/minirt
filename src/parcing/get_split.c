@@ -12,15 +12,6 @@
 
 #include "minirt.h"
 
-void	error(int er)
-{
-	if (er == 1)
-		printf("Error\n");
-	else if (er == 2)
-		printf ("u need two arguments: exec and map\n");
-	exit(1);
-}
-
 int	readmap(char *str, t_entire **ent)
 {
 	int		fd;
