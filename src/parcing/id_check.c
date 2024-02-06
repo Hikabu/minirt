@@ -76,7 +76,7 @@ void	print_entire(t_entire **e)
 	{
 		printf("\nsphere\nid = %d\n", ent->sphere->id);
 		printf("xyz = %f,%f,%f\n", ent->sphere->xyz[0], ent->sphere->xyz[1], ent->sphere->xyz[2]);
-		printf("diametr = %f\n", ent->sphere->diametr);
+		printf("diametr = %f\n", ent->sphere->radius);
 		printf("rgb = %d,%d,%d\n", ent->sphere->rgb[0], ent->sphere->rgb[1], ent->sphere->rgb[2]);
 		ent->sphere = ent->sphere->next;
 	}
