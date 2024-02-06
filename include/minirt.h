@@ -12,22 +12,5 @@
 # include "get_next_line.h"
 # include "parcing.h"
 # include "utils.h"
-# include "scene.h"
-
-# define WIDTH 500
-# define HEIGHT 500
-
-
-t_vector	*vector_init(float x, float y, float z);
-
-typedef struct s_global
-{
-	void	*mlx;
-	void	*mlx_window;
-	int		width;
-	int		height;
-}		t_global;
-
-void	init_ent(t_entire *ent);
 
 #endif

@@ -28,18 +28,8 @@ char	*ft_strdup(const char *s1)
 	while (s1[g])
 	{
 		der[g] = s1[g];
-			g++;
+		g++;
 	}
 	der[g] = '\0';
 	return (der);
 }
-/*
-#include<string.h>
-#include<stdio.h>
-int main()
-{
-	const char s[] = "werrtyu";
-	printf("%s\n", ft_strdup(s));
-	printf("%s", strdup(s));
-}
-*/

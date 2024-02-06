@@ -12,6 +12,14 @@
 
 #include "minirt.h"
 
+void	all_exists(t_entire *ent)
+{
+	if (!ent->amlight || !ent->camera
+		|| !ent->light || !ent->plane
+		|| !ent->cyl || !ent->sphere)
+		error_with_free(ent);
+}
+
 int	main(int ac, char **av)
 {
 	t_entire	entire;
@@ -22,5 +30,7 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		error(2);
 	readmap(av[1], &ent);
+	all_exists(ent);
+	system("leaks miniRT");
 	return (0);
 }

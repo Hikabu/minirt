@@ -6,7 +6,7 @@
 #    By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/19 15:15:41 by valeriafedo       #+#    #+#              #
-#    Updated: 2024/02/01 15:45:43 by valeriafedo      ###   ########.fr        #
+#    Updated: 2024/01/20 01:24:52 by valeriafedo      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,11 +16,11 @@
 
 NAME		=	miniRT
 
-HEADER		=	$(addprefix include/,\
-					minirt.h\
-					parcing.h\
-					scene.h\
-					get_next_line.h\
+HEADER		=	$(addprefix include/,	\
+					minirt.h			\
+					parcing.h			\
+					scene.h				\
+					get_next_line.h		\
 					utils.h)
 
 CFLAGS		=	-I include
@@ -48,12 +48,10 @@ FILE_C		+=	$(addprefix parcing/, 		\
 					id_check.c				\
 					free_and_to_struct1.c	\
 					free_and_to_struct2.c	\
-					free_and_to_struct3.c)
+					free_and_to_struct3.c	\
+					error_free_exit.c)
 
-#FILE_C		+=	$(addprefix geometry/, 		\
-#					vector.c		\
-					figure.c)
-#					
+
 FILE_C		+=	$(addprefix utils/, \
 					init.c			\
 					init1.c)

@@ -85,4 +85,4 @@ char	**ft_split(char const *s, char c)
 	}
 	sst[i] = NULL;
 	return (sst);
-}	
+}
