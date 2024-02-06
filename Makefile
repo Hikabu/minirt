@@ -6,7 +6,7 @@
 #    By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/19 15:15:41 by valeriafedo       #+#    #+#              #
-#    Updated: 2024/01/25 10:54:16 by valeriafedo      ###   ########.fr        #
+#    Updated: 2024/02/01 15:45:43 by valeriafedo      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,8 @@ FILE_C		+=	$(addprefix parcing/, 		\
 					free_and_to_struct3.c)
 
 #FILE_C		+=	$(addprefix geometry/, 		\
-#					vector.c)
+#					vector.c		\
+					figure.c)
 #					
 FILE_C		+=	$(addprefix utils/, \
 					init.c			\
