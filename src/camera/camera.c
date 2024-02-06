@@ -1,16 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector.h                                           :+:      :+:    :+:   */
+/*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/29 19:36:19 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/01/29 19:37:25 by valeriafedo      ###   ########.fr       */
+/*   Created: 2024/02/01 15:47:17 by valeriafedo       #+#    #+#             */
+/*   Updated: 2024/02/06 11:38:48 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #ifndef VECTOR_H
-// # define VECTOR_H
+#include "minirt.h"
 
-// typedef
+t_camera    *init_camera(t_vector *origin, t_vector *direction, float fov)
+{
+    t_camera *camera;
+
+	camera = malloc(sizeof(t_camera));
+	if (!camera)
+		error(1);
+	camera->origin = origin;
+	camera->direction = direction;
+	camera->fov = fov;		//eagle ov view 
+	return (camera);
+}
