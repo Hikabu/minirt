@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parc.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: armgevor <armgevor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 12:20:11 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/01/20 01:36:00 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/02/05 16:03:42 by armgevor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,16 @@ void	count_of_split(char **str, int count)
 		error(1);
 }
 
+void	free_split(char **str)
+{
+	int	i;
+
+	i = -1;
+	while (str && str[++i])
+		free(str[i]);
+	free(str);
+}
+
 int	parc(char *line, t_entire **ent)
 {
 	int			i;
@@ -34,5 +44,6 @@ int	parc(char *line, t_entire **ent)
 			line[i] = ' ';
 	str = ft_split(line, ' ');
 	id_check(str, ent);
+	free_split(str);
 	return (0);
 }

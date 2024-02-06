@@ -1,16 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector.h                                           :+:      :+:    :+:   */
+/*   scene.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/29 19:36:19 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/01/29 19:37:25 by valeriafedo      ###   ########.fr       */
+/*   Created: 2024/02/01 15:57:45 by valeriafedo       #+#    #+#             */
+/*   Updated: 2024/02/01 15:59:48 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #ifndef VECTOR_H
-// # define VECTOR_H
+# include "minirt.h"
 
-// typedef
+t_scene	*init_scene(t_camera *camera, t_sphere *sphere)
+{
+    t_scene *scene;
+
+    scene  = malloc(sizeof(t_scene));
+    if (!scene)
+        error(1);
+    scene->cameras = camera; 
+}

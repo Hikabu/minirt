@@ -10,7 +10,8 @@
 # include "../libft/libft.h"
 # include "../libmlx/mlx.h"
 # include "get_next_line.h"
-# include "parcing.h"
 # include "utils.h"
+# include "parcing.h"
+# include "scene.h"
 
 #endif
