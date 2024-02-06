@@ -71,9 +71,9 @@ void	id_check1(char **str, t_entire **ent)
 
 void	id_check(char **str, t_entire **ent)
 {
-	void	*tmp;
+	// void	*tmp;
 
-	tmp = NULL;
+	// tmp = NULL;
 	if (!ft_strcmp(str[0], "A"))
 	{
 		if ((*ent)->amlight)

@@ -72,7 +72,7 @@ t_sphere	*to_struct_sp(char **str)
 		return (NULL);
 	init_sp(list);
 	count_of_split(str, 4);
-	list->diametr = ft_atof(str[2]);
+	list->radius = ft_atof(str[2]);
 	split_str_1 = ft_split(str[1], ',');
 	split_str_3 = ft_split(str[3], ',');
 	count_of_split(split_str_1, 3);
