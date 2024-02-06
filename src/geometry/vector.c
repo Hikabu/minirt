@@ -6,13 +6,13 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 23:57:40 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/01/25 17:02:19 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/02/01 15:34:42 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_vector	*vector_init(float x, float y, float z);  // получаем вектор и получаем поинтеры
+t_vector	*vector_init(float x, float y, float z)  // take pointer to vector and init it
 {
     t_vector *vec;
 
@@ -22,10 +22,10 @@ t_vector	*vector_init(float x, float y, float z);  // получаем вект�
     vec->x = x;
     vec->y = y;
     vec->z = z;
-    return (vec);				//в любом месте можно получить вектор 
+    return (vec);
 }
 
-t_vector    *vecsubtraction(t_vector *vec1, t_vector *vec2) // vec1 - vec2 
+t_vector	*vecsubtraction(t_vector *vec1, t_vector *vec2) // vec1 - vec2 
 {
     t_vector *result;
 
@@ -51,7 +51,7 @@ void vec_normalize(t_vector *vec) //normalize vector
 	vec->z /= length;
 }
 
-float vec_product(t_vector *vec1, t_vector *vec2)
+float	vec_product(t_vector *vec1, t_vector *vec2)
 {
 	float result;
 
