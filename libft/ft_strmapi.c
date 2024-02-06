@@ -26,7 +26,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	if (!result)
 		return (0);
 	while (i < len)
-	{		
+	{
 		result[i] = (*f)(i, s[i]);
 		i++;
 	}

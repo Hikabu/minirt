@@ -3,23 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_split.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: armgevor <armgevor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 12:25:18 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/01/19 18:19:29 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/02/05 16:01:44 by armgevor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-void	error(int er)
-{
-	if (er == 1)
-		printf("Error\n");
-	else if (er == 2)
-		printf ("u need two arguments: exec and map\n");
-	exit(1);
-}
 
 int	readmap(char *str, t_entire **ent)
 {
@@ -34,7 +25,9 @@ int	readmap(char *str, t_entire **ent)
 		error(1);
 	while (line)
 	{
-		if (line[0] != '\n')
+		if (line[0] == '#')
+		{}
+		else if (line[0] != '\n')
 			parc(line, ent);
 		free(line);
 		line = get_next_line(fd);

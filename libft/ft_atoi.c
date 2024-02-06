@@ -33,5 +33,7 @@ int	ft_atoi(const char *str)
 		i = i * 10 + str[count] - 48;
 		count++;
 	}
+	if (str[count])
+		error(1);
 	return (otr * i);
 }

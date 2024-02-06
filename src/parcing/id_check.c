@@ -1,25 +1,15 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   id_check.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/25 10:51:31 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/01/25 10:51:34 by valeriafedo      ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "minirt.h"
 
-void	id_check5(char **str, t_entire **ent)
+void	print_entire(t_entire **ent);
+
+void	id_check3(char **str, t_entire **ent)
 {
 	void	*tmp;
 
 	tmp = NULL;
 	if (!ft_strcmp(str[0], "sp"))
 	{
-		if ((*ent)->sphere != NULL)
+		if ((*ent)->sphere)
 		{
 			tmp = (*ent)->sphere;
 			ft_lstadd_back_sphere(&((*ent)->sphere), to_struct_sp(str));
@@ -31,48 +21,66 @@ void	id_check5(char **str, t_entire **ent)
 	else if (!ft_strncmp(str[0], "#", 1))
 		return ;
 	else
-		error(1); ////izmenit
-	printf("%d\n", (*ent)->sphere->rgb[2]);
+		error_with_free(*ent);
+	print_entire(ent);
 }
 
-void	id_check4(char **str, t_entire **ent)
+void	print_entire(t_entire **e)
 {
-	void	*tmp;
+	t_entire *ent = *e;
 
-	tmp = NULL;
-	if (!ft_strcmp(str[0], "cy"))
+	while(ent->plane)
 	{
-		if ((*ent)->cyl != NULL)
-		{
-			tmp = (*ent)->cyl;
-			ft_lstadd_back_cyl(&((*ent)->cyl), to_struct_cy(str));
-		}
-		(*ent)->cyl = to_struct_cy(str);
-		if (tmp)
-			(*ent)->cyl = tmp;
+		printf("\namlight\nid = %d\n", ent->amlight->id);
+		printf("ratio = %f\n", ent->amlight->ratio);
+		printf("rgb = %d,%d,%d\n", ent->amlight->rgb[0], ent->amlight->rgb[1], ent->amlight->rgb[2]);
 	}
-	else
-		id_check5(str, ent);
-}
-
-void	id_check3(char **str, t_entire **ent)
-{
-	void	*tmp;
-
-	tmp = NULL;
-	if (!ft_strcmp(str[0], "pl"))
+	
+	while(ent->plane)
 	{
-		if ((*ent)->plane != NULL)
-		{
-			tmp = (*ent)->plane;
-			ft_lstadd_back_plane(&((*ent)->plane), to_struct_pl(str));
-		}
-		(*ent)->plane = to_struct_pl(str);
-		if (tmp)
-			(*ent)->plane = tmp;
+		printf("\ncamera\nid = %d\n", ent->camera->id);
+		printf("xyz = %f,%f,%f\n", ent->camera->xyz[0], ent->camera->xyz[1], ent->camera->xyz[2]);
+		printf("norm_vec = %f,%f,%f\n", ent->camera->norm_vec[0], ent->camera->norm_vec[1], ent->camera->norm_vec[2]);
+		printf("fov = %d\n", ent->camera->fov);
 	}
-	else
-		id_check4(str, ent);
+
+	while(ent->plane)
+	{
+		printf("\nlight\nid = %d\n", ent->light->id);
+		printf("xyz = %f,%f,%f\n", ent->light->xyz[0], ent->light->xyz[1], ent->light->xyz[2]);
+		printf("ratio = %f\n", ent->light->ratio);
+		printf("rgb = %d,%d,%d\n", ent->light->rgb[0], ent->light->rgb[1], ent->light->rgb[2]);
+	}
+
+	while(ent->plane)
+	{
+		printf("\nplane\nid = %d\n", ent->plane->id);
+		printf("xyz = %f,%f,%f\n", ent->plane->xyz[0], ent->plane->xyz[1], ent->plane->xyz[2]);
+		printf("norm_vec = %f,%f,%f\n", ent->plane->norm_vec[0], ent->plane->norm_vec[1], ent->plane->norm_vec[2]);
+		printf("rgb = %d,%d,%d\n", ent->plane->rgb[0], ent->plane->rgb[1], ent->plane->rgb[2]);
+		ent->plane = ent->plane->next;
+	}
+
+	while(ent->cyl)
+	{
+		printf("\ncyl\nid = %d\n", ent->cyl->id);
+		printf("xyz = %f,%f,%f\n", ent->cyl->xyz[0], ent->cyl->xyz[1], ent->cyl->xyz[2]);
+		printf("norm_vec = %f,%f,%f\n", ent->cyl->norm_vec[0], ent->cyl->norm_vec[1], ent->cyl->norm_vec[2]);
+		printf("diam = %f\n", ent->cyl->diam);
+		printf("heig = %f\n", ent->cyl->heig);
+		printf("rgb = %d,%d,%d\n", ent->cyl->rgb[0], ent->cyl->rgb[1], ent->cyl->rgb[2]);
+		ent->cyl = ent->cyl->next;
+	}
+
+	while(ent->sphere)
+	{
+		printf("\nsphere\nid = %d\n", ent->sphere->id);
+		printf("xyz = %f,%f,%f\n", ent->sphere->xyz[0], ent->sphere->xyz[1], ent->sphere->xyz[2]);
+		printf("diametr = %f\n", ent->sphere->diametr);
+		printf("rgb = %d,%d,%d\n", ent->sphere->rgb[0], ent->sphere->rgb[1], ent->sphere->rgb[2]);
+		ent->sphere = ent->sphere->next;
+	}
+
 }
 
 void	id_check2(char **str, t_entire **ent)
@@ -80,16 +88,16 @@ void	id_check2(char **str, t_entire **ent)
 	void	*tmp;
 
 	tmp = NULL;
-	if (!ft_strcmp(str[0], "L"))
+	if (!ft_strcmp(str[0], "cy"))
 	{
-		if ((*ent)->light != NULL)
+		if ((*ent)->cyl)
 		{
-			tmp = (*ent)->light;
-			ft_lstadd_back_light(&((*ent)->light), to_struct_l(str));
+			tmp = (*ent)->cyl;
+			ft_lstadd_back_cyl(&((*ent)->cyl), to_struct_cy(str));
 		}
-		(*ent)->light = to_struct_l(str);
+		(*ent)->cyl = to_struct_cy(str);
 		if (tmp)
-			(*ent)->light = tmp;
+			(*ent)->cyl = tmp;
 	}
 	else
 		id_check3(str, ent);
@@ -100,17 +108,44 @@ void	id_check1(char **str, t_entire **ent)
 	void	*tmp;
 
 	tmp = NULL;
-	if (!ft_strcmp(str[0], "C"))
+	if (!ft_strcmp(str[0], "L"))
 	{
-		if ((*ent)->camera != NULL)
+		if ((*ent)->light)
+			error_with_free(*ent);
+		(*ent)->light = to_struct_l(str);
+	}
+	else if (!ft_strcmp(str[0], "pl"))
+	{
+		if ((*ent)->plane)
 		{
-			tmp = (*ent)->camera;
-			ft_lstadd_back_camera(&((*ent)->camera), to_struct_c(str));
+			tmp = (*ent)->plane;
+			ft_lstadd_back_plane(&((*ent)->plane), to_struct_pl(str));
 		}
-		(*ent)->camera = to_struct_c(str);
+		(*ent)->plane = to_struct_pl(str);
 		if (tmp)
-			(*ent)->camera = tmp;
+			(*ent)->plane = tmp;
 	}
 	else
 		id_check2(str, ent);
+}
+
+void	id_check(char **str, t_entire **ent)
+{
+	void	*tmp;
+
+	tmp = NULL;
+	if (!ft_strcmp(str[0], "A"))
+	{
+		if ((*ent)->amlight)
+			error_with_free(*ent);
+		(*ent)->amlight = to_struct_a(str);
+	}
+	else if (!ft_strcmp(str[0], "C"))
+	{
+		if ((*ent)->camera)
+			error_with_free(*ent);
+		(*ent)->camera = to_struct_c(str);
+	}
+	else
+		id_check1(str, ent);
 }

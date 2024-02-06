@@ -3,28 +3,25 @@
 
 typedef struct s_ambient_lightning
 {
-	int							id;
-	float						ratio;
-	int							rgb[3];
-	struct s_ambient_lightning	*next;
+	int		id;
+	float	ratio;
+	int		rgb[3];
 }	t_amlight;
 
 typedef struct s_camera
 {
-	int				id;
-	float			xyz[3];
-	float			norm_vec[3];
-	int				fov;
-	struct s_camera	*next;
+	int		id;
+	float	xyz[3];
+	float	norm_vec[3];
+	int		fov;
 }	t_camera;
 
 typedef struct s_light
 {
-	int				id;
-	float			xyz[3];
-	float			ratio;
-	int				rgb[3];
-	struct s_light	*next;
+	int		id;
+	float	xyz[3];
+	float	ratio;
+	int		rgb[3];
 }	t_light;
 
 typedef struct s_plane
@@ -73,7 +70,7 @@ int			readmap(char *str, t_entire **ent);
 void		id_check(char **str, t_entire **ent);
 void		count_of_split(char **str, int count);
 void		free_a(char **split_str_2);
-void		free_c(char **split_str_1, char **split_str_2);
+// void		free_c(char **split_str_1, char **split_str_2);
 void		free_l(char **split_str_1, char **split_str_3);
 void		free_pl(char **split_str_1, char **split_str_2, char **split_str_3);
 void		free_cy(char **split_str_1, char **split_str_2, char **split_str_5);
@@ -87,5 +84,6 @@ t_sphere	*to_struct_sp(char **str);
 void		int_range_checker(int *key, int value, int flag_range);
 void		float_range_checker(float *key, float value, int flag_range);
 void		id_check1(char **str, t_entire **ent);
+void		error_with_free(t_entire *ent);
 
 #endif

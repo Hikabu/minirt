@@ -54,8 +54,7 @@ t_camera	*to_struct_c(char **str)
 {
 	t_camera	*list;
 	int			i;
-	char		**split_str_1;
-	char		**split_str_2;
+	char		**split_str[2];
 
 	list = malloc(sizeof(t_camera));
 	if (!list)
@@ -63,16 +62,16 @@ t_camera	*to_struct_c(char **str)
 	init_c(list);
 	count_of_split(str, 4);
 	int_range_checker(&(list->fov), ft_atoi(str[3]), 2);
-	split_str_1 = ft_split(str[1], ',');
-	split_str_2 = ft_split(str[2], ',');
-	count_of_split(split_str_1, 3);
-	count_of_split(split_str_2, 3);
+	split_str[0] = ft_split(str[1], ',');
+	split_str[1] = ft_split(str[2], ',');
+	count_of_split(split_str[0], 3);
+	count_of_split(split_str[1], 3);
 	i = -1;
 	while (++i < 3)
 	{
-		list->xyz[i] = ft_atof(split_str_1[i]);
-		float_range_checker(&(list->norm_vec[i]), ft_atof(split_str_2[i]), 2);
+		list->xyz[i] = ft_atof(split_str[0][i]);
+		float_range_checker(&(list->norm_vec[i]), ft_atof(split_str[1][i]), 2);
 	}
-	free_c(split_str_1, split_str_2);
+	free_c(split_str[0], split_str[1]);
 	return (list);
 }

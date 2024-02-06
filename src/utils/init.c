@@ -19,7 +19,6 @@ void	init_a(t_amlight *list)
 	list->rgb[0] = 0;
 	list->rgb[1] = 0;
 	list->rgb[2] = 0;
-	list->next = NULL;
 }
 
 void	init_c(t_camera *list)
@@ -32,7 +31,6 @@ void	init_c(t_camera *list)
 	list->norm_vec[1] = 0;
 	list->norm_vec[2] = 0;
 	list->fov = 0;
-	list->next = NULL;
 }
 
 void	init_l(t_light *list)
@@ -45,7 +43,6 @@ void	init_l(t_light *list)
 	list->rgb[0] = 0;
 	list->rgb[1] = 0;
 	list->rgb[2] = 0;
-	list->next = NULL;
 }
 
 void	init_pl(t_plane *list)

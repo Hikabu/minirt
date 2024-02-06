@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:15:19 by vfedorov          #+#    #+#             */
-/*   Updated: 2024/01/25 10:46:02 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/01/19 21:49:56 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include "../include/parcing.h"
+# include "../include/utils.h"
 
 typedef struct s_list
 {
@@ -63,21 +64,16 @@ t_list	*ft_lstnew(void *content);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 int		ft_lstsize(t_list *lst);
 t_list	*ft_lstlast(t_list *lst);
+void	ft_lstadd_back(t_list **lst, t_list *new);
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstdelone(t_list *lst, void (*del)(void*));
-void	ft_lstadd_back(t_list **lst, t_list *new);
-// ray_tracing
-void	ft_lstadd_back_amlight(t_amlight **lst, t_amlight *new);
-void	ft_lstadd_back_camera(t_camera **lst, t_camera *new);
-void	ft_lstadd_back_light(t_light **lst, t_light *new);
-void	ft_lstadd_back_plane(t_plane **lst, t_plane *new);
-void	ft_lstadd_back_cyl(t_cyl **lst, t_cyl *new);
-void	ft_lstadd_back_sphere(t_sphere **lst, t_sphere *new);
-
 
 int		ft_strcmp(const char *s1, const char *s2);
 double	ft_atof(const char *ptr);
+void	ft_lstadd_back_plane(t_plane **lst, t_plane *new);
+void	ft_lstadd_back_cyl(t_cyl **lst, t_cyl *new);
+void	ft_lstadd_back_sphere(t_sphere **lst, t_sphere *new);
 
 #endif
