@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: armgevor <armgevor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 12:13:38 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/01/19 17:49:14 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/02/13 15:49:35 by armgevor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,8 @@
 void	all_exists(t_entire *ent)
 {
 	if (!ent->amlight || !ent->camera
-		|| !ent->light || !ent->plane
-		|| !ent->cyl || !ent->sphere)
-		error_with_free(ent);
+		|| !ent->light)
+		error_with_free(ent, 1);
 }
 
 int	main(int ac, char **av)
@@ -29,8 +28,11 @@ int	main(int ac, char **av)
 	ent = &entire;
 	if (ac != 2)
 		error(2);
+		// (void)av;
 	readmap(av[1], &ent);
 	all_exists(ent);
+	print_entire(&ent);
+	error_with_free(ent, 0);
 	system("leaks miniRT");
 	return (0);
 }

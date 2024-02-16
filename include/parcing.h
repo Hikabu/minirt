@@ -1,15 +1,20 @@
 #ifndef PARCING_H
 # define PARCING_H
 
-# include "scene.h"	
-// #include "minirt.h"
-
 typedef struct s_ambient_lightning
 {
 	int		id;
 	float	ratio;
 	int		rgb[3];
 }	t_amlight;
+
+typedef struct s_camera
+{
+	int		id;
+	float	xyz[3];
+	float	norm_vec[3];
+	int		fov;
+}	t_camera;
 
 typedef struct s_light
 {
@@ -43,9 +48,8 @@ typedef struct s_sphere
 {
 	int				id;
 	float			xyz[3];
-	float			radius;
+	float			diametr;
 	int				rgb[3];
-	t_vector		*center;
 	struct s_sphere	*next;
 }	t_sphere;
 
@@ -80,9 +84,9 @@ t_sphere	*to_struct_sp(char **str);
 void		int_range_checker(int *key, int value, int flag_range);
 void		float_range_checker(float *key, float value, int flag_range);
 void		id_check1(char **str, t_entire **ent);
-void		error_with_free(t_entire *ent);
+void		error_with_free(t_entire *ent, int flag_error);
+void		free_split(char **str);
 
-//figures
-t_sphere	*init_sphere(t_vector *center, float radius);
+void	print_entire(t_entire **e);
 
 #endif

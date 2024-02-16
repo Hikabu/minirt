@@ -1,6 +1,6 @@
 #include "minirt.h"
 
-void	error_with_free2(t_entire *ent, void *tmp)
+void	error_with_free2(t_entire *ent, void *tmp, int flag_error)
 {
     while (ent->sphere)
 	{
@@ -13,10 +13,11 @@ void	error_with_free2(t_entire *ent, void *tmp)
 		else
 			free(ent->sphere);
 	}
-	error(1);
+	if (flag_error)
+		error(1);
 }
 
-void	error_with_free1(t_entire *ent, void *tmp)
+void	error_with_free1(t_entire *ent, void *tmp, int flag_error)
 {
 	while (ent->cyl)
 	{
@@ -29,10 +30,10 @@ void	error_with_free1(t_entire *ent, void *tmp)
 		else
 			free(ent->plane);
 	}
-	error_with_free2(ent, NULL);
+	error_with_free2(ent, NULL, flag_error);
 }
 
-void	error_with_free(t_entire *ent)
+void	error_with_free(t_entire *ent, int flag_error)
 {
 	void	*tmp;
 
@@ -54,7 +55,7 @@ void	error_with_free(t_entire *ent)
 		else
 			free(ent->plane);
 	}
-	error_with_free1(ent, NULL);
+	error_with_free1(ent, NULL, flag_error);
 }
 
 void	error(int er)

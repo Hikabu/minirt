@@ -6,7 +6,7 @@
 /*   By: armgevor <armgevor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 12:25:18 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/02/05 16:01:44 by armgevor         ###   ########.fr       */
+/*   Updated: 2024/02/12 21:34:48 by armgevor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ int	readmap(char *str, t_entire **ent)
 		free(line);
 		line = get_next_line(fd);
 	}
+	close(fd);
 	return (0);
 }
