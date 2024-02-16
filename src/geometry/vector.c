@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: luatshem <luatshem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 23:57:40 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/02/01 15:34:42 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/02/16 18:17:31 by luatshem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ t_vector	*vector_init(float x, float y, float z)  // take pointer to vector and 
 {
     t_vector *vec;
 
+	printf("er");
     vec = malloc(sizeof(t_vector));
     if (!vec)
         error(1);
