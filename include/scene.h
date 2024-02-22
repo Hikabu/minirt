@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 10:05:37 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/02/06 15:36:15 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/02/21 18:34:48 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 # include "parcing.h"
 
 typedef struct s_sphere t_sphere;
+typedef struct s_data	t_data;
+typedef struct s_img	t_img;
+typedef struct s_entire	t_entire;
 
 typedef struct s_vector
 {
@@ -39,7 +42,12 @@ void vec_normalize(t_vector *vec);
 float vec_length(t_vector *vec);
 t_vector	*vecsubtraction(t_vector *vec1, t_vector *vec2);
 t_vector	*vector_init(float x, float y, float z);
+void	init_image(t_data *data);
+void	all_exists(t_entire *ent);
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+int 	key_hook(int keycode, void *param);
 
+void	color_back(void	*img);
 // camera
 typedef struct s_camera
 {
@@ -63,5 +71,16 @@ typedef struct s_scene
 
 // scene 
 t_scene	*init_scene(t_camera *camera, t_sphere *sphere);
+
+typedef struct s_vplane
+{
+	float width;
+	float height;
+	float x_pixel;
+	float y_pixel;
+	
+} t_vplane;
+t_vplane    *get_view_plane(float width, float height, float fov);
+
 
 #endif

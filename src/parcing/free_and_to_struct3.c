@@ -80,7 +80,7 @@ t_sphere	*to_struct_sp(char **str)
 	i = -1;
 	while (++i < 3)
 	{
-		list->rgb[i] = ft_atof(split_str_1[i]);
+		list->xyz[i] = ft_atof(split_str_1[i]);
 		int_range_checker(&(list->rgb[i]), ft_atoi(split_str_3[i]), 1);
 	}
 	free_sp(split_str_1, split_str_3);

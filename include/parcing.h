@@ -85,4 +85,9 @@ void		error_with_free(t_entire *ent);
 //figures
 t_sphere	*init_sphere(t_vector *center, float radius);
 
+
+
+
+void	print_entire(t_entire **e);
+
 #endif

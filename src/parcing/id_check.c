@@ -22,21 +22,20 @@ void	id_check3(char **str, t_entire **ent)
 		return ;
 	else
 		error_with_free(*ent);
-	print_entire(ent);
 }
 
 void	print_entire(t_entire **e)
 {
 	t_entire *ent = *e;
 
-	while(ent->plane)
+	if(ent->amlight)
 	{
 		printf("\namlight\nid = %d\n", ent->amlight->id);
 		printf("ratio = %f\n", ent->amlight->ratio);
 		printf("rgb = %d,%d,%d\n", ent->amlight->rgb[0], ent->amlight->rgb[1], ent->amlight->rgb[2]);
 	}
 	
-	while(ent->plane)
+	if(ent->camera)
 	{
 		printf("\ncamera\nid = %d\n", ent->camera->id);
 		printf("xyz = %f,%f,%f\n", ent->camera->xyz[0], ent->camera->xyz[1], ent->camera->xyz[2]);
@@ -44,7 +43,7 @@ void	print_entire(t_entire **e)
 		printf("fov = %d\n", ent->camera->fov);
 	}
 
-	while(ent->plane)
+	if(ent->light)
 	{
 		printf("\nlight\nid = %d\n", ent->light->id);
 		printf("xyz = %f,%f,%f\n", ent->light->xyz[0], ent->light->xyz[1], ent->light->xyz[2]);

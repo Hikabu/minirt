@@ -13,5 +13,31 @@
 # include "utils.h"
 # include "parcing.h"
 # include "scene.h"
+# define WIDTH 800
+# define HEIGHT 600
+# define BACKGROUND 1
+
+typedef struct s_img
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_img;
+
+typedef struct s_data
+{
+    void    *img;
+    char    *addr;
+    void	*mlx;
+	void	*window;
+    int     bits_per_pixel;
+    int	    line_length;
+	int	    endian;
+    t_img	simg;
+}	t_data;
+
+// void	error(int er);
 
 #endif
