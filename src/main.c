@@ -30,7 +30,10 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		error(2);
 	readmap(av[1], &ent);
+	// printf("---------\namlight\nid = %d\nratio = %f\nRGB = %d,%d,%d\n----------\n", 
+		//ent->amlight->id, ent->amlight->ratio, ent->amlight->rgb[0], ent->amlight->rgb[1], ent->amlight->rgb[2]);
 	all_exists(ent);
+	mlx_tracing(ent);
 	system("leaks miniRT");
 	return (0);
 }

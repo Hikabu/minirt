@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scene.c                                            :+:      :+:    :+:   */
+/*                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,12 +12,16 @@
 
 # include "minirt.h"
 
-t_scene	*init_scene(t_camera *camera, t_sphere *sphere)
+t_scene	*init_scene(t_camera *camera, t_sphere *sphere, float width, float height)
 {
     t_scene *scene;
 
-    scene  = malloc(sizeof(t_scene));
+    scene = malloc(sizeof(t_scene));
     if (!scene)
         error(1);
-    scene->cameras = camera; 
+    scene->cameras = camera;
+	scene->sphere = sphere;
+	scene->width = width;
+	scene->height = height;
+	return (scene);
 }

@@ -21,7 +21,8 @@ HEADER		=	$(addprefix include/,	\
 					parcing.h			\
 					scene.h				\
 					get_next_line.h		\
-					utils.h)
+					utils.h				\
+					vector.h)
 
 CFLAGS		=	-I include
 
@@ -55,6 +56,16 @@ FILE_C		+=	$(addprefix parcing/, 		\
 FILE_C		+=	$(addprefix utils/, \
 					init.c			\
 					init1.c)
+
+FILE_C		+=	$(addprefix ray_trace/, \
+					ray_trace.c)
+
+FILE_C		+=	$(addprefix scene/, \
+					scene.c)
+
+FILE_C		+=	$(addprefix geometry/,	\
+					figure.c			\
+					vector.c)
 
 OBJ			=	$(addprefix objects/, $(FILE_C:%.c=%.o))
 

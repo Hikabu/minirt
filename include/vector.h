@@ -10,7 +10,23 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// #ifndef VECTOR_H
-// # define VECTOR_H
+#ifndef VECTOR_H
+# define VECTOR_H
 
-// typedef
+#include "minirt.h";
+
+t_vector	*vector_init(float x, float y, float z);
+t_vector	*vecsubtraction(t_vector *vec1, t_vector *vec2);
+float		vec_length(t_vector *vec);
+void		vec_normalize(t_vector *vec);
+float		vec_product(t_vector *vec1, t_vector *vec2);
+
+typedef struct s_vplane
+{
+	float	width;
+	float	height;
+	float	x_pixel;
+	float	y_pixel;
+}	t_vplane;
+
+#endif

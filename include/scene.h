@@ -39,6 +39,7 @@ void vec_normalize(t_vector *vec);
 float vec_length(t_vector *vec);
 t_vector	*vecsubtraction(t_vector *vec1, t_vector *vec2);
 t_vector	*vector_init(float x, float y, float z);
+void	mlx_tracing(t_entire *ent);
 
 // camera
 typedef struct s_camera
@@ -46,7 +47,7 @@ typedef struct s_camera
 	int			id;
 	float		xyz[3];
 	float		norm_vec[3];
-	int			fov;
+	float		fov;
 	t_vector	*origin;
 	t_vector	*direction;
 }	t_camera;
@@ -62,6 +63,6 @@ typedef struct s_scene
 }   t_scene;
 
 // scene 
-t_scene	*init_scene(t_camera *camera, t_sphere *sphere);
+t_scene	*init_scene(t_camera *camera, t_sphere *sphere, float width, float height);
 
 #endif

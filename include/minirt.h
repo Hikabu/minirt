@@ -13,6 +13,7 @@
 # include "utils.h"
 # include "parcing.h"
 # include "scene.h"
+# include "vector.h"
 
 # define WIDTH 500
 # define HEIGHT 500
