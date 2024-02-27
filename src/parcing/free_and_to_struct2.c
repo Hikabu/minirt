@@ -6,7 +6,7 @@ void	float_range_checker(float *key, float value, int flag_range)
 		|| (flag_range == 2 && (value >= -1 && value <= 1)))
 		*key = value;
 	else
-		error(1);
+		error("float range check\n");
 }
 
 void	free_l(char **split_str_1, char **split_str_3)

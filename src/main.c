@@ -28,7 +28,7 @@ int	main(int ac, char **av)
 	init_ent(&entire);
 	ent = &entire;
 	if (ac != 2)
-		error(2);
+		error("two arguments required: exec and scene\n");
 	readmap(av[1], &ent);
 	// printf("---------\namlight\nid = %d\nratio = %f\nRGB = %d,%d,%d\n----------\n", 
 		//ent->amlight->id, ent->amlight->ratio, ent->amlight->rgb[0], ent->amlight->rgb[1], ent->amlight->rgb[2]);

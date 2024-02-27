@@ -33,7 +33,7 @@ double	ft_af(const char *ptr, int i)
 		i++;
 	}
 	if (ptr[i])
-		error(1);
+		error("ft_af\n");
 	return (tiv);
 }
 

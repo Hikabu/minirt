@@ -58,7 +58,8 @@ FILE_C		+=	$(addprefix utils/, \
 					init1.c)
 
 FILE_C		+=	$(addprefix ray_trace/, \
-					ray_trace.c)
+					ray_trace.c			\
+					sphere_intersect.c)
 
 FILE_C		+=	$(addprefix scene/, \
 					scene.c)

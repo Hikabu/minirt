@@ -18,7 +18,7 @@ t_vector	*vector_init(float x, float y, float z)  // take pointer to vector and 
 
     vec = malloc(sizeof(t_vector));
     if (!vec)
-        error(1);
+		error("vector failed to allocate\n");
     vec->x = x;
     vec->y = y;
     vec->z = z;

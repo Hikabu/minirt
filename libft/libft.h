@@ -18,6 +18,7 @@
 # include <unistd.h>
 # include "../include/parcing.h"
 # include "../include/utils.h"
+# include "../include/minirt.h"
 
 typedef struct s_list
 {
@@ -72,8 +73,7 @@ void	ft_lstdelone(t_list *lst, void (*del)(void*));
 
 int		ft_strcmp(const char *s1, const char *s2);
 double	ft_atof(const char *ptr);
-void	ft_lstadd_back_plane(t_plane **lst, t_plane *new);
-void	ft_lstadd_back_cyl(t_cyl **lst, t_cyl *new);
-void	ft_lstadd_back_sphere(t_sphere **lst, t_sphere *new);
+
+
 
 #endif

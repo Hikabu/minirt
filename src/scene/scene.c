@@ -18,7 +18,7 @@ t_scene	*init_scene(t_camera *camera, t_sphere *sphere, float width, float heigh
 
     scene = malloc(sizeof(t_scene));
     if (!scene)
-        error(1);
+		error("no scene\n");
     scene->cameras = camera;
 	scene->sphere = sphere;
 	scene->width = width;

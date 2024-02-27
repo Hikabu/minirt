@@ -18,7 +18,7 @@ t_camera    *init_camera(t_vector *origin, t_vector *direction, float fov)
 
 	camera = malloc(sizeof(t_camera));
 	if (!camera)
-		error(1);
+		error("camera failed to allocate\n");
 	camera->origin = origin;
 	camera->direction = direction;
 	camera->fov = fov;		//eagle ov view 

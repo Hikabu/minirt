@@ -20,7 +20,7 @@ t_vplane	*get_view_plane(float width, float height, float fov)
 	fov = 1;
 	vplane = malloc(sizeof(t_vplane));
 	if (!vplane)
-		error_free_exit(1);
+		error("vplane failed to allocate\n");
 	aspect_ratio = width / height;
 	vplane->width = 1;
 	vplane->height = vplane->width / aspect_ratio;
@@ -42,18 +42,29 @@ void	ray_tracing(void *mlx, void *window, t_scene *scene)
 	t_vplane	*vplane;
 
 	vplane = get_view_plane(scene->width, scene->height, scene->cameras->fov);
+	mlx_y = 0;
 	y_angle = (scene->height / 2);
 	while (y_angle >= (scene->height / 2) * (-1))
 	{
 		y_ray = y_angle * vplane->y_pixel;
 		x_angle = (scene->width / 2) * (-1);
+		mlx_x = 0;
 		while (x_angle <= scene->width / 2)
 		{
 			x_ray = x_angle * vplane->x_pixel;
 			ray = vector_init(x_ray, y_ray, -1);
 			vec_normalize(ray);
-			//////////////////////
+			if (sphere_intersect(scene->cameras, ray, scene->sphere))
+				color = 16777215;
+			else
+				color = 0;
+			mlx_pixel_put(mlx, window, mlx_x, mlx_y, color);
+			free(ray);
+			x_angle++;
+			mlx++;
 		}
+		y_angle--;
+		mlx_y++;
 	}
 }
 
@@ -65,6 +76,7 @@ void	mlx_tracing(t_entire *ent)
 
 	scene = init_scene(ent->camera, ent->sphere, 800, 600);
 	mlx = mlx_init();
+	window = NULL;
 	mlx = mlx_new_window(mlx, scene->width, scene->height, "U-LA-LA");
 	ray_tracing(mlx, window, scene);
 	mlx_loop(mlx);
