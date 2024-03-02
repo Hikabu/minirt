@@ -20,7 +20,7 @@ void	id_check3(char **str, t_entire **ent)
 		return ;
 	else
 		error_with_free(*ent);
-	printf("%f\n", (*ent)->camera->fov);
+	// printf("%d\n", (*ent)->camera->fov);
 }
 
 void	id_check2(char **str, t_entire **ent)

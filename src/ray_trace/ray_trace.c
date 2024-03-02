@@ -68,6 +68,11 @@ void	ray_tracing(void *mlx, void *window, t_scene *scene)
 	}
 }
 
+void	dimentions_init(t_entire *ent)
+{
+	
+}
+
 void	mlx_tracing(t_entire *ent)
 {
 	void	*mlx;
@@ -78,6 +83,7 @@ void	mlx_tracing(t_entire *ent)
 	mlx = mlx_init();
 	window = NULL;
 	mlx = mlx_new_window(mlx, scene->width, scene->height, "U-LA-LA");
+	dimentions_init(ent);
 	ray_tracing(mlx, window, scene);
 	mlx_loop(mlx);
 }

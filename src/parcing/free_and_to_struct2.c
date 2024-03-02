@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   free_and_to_struct2.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: timelkon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/27 16:03:53 by timelkon          #+#    #+#             */
+/*   Updated: 2024/02/27 16:03:59 by timelkon         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
 void	float_range_checker(float *key, float value, int flag_range)
@@ -6,7 +18,7 @@ void	float_range_checker(float *key, float value, int flag_range)
 		|| (flag_range == 2 && (value >= -1 && value <= 1)))
 		*key = value;
 	else
-		error("float range check\n");
+		error("float range checker\n");
 }
 
 void	free_l(char **split_str_1, char **split_str_3)

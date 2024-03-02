@@ -49,7 +49,7 @@ typedef struct s_camera
 	int			id;
 	float		xyz[3];
 	float		norm_vec[3];
-	float		fov;
+	int		fov;
 	t_vector	*origin;
 	t_vector	*direction;
 }	t_camera;
@@ -138,7 +138,7 @@ t_plane		*to_struct_pl(char **str);
 t_cyl		*to_struct_cy(char **str);
 t_sphere	*to_struct_sp(char **str);
 void		int_range_checker(int *key, int value, int flag_range);
-void		float_range_checker(float *key, float value, int flag_range);
+void	float_range_checker(float *key, float value, int flag_range);
 void		id_check1(char **str, t_entire **ent);
 void		error_with_free(t_entire *ent);
 void		mlx_tracing(t_entire *ent);
