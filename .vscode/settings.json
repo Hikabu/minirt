@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "mlx.h": "c",
-        "scene.h": "c"
+        "scene.h": "c",
+        "minirt.h": "c"
     }
 }

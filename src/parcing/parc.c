@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parc.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: armgevor <armgevor@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 12:20:11 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/02/05 16:03:42 by armgevor         ###   ########.fr       */
+/*   Updated: 2024/03/04 21:13:28 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,17 @@ void	free_split(char **str)
 	free(str);
 }
 
-int	parc(char *line, t_entire **ent)
+int	parc(char *line, t_entire **ent, t_data *data)
 {
 	int			i;
 	char		**str;
-
 	i = -1;
 	while (line && line[++i])
 		if (line[i] == '\t' || line[i] == '\n')
 			line[i] = ' ';
 	str = ft_split(line, ' ');
+	initial_scene(data->scene);
+	get_fov_angles(data->scene);
 	id_check(str, ent);
 	free_split(str);
 	return (0);

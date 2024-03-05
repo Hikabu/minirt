@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_split.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: armgevor <armgevor@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 12:25:18 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/02/05 16:01:44 by armgevor         ###   ########.fr       */
+/*   Updated: 2024/03/04 11:44:10 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	readmap(char *str, t_entire **ent)
+int	readmap(char *str, t_entire **ent, t_data *data)
 {
 	int		fd;
 	char	*line;
@@ -28,7 +28,7 @@ int	readmap(char *str, t_entire **ent)
 		if (line[0] == '#')
 		{}
 		else if (line[0] != '\n')
-			parc(line, ent);
+			parc(line, ent, data);
 		free(line);
 		line = get_next_line(fd);
 	}

@@ -6,15 +6,15 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 12:13:38 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/02/22 21:40:15 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/03/04 21:05:35 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	all_exists(t_entire *ent)
+void	all_exiests(t_entire *ent)
 {
-	if (!ent->amlight || !ent->camera
+	if (!ent->amlight || !ent->scene->camera
 		|| !ent->light || !ent->plane
 		|| !ent->cyl || !ent->sphere)
 		error_with_free(ent);
@@ -39,43 +39,25 @@ int	main(int ac, char **av)
 {
 	t_entire	entire;
 	t_entire	*ent;
-	void		*mlx;
-	void		*win;
-	int 		x = WIDTH;
-	int 		y = HEIGHT;
-	// t_data		data;
-	t_data		img;
+	t_data		data;
 	
-	mlx = mlx_init();
-	win = mlx_new_window(mlx, WIDTH, HEIGHT, "miniRT");
-	img.img = mlx_new_image(mlx, WIDTH, HEIGHT);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
-	// my_mlx_pixel_put(&img, 5, 5, 0x00FF0000);
-	while (x >= 0)
-	{
-		y = HEIGHT;
-		while (y >= 0)
-		{
-			double result = pow(x - WIDTH/2, 2) + pow(y - HEIGHT/2, 2);
-			if (result <= pow(100, 2))
-				my_mlx_pixel_put(&img, x, y, 0x00FF0000);
-			y--;
-		}
-		x--;
-	}
-	mlx_put_image_to_window(mlx, win, img.img, 0, 0);
-	// init_image(&data);
-	// color_back(&data.simg.img);
-	mlx_loop(mlx);
-	init_ent(&entire);
-	ent = &entire;
 	if (ac != 2)
 		error(2);
-	readmap(av[1], &ent);
-	all_exists(ent);
-	// print_entire(&ent);
+	init_ent(&entire);
+	ent = &entire;
+	readmap(av[1], &ent, &data);
+	print_entire(&ent);
+	data.scene->camera_point = ent->scene->camera_point;
+	// ent->scene = NULL;
+	print_scene(data.scene);
+	init_image(&data);
+	color_back(&data.simg.img);
+	ray_trace(&data);
+	// mlx_loop(data.mlx);
+	all_exiests(ent);
+	// printf("camera after function %f\n", ent->scene->camera_point.z);
 	// system("leaks miniRT");
-	(void)win;
+	// (void)win;
+	// (void)av;
 	return (0);
 }
-

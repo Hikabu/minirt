@@ -39,8 +39,8 @@ void	error_with_free(t_entire *ent)
 	tmp = NULL;
 	if (ent->amlight)
 		free(ent->amlight);
-	if (ent->camera)
-		free(ent->camera);
+	if (ent->scene->camera)
+		free(ent->scene->camera);
 	if (ent->light)
 		free(ent->light);
 	while (ent->plane)

@@ -35,12 +35,12 @@ void	print_entire(t_entire **e)
 		printf("rgb = %d,%d,%d\n", ent->amlight->rgb[0], ent->amlight->rgb[1], ent->amlight->rgb[2]);
 	}
 	
-	if(ent->camera)
+	if(ent->scene->camera)
 	{
-		printf("\ncamera\nid = %d\n", ent->camera->id);
-		printf("xyz = %f,%f,%f\n", ent->camera->xyz[0], ent->camera->xyz[1], ent->camera->xyz[2]);
-		printf("norm_vec = %f,%f,%f\n", ent->camera->norm_vec[0], ent->camera->norm_vec[1], ent->camera->norm_vec[2]);
-		printf("fov = %d\n", ent->camera->fov);
+		printf("\ncamera\nid = %d\n", ent->scene->camera->id);
+		printf("xyz = %f,%f,%f\n", ent->scene->camera->xyz[0], ent->scene->camera->xyz[1], ent->scene->camera->xyz[2]);
+		printf("norm_vec = %f,%f,%f\n", ent->scene->camera->norm_vec[0], ent->scene->camera->norm_vec[1], ent->scene->camera->norm_vec[2]);
+		printf("fov = %d\n", ent->scene->camera->fov);
 	}
 
 	if(ent->light)
@@ -75,7 +75,7 @@ void	print_entire(t_entire **e)
 	{
 		printf("\nsphere\nid = %d\n", ent->sphere->id);
 		printf("xyz = %f,%f,%f\n", ent->sphere->xyz[0], ent->sphere->xyz[1], ent->sphere->xyz[2]);
-		printf("diametr = %f\n", ent->sphere->radius);
+		printf("diametr = %f\n", ent->sphere->diametr);
 		printf("rgb = %d,%d,%d\n", ent->sphere->rgb[0], ent->sphere->rgb[1], ent->sphere->rgb[2]);
 		ent->sphere = ent->sphere->next;
 	}
@@ -129,10 +129,7 @@ void	id_check1(char **str, t_entire **ent)
 }
 
 void	id_check(char **str, t_entire **ent)
-{
-	// void	*tmp;
-
-	// tmp = NULL;
+{ 
 	if (!ft_strcmp(str[0], "A"))
 	{
 		if ((*ent)->amlight)
@@ -141,9 +138,10 @@ void	id_check(char **str, t_entire **ent)
 	}
 	else if (!ft_strcmp(str[0], "C"))
 	{
-		if ((*ent)->camera)
+		if ((*ent)->scene->camera)
 			error_with_free(*ent);
-		(*ent)->camera = to_struct_c(str);
+		(*ent)->scene->camera = to_struct_c(str, (*ent)->scene);
+		printf("camera after function %f\n", (*ent)->scene->camera_point.z);
 	}
 	else
 		id_check1(str, ent);

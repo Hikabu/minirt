@@ -10,33 +10,36 @@
 # include "../libft/libft.h"
 # include "../libmlx/mlx.h"
 # include "get_next_line.h"
+# include "scene.h"
 # include "utils.h"
 # include "parcing.h"
-# include "scene.h"
 # define WIDTH 800
 # define HEIGHT 600
 # define BACKGROUND 1
 
-typedef struct s_img
-{
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}	t_img;
+typedef struct 	s_light 						t_light;
+typedef struct 	s_scene							t_scene;
+typedef struct 	s_data							t_data;
+// typedef	struct	s_coordinates_for_vector		t_crd;
+// typedef struct 	s_two_points_for_ray_direction	t_ray;
 
-typedef struct s_data
+typedef	struct s_pixel
 {
-    void    *img;
-    char    *addr;
-    void	*mlx;
-	void	*window;
-    int     bits_per_pixel;
-    int	    line_length;
-	int	    endian;
-    t_img	simg;
-}	t_data;
+	int			x;
+	int			y;
+	t_crd		coor;
+	t_crd		intersection;
+	float		lenght;
+	t_plane		*plane;
+	t_sphere	*sphere;
+	t_cyl		*cyl;
+	t_ray		ray;
+}	t_pixel;
+
+void	ray_trace(t_data *data);
+void    fill_new_vector(t_crd *result, float x, float y, float z);
+void	print_scene(t_scene	*scene);
+
 
 // void	error(int er);
 

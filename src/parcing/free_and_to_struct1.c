@@ -50,14 +50,18 @@ void	free_c(char **split_str_1, char **split_str_2)
 	free(split_str_2);
 }
 
-t_camera	*to_struct_c(char **str)
+t_camera	*to_struct_c(char **str, t_scene *scene)
 {
 	t_camera	*list;
+	t_crd		*camera_point;
 	int			i;
 	char		**split_str[2];
-
+	(void)scene;
 	list = malloc(sizeof(t_camera));
 	if (!list)
+		return (NULL);
+	camera_point = malloc(sizeof(t_crd));
+	if (!camera_point)
 		return (NULL);
 	init_c(list);
 	count_of_split(str, 4);
@@ -72,6 +76,8 @@ t_camera	*to_struct_c(char **str)
 		list->xyz[i] = ft_atof(split_str[0][i]);
 		float_range_checker(&(list->norm_vec[i]), ft_atof(split_str[1][i]), 2);
 	}
+	fill_coordinates_for_camera(list, camera_point);
+	scene->camera_point = *camera_point;
 	free_c(split_str[0], split_str[1]);
 	return (list);
 }
