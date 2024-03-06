@@ -18,7 +18,7 @@ render simple Computer-Generated-Images
 
 Also:
 
-* Use [libft functions](https://github.com/Hikabu/libft) - a set of some functions.
+* Use [libft functions](https://github.com/MariaKorshunova/libft) - a set of some functions.
 
 * All functions of the math library
 

@@ -6,7 +6,7 @@
 #    By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/19 15:15:41 by valeriafedo       #+#    #+#              #
-#    Updated: 2024/01/20 01:24:52 by valeriafedo      ###   ########.fr        #
+#    Updated: 2024/03/05 01:00:24 by valeriafedo      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,30 @@ FILE_C		+=	$(addprefix parcing/, 		\
 
 FILE_C		+=	$(addprefix utils/, \
 					init.c			\
-					init1.c)
+					init1.c			\
+					print_scene.c)
+
+FILE_C		+=	$(addprefix scene/, \
+					scene.c			\
+					init_image.c)
+					
+FILE_C		+=	$(addprefix parc_create/, \
+					parc_cilinder.c		)
+
+FILE_C		+=	$(addprefix geometry/, \
+					figure.c		\
+					vector.c	)
+					
+FILE_C		+=	$(addprefix ray_tracing/, \
+					trace_ray.c		\
+					sphere_trace.c	\
+					check.c			\
+					check_cylinder.c\
+					check_sphere.c	\
+					solver.c)
+					
+FILE_C		+=	$(addprefix camera/, \
+					camera.c		)	
 
 OBJ			=	$(addprefix objects/, $(FILE_C:%.c=%.o))
 

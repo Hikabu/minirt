@@ -6,13 +6,13 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 12:25:18 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/01/19 18:19:29 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/03/04 11:44:10 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	readmap(char *str, t_entire **ent)
+int	readmap(char *str, t_entire **ent, t_data *data)
 {
 	int		fd;
 	char	*line;
@@ -25,8 +25,10 @@ int	readmap(char *str, t_entire **ent)
 		error(1);
 	while (line)
 	{
-		if (line[0] != '\n')
-			parc(line, ent);
+		if (line[0] == '#')
+		{}
+		else if (line[0] != '\n')
+			parc(line, ent, data);
 		free(line);
 		line = get_next_line(fd);
 	}
