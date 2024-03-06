@@ -34,6 +34,6 @@ int	ft_atoi(const char *str)
 		count++;
 	}
 	if (str[count])
-		error(1);
+		error("atoi\n");
 	return (otr * i);
 }

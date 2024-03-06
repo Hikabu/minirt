@@ -18,7 +18,7 @@ t_sphere	*init_sphere(t_vector *center, float radius)
     
     sphere = malloc(sizeof(t_sphere));
     if (!sphere)
-        error(1);
+		error("sphere failed to allocate\n");
     sphere->center = center;
     sphere->radius = radius;
     return(sphere);

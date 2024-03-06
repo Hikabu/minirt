@@ -18,7 +18,7 @@ t_vector	*vector_init(float x, float y, float z)  // take pointer to vector and 
 
     vec = malloc(sizeof(t_vector));
     if (!vec)
-        error(1);
+		error("vector failed to allocate\n");
     vec->x = x;
     vec->y = y;
     vec->z = z;
@@ -33,7 +33,7 @@ t_vector	*vecsubtraction(t_vector *vec1, t_vector *vec2) // vec1 - vec2
 	return (result);
 }
 
-float vec_length(t_vector *vec) //find length of vector
+float	vec_length(t_vector *vec) //find length of vector
 {
 	float result;
 	
@@ -41,7 +41,7 @@ float vec_length(t_vector *vec) //find length of vector
 	return (result);
 }
 
-void vec_normalize(t_vector *vec) //normalize vector
+void	vec_normalize(t_vector *vec) //normalize vector
 {
 	float length;
 

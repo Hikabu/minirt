@@ -19,10 +19,10 @@ int	readmap(char *str, t_entire **ent)
 
 	fd = open(str, O_RDONLY);
 	if (fd < 0)
-		error(1);
+		error("failed to open\n");
 	line = get_next_line(fd);
 	if (line == NULL || line[0] == '\0')
-		error(1);
+		error("nothing to read\n");
 	while (line)
 	{
 		if (line[0] != '\n')

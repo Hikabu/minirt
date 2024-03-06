@@ -20,7 +20,7 @@ void	count_of_split(char **str, int count)
 	while (str && str[++i])
 		;
 	if (i != count)
-		error(1);
+		error("count of split\n");
 }
 
 int	parc(char *line, t_entire **ent)

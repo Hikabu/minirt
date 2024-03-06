@@ -13,7 +13,7 @@ void	error_with_free2(t_entire *ent, void *tmp)
 		else
 			free(ent->sphere);
 	}
-	error(1);
+	error("with free\n");
 }
 
 void	error_with_free1(t_entire *ent, void *tmp)
@@ -57,12 +57,13 @@ void	error_with_free(t_entire *ent)
 	error_with_free1(ent, NULL);
 }
 
-void	error(int er)
+void	error(char *er)
 {
-	if (er == 1)
-	{
-		printf("Error\n");}
-	else if (er == 2)
-		printf ("u need two arguments: exec and map\n");
+	printf("Error: %s", er);
+	// if (er == 1)
+	// {
+	// 	printf("Error\n");}
+	// else if (er == 2)
+	// 	printf ("u need two arguments: exec and map\n");
 	exit(1);
 }
