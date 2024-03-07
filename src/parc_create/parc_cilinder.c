@@ -69,7 +69,7 @@ int open_and_parse_file(t_entire *ent, const char *path)
     parse_success = parse_scene_file(ent, fd);
     close(fd);
 
-    return parse_success; // 1 on success, 0 on failure
+    return parse_success; 
 }
 
 
@@ -89,11 +89,11 @@ int parse_scene_file(t_entire *ent, int fd)
             free(sanitized_line);
             break;
         }
-        free(line); // Free the original line buffer
-        free(sanitized_line); // Free the sanitized line
+        free(line); 
+        free(sanitized_line); 
     }
-    free(line); // Ensure no leaks in case of EOF
-    return parse_status; // Returns 1 on success, 0 on failure
+    free(line); 
+    return parse_status; 
 }
 
 int	parse_params(t_entire *ent, char *line)
