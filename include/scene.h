@@ -40,8 +40,8 @@ typedef struct s_two_points_for_ray_direction
 typedef struct s_camera
 {
 	int			id;
-	float		xyz[3];
-	float		norm_vec[3];
+	t_crd		xyz;
+	t_crd		norm_vec;
 	int			fov;
 	t_crd	*origin;
 	t_crd	*direction;

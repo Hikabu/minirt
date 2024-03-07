@@ -11,19 +11,26 @@ typedef struct	s_scene						t_scene;
 typedef struct	s_img						t_img;
 // typedef	struct	s_coordinates_for_vector	t_crd;
 
+typedef struct s_color
+{
+	float	r;
+	float	g;
+	float	b;
+}	t_color;
+
 typedef struct s_ambient_lightning
 {
 	int		id;
 	float	ratio;
-	int		rgb[3];
+	t_color		rgb;
 }	t_amlight;
 
 typedef struct s_light
 {
 	int		id;
-	float	xyz[3];
+	t_crd	xyz;
 	float	ratio;
-	int		rgb[3];
+	t_color	rgb;
 	t_light	*next;
 }	t_light;
 
@@ -31,9 +38,9 @@ typedef struct s_plane
 {
 	t_crd			point;
 	int				id;
-	float			xyz[3];
-	float			norm_vec[3];
-	int				rgb[3];
+	t_crd			xyz;
+	t_crd			norm_vec;
+	t_color			rgb;
 	t_plane			*next;
 }	t_plane;
 
@@ -41,11 +48,11 @@ typedef struct s_cylinder
 {
 	t_crd			point;
 	int					id;
-	float				xyz[3];
-	float				norm_vec[3];
+	t_crd				xyz;
+	t_crd				norm_vec;
 	float				diam;
 	float				heig;
-	int					rgb[3];
+	t_color				rgb;
 	t_cyl			*next;
 }	t_cyl;
 
@@ -53,9 +60,9 @@ typedef struct s_sphere
 {
 	t_crd			point;
 	int				id;
-	float			xyz[3];
+	t_crd			xyz;
 	float			diametr;
-	int				rgb[3];
+	t_color			rgb;
 	int				color_ambient;
 	// t_vector		*center;
 	t_sphere		*next; //if several figures
@@ -64,7 +71,7 @@ typedef struct s_sphere
 typedef struct s_entire
 {
 	t_amlight	*amlight;
-	// t_camera	*camera;
+	t_camera	*camera;
 	t_scene		*scene;
 	t_light		*light;
 	t_plane		*plane;
