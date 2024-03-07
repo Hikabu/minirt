@@ -12,6 +12,22 @@
 
 #include "minirt.h"
 
+
+typedef enum e_object_id
+{
+	id_unset,
+	id_ambient,
+	id_light,
+	id_camera,
+	id_plane,
+	id_cylinder,
+	id_cone,
+	id_sphere,
+	id_triangle,
+	id_torus
+}	t_obj_id;
+
+
 void	initial_scene(t_scene *scene)
 {
 	scene->obj = calloc(1, sizeof(t_obj));
@@ -72,29 +88,65 @@ int open_and_parse_file(t_entire *ent, const char *path)
     return parse_success; 
 }
 
-
-int parse_scene_file(t_entire *ent, int fd) 
+int	parse_scene_file(t_entire *ent, int fd)
 {
-    char *line = NULL;
-    int line_num = 0;
-    int parse_status = 1;
-	char *sanitized_line;
+	int		num;
+	int		status;
+	char	*line;
 
-    while (get_next_line(fd, &line) > 0) 
+	num = 0;
+	status = 0;
+	while (status != 1)
 	{
-        sanitized_line = sanitize_line(line);
-        // env->lnum = ++line_num;
-        if (!parse_params(ent, sanitized_line)) {
-            parse_status = 0;
-            free(sanitized_line);
-            break;
-        }
-        free(line); 
-        free(sanitized_line); 
-    }
-    free(line); 
-    return parse_status; 
+		num++;
+		line = get_next_line(fd);
+		if (!line)
+			break ;
+		line = sanitize_line(line);
+		//ent->lnum = num;
+		if (parse_params(ent, line))
+			status = 1;
+		free(line);
+	}
+	//if (!status && is_invalid_file(ent))
+	//	status = 1;
+	close(fd);
+	return (status);
 }
+
+
+
+int	parse_camera(t_entire *ent, char *line, int i)
+{
+	char		**params;
+	t_camera	camera;
+
+	params = ft_split(line, ' ');
+	// if (ent->camera.id)
+	//	return (show_parsing_error(rt, params, ERR_TOO_MANY_CAMERAS));
+	//if (array_length(params) != 4)
+	//	return (show_parsing_error(rt, params, ERR_INVALID_NB_PARAMS));
+	ft_bzero(&camera, sizeof(t_camera));
+	camera.id = id_camera;
+	while (params && params[++i])
+	{
+		// ent->pnum = i;
+		if (i == 1 && parse_vector(params[i], &camera.norm_vec))
+			// return (show_parsing_error(ent, params, ERR_INVALID_NB_COORDS));
+		if (i == 2 && parse_vector(params[i], &camera.norm_vec))
+			// return (show_parsing_error(ent, params, ERR_INVALID_NB_ORIENT));
+		if (i == 3 && parse_ulong(params[i], &camera.fov))
+			// return (show_parsing_error(ent, params, ERR_NOT_A_ULONG));
+	}
+
+	vec_normalize(&camera.norm_vec);
+	ent->camera = &camera;
+	free_array(params);
+	return (0);
+}
+
+
+
 
 int	parse_params(t_entire *ent, char *line)
 {
@@ -114,3 +166,32 @@ int	parse_params(t_entire *ent, char *line)
 }
 
 
+
+
+float	str_to_float(char *str)
+{
+	float	sum;
+	float	prec;
+	float	div;
+	float	sign;
+
+	prec = 0.0;
+	div = 1.0;
+	sign = 1.0;
+	if (str && str[0] == '-')
+		sign *= -1.0;
+	sum = (float)ft_atoi(str);
+	while (*str && *str != '.')
+		str++;
+	if (*str++ == '.')
+	{
+		while (*str >= '0' && *str <= '9')
+		{
+			div *= 10.0;
+			prec += (*str - '0') / div;
+			str++;
+		}
+		sum += prec * sign;
+	}
+	return (sum);
+}
