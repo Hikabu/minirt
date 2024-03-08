@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 10:05:37 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/05 23:06:42 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/03/08 19:26:10 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ typedef struct s_vplane
 	float y_pixel;
 	
 }	t_vplane;
+
 
 
 float		vec_product(t_crd *vec1, t_crd *vec2);

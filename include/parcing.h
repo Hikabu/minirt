@@ -37,17 +37,31 @@ typedef struct s_plane
 	t_plane			*next;
 }	t_plane;
 
+typedef struct s_plat				//  represent the surfaces of objects in a scene
+{
+	t_crd	point;
+	t_crd 	orient;
+	int		color;
+	int		color_amb;
+	t_plato	*next;
+} 	t_plato;
+
 typedef struct s_cylinder
 {
 	t_crd			point;
-	int					id;
-	float				xyz[3];
-	float				norm_vec[3];
-	float				diam;
-	float				heig;
-	int					rgb[3];
+	t_crd			orient;
+	float			diam;
+	t_plato			plato_begin;
+	t_plato			plato_end;
+	int				id;
+	float			xyz[3]; //orinentation
+	float			norm_vec[3];  //point 
+	float			heig;
+	int				rgb[3];
+	int				color; //rgb[3]
 	t_cyl			*next;
 }	t_cyl;
+
 
 typedef struct s_sphere
 {

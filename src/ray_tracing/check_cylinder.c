@@ -6,11 +6,19 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 00:42:25 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/06 16:47:30 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/03/08 19:40:45 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+static void	define_cul(t_cyl *cyl, t_plato *plane, t_crd, *point)
+{
+	plane->point = *point;
+	plane->color = cyl->color;
+	plane->orient = cyl->orient;
+	plane->color_amb = cyl->color;
+}
 
 float	chrck_intersection_cyl(t_cyl *cyl, t_pixel *pixel)
 {
@@ -21,15 +29,20 @@ float	chrck_intersection_cyl(t_cyl *cyl, t_pixel *pixel)
 	t_crd	point_end;
 
 	pixel->cyl = NO_INTERSECT;
-	vector_subtraction(&orpoint, &(pixel->ray.point[0]), &(cyl->point));
-	scalar_multiplication(&direction, &(pixel->coor), -1);
+	// vector_subtraction(&orpoint, &(pixel->ray.point[0]), &(cyl->point));   vector from the cylinder's center point to the ray's starting point
+	scalar_multiplication(&direction, &(pixel->coor), -1); //calculates the direction vector of the ray
 	dist = intersection_cylinder_pippe(cyl, &dist, &orpoint, pixel);
 	if (dist > 0)
 		pixel->cyl_type = 1;
-	define_cyl_plane(cyl, &cyl->plane)
+	define_cyl(cyl, &cyl->plato_begin, &cyl->point);
+	
+	// to calculate the intersection point between a ray and a cylinder's pipe
 }
 
 
+// 	define_cylinder_plane(cylinder, &cylinder->plane_begin, &cylinder->point);
+// 	dist_plane = intersection_cylinder_plane(cylinder,
+// 			&cylinder->plane_begin, &(pixel->ray), &(pixel->d));
 // 	scalar_multiplication(&cylinder->plane_begin.orientation,
 // 		&cylinder->plane_begin.orientation, -1);
 // 	if (dist_plane != -1 && (dist_plane < dist || dist == -1))
