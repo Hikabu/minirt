@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 10:05:37 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/05 01:09:43 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/03/05 23:06:42 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct	s_cylinder				t_cyl;
 typedef struct	s_sphere				t_sphere;
 typedef struct	s_entire				t_entire;
 typedef struct 	s_objects				t_obj;
+typedef	struct	s_pixel					t_pixel;
 
 typedef	struct	s_coordinates_for_vector
 {
@@ -130,9 +131,11 @@ t_vplane    *get_view_plane(float width, float height, float fov);
 void		vector_subtraction(t_crd *res, t_crd *a, t_crd *b);
 void		norm_vector(t_crd *vec);
 float		scalar_vector_product(t_crd *a, t_crd *b);
+float		scalar_multiplication(t_crd *res, t_crd *vector, float lambda);
 
 //intersaction 
-void 		check_intersection(t_data *data, t_pixel *pixel);
+t_sphere	*check_for_spheres(t_data *data, t_ray *ray, t_crd *rd, float *dist);
+
 
 
 #endif

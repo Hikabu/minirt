@@ -34,7 +34,14 @@ typedef	struct s_pixel
 	t_sphere	*sphere;
 	t_cyl		*cyl;
 	t_ray		ray;
+	int			cyl_type;
 }	t_pixel;
+
+typedef enum e_type_object // only for clearness 
+{
+	NO_INTERSECT,
+}	t_type_object;
+
 
 void	ray_trace(t_data *data);
 void    fill_new_vector(t_crd *result, float x, float y, float z);

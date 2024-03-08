@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 23:57:40 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/05 00:37:10 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/03/05 23:06:23 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,11 @@ float	scalar_vector_product(t_crd *a, t_crd *b) // scalar produc of 2 vectors
 
 	res = (a->x * b->x) + (a->y * b->y) + (a->z * b->z);
 	return (res);
+}
+
+float	scalar_multiplication(t_crd *res, t_crd *vector, float lambda)
+{
+	res->x = vector->x * lambda;
+	res->y = vector->y * lambda;
+	res->z = vector->z * lambda;
 }

@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 23:53:56 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/05 00:41:56 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/03/05 15:56:10 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,19 @@ void	pixel_init(t_pixel *pixel)
 	pixel->coor.y = 0;
 	pixel->coor.z = 0;
 }
+/*
+rt - behavior simulation of light rays for realistik image. 
+To do this, we need to know which direction to send the rays 
+from the camera. This is FOV angles. we calculate horizontal and vertical
+angeles (width and hight but in degrees)
 
+
+*/
 void	get_fov_angles(t_scene *scene)
 {
-	scene->camera_angeles[0] = tan(scene->camera_fov * M_PI / 360);
+	// float vertical_angle = tan(camera_fov_rad / 2);  // calculate distance from the camera to the plane that intersects
+	// float aspect_ratio = (float)HEIGHT / (float)WIDTH;
+	scene->camera_angeles[0] = tan(scene->camera_fov * M_PI / 360); // vertical angle in radians
 	scene->camera_angeles[1] = (scene->camera_angeles[0]
 			* (((float)HEIGHT) / ((float)WIDTH))); 
 }
@@ -43,10 +52,10 @@ void	ray_trace(t_data *data)
 {
 	float lambda; //angular change per pixel horizontally
 	t_pixel pixel;
-// what we need is iterate over each pixel in figure
-//For each pixel - cast a ray into the scene in the direction specified by vector
-// Calculate the color of the pixel based on the materials, lighting, and other factors at the point of intersection
-// Write the color to the pixel in image
+/* what we need is iterate over each pixel in figure
+For each pixel - cast a ray into the scene in the direction specified by vector
+Calculate the color of the pixel based on the materials, lighting, and other factors at the point of intersection
+Write the color to the pixel in image */ 
 
 	fill_new_vector(&pixel.ray.point[0], 0, 0, -1); //z for away from the viewer and direction of a ray (pixel)
 	lambda = 2 * data->scene->camera_angeles[0] / WIDTH;
@@ -61,7 +70,7 @@ void	ray_trace(t_data *data)
 				-data->scene->camera_angeles[0] + lambda * pixel.x,
 				+data->scene->camera_angeles[1] + lambda * pixel.y, 1);
 			check_intersection(data, &pixel);
-			pixel_computing(data, pixel);
+			// pixel_computing(data, pixel);
 			pixel.x++;
 		}
 		pixel.y++;
