@@ -12,22 +12,6 @@
 
 #include "minirt.h"
 
-
-typedef enum e_object_id
-{
-	id_unset,
-	id_ambient,
-	id_light,
-	id_camera,
-	id_plane,
-	id_cylinder,
-	id_cone,
-	id_sphere,
-	id_triangle,
-	id_torus
-}	t_obj_id;
-
-
 void	initial_scene(t_scene *scene)
 {
 	scene->obj = calloc(1, sizeof(t_obj));
@@ -116,10 +100,11 @@ int	parse_scene_file(t_entire *ent, int fd)
 
 
 
-int	parse_camera(t_entire *ent, char *line, int i)
+int	parse_camera(t_entire *ent, char *line)
 {
 	char		**params;
 	t_camera	camera;
+	int i;
 
 	params = ft_split(line, ' ');
 	// if (ent->camera.id)
@@ -127,16 +112,19 @@ int	parse_camera(t_entire *ent, char *line, int i)
 	//if (array_length(params) != 4)
 	//	return (show_parsing_error(rt, params, ERR_INVALID_NB_PARAMS));
 	ft_bzero(&camera, sizeof(t_camera));
-	camera.id = id_camera;
-	while (params && params[++i])
+	//camera.id = id_camera;
+	i = 1;
+
+	while (params && params[i])
 	{
 		// ent->pnum = i;
-		if (i == 1 && parse_vector(params[i], &camera.norm_vec))
+		if (i == 1 && parse_vector(params[i], &camera.xyz))
 			// return (show_parsing_error(ent, params, ERR_INVALID_NB_COORDS));
 		if (i == 2 && parse_vector(params[i], &camera.norm_vec))
 			// return (show_parsing_error(ent, params, ERR_INVALID_NB_ORIENT));
 		if (i == 3 && parse_ulong(params[i], &camera.fov))
 			// return (show_parsing_error(ent, params, ERR_NOT_A_ULONG));
+		i++;
 	}
 
 	vec_normalize(&camera.norm_vec);
@@ -146,27 +134,218 @@ int	parse_camera(t_entire *ent, char *line, int i)
 }
 
 
+int	parse_ambient(t_entire *ent, char *line)
+{
+	int			i;
+	char		**params;
+	t_amlight	amlight;
+	int i;
 
+	params = ft_split(line, ' ');
+	//if (rt->ambient.id)
+	//	return (show_parsing_error(rt, params, ERR_TOO_MANY_AMBIENTS));
+	//if (array_length(params) != 3)
+	//	return (show_parsing_error(rt, params, ERR_INVALID_NB_PARAMS));
+	ft_bzero(&amlight, sizeof(t_amlight));
+	//ambient.id = id_ambient;
+	i = 1;
+	while (params && params[i])
+	{
+		//ent->pnum = i;
+		if (i == 1 && parse_float(params[i], &amlight.ratio))
+		//	return (show_parsing_error(rt, params, ERR_NOT_A_FLOAT));
+		if (i == 2 && parse_color(params[i], &amlight.rgb))
+		//	return (show_parsing_error(rt, params, ERR_INVALID_NB_COLORS));
+		i++;
+	}
+	ent->amlight = &amlight;
+	free_array(params);
+	return (0);
+}
+
+int	parse_light(t_entire *ent, char *line)
+{
+	int		i;
+	char	**params;
+	t_light	light;
+	int i;
+
+	ft_bzero(&light, sizeof(t_light));
+
+	params = ft_split(line, ' ');
+	//if (array_length(params) != 4)
+	//	return (show_parsing_error(ent, params, ERR_INVALID_NB_PARAMS));
+	i = 1;
+	while (params && params[i])
+	{
+		//ent->pnum = i;
+		if (i == 1 && parse_vector(params[i], &light.xyz))
+			//return (show_parsing_error(rt, params, ERR_INVALID_NB_COORDS));
+		if (i == 2 && parse_float(params[i], &light.ratio))
+			//return (show_parsing_error(rt, params, ERR_NOT_A_FLOAT));
+		if (i == 3 && parse_color(params[i], &light.rgb))
+			//return (show_parsing_error(rt, params, ERR_INVALID_NB_COLORS));
+		i++;
+	}
+	ent->light = &light;
+	free_array(params);
+	return (0);
+}
+
+int	parse_sphere(t_entire *ent, char *line)
+{
+	int			i;
+	t_sphere	sphere;
+	char **params;
+
+	params = ft_split(line, ' ');
+	ft_bzero(&sphere, sizeof(t_sphere));
+	
+	i = 1;
+	while (params && params[i])
+	{
+		//ent->pnum = i;
+		if (i == 1 && parse_vector(params[i], &sphere.xyz))
+			//return (show_parsing_error(ent, params, ERR_INVALID_NB_COORDS));
+		if (i == 2 && parse_float(params[i], &sphere.diametr))
+			//return (show_parsing_error(ent, params, ERR_NOT_A_FLOAT));
+		if (i == 3 && parse_color(params[i], &sphere.rgb))
+			//return (show_parsing_error(ent, params, ERR_INVALID_NB_COLORS));
+		i++;
+	}
+
+	ent->sphere = &sphere;
+	free_array(params);
+	return (0);
+}
+
+
+int	parse_plane(t_entire *ent, char *line)
+{
+	int		i;
+	t_plane	plane;
+	char **params;
+
+	params = ft_split(line, ' ');
+
+	i = 1;
+	ft_bzero(&plane, sizeof(t_plane));
+	while (params && params[i])
+	{
+		//ent->pnum = i;
+		if (i == 1 && parse_vector(params[i], &plane.xyz))
+			//return (show_parsing_error(ent, params, ERR_INVALID_NB_COORDS));
+		if (i == 2 && parse_vector(params[i], &plane.norm_vec))
+			//return (show_parsing_error(ent, params, ERR_INVALID_NB_ORIENT));
+		if (i == 3 && parse_colors(params[i], &plane.rgb))
+			//return (show_parsing_error(ent, params, ERR_INVALID_NB_COLORS));
+		i++;
+	}
+	vec_normalize(&plane.norm_vec);
+	ent->plane = &plane;
+	free_array(params);
+	return (0);
+}
+
+
+int	parse_cylinder(t_entire *ent, char *line)
+{
+	int			i;
+	t_cyl	cylinder;
+	char **params;
+
+	params = ft_split(line, ' ');
+
+	i = 1;
+	ft_bzero(&cylinder, sizeof(t_cyl));
+	while (params && params[i])
+	{
+		//ent->pnum = i;
+		if (i == 1 && parse_vector(params[i], &cylinder.xyz))
+			//return (show_parsing_error(rt, params, ERR_INVALID_NB_COORDS));
+		if (i == 2 && parse_vector(params[i], &cylinder.norm_vec))
+			//return (show_parsing_error(rt, params, ERR_INVALID_NB_ORIENT));
+		if (i == 3 && parse_float(params[i], &cylinder.diam))
+			//return (show_parsing_error(ent, params, ERR_NOT_A_FLOAT));
+		if (i == 4 && parse_float(params[i], &cylinder.heig))
+			//return (show_parsing_error(ent, params, ERR_NOT_A_FLOAT));
+		if (i == 5 && parse_colors(params[i], &cylinder.rgb))
+			//return (show_parsing_error(ent, params, ERR_INVALID_NB_COLORS));
+		i++;
+	}	
+
+	vec_normalize(&cylinder.norm_vec);
+	ent->cyl = &cylinder;
+	free_array(params);
+	return (0);
+}
+
+
+typedef struct s_entire
+{
+	t_amlight	*amlight;
+	t_camera	*camera;
+	t_scene		*scene;
+	t_light		*light;
+	t_plane		*plane;
+	t_cyl		*cyl;
+	t_sphere	*sphere;
+	t_crd		*crd;
+}	t_entire;
 
 int	parse_params(t_entire *ent, char *line)
 {
 	if (ft_strncmp(line, "A", 1) == 0)
-		//
+		return (parse_ambient(ent, line));
 	if (ft_strncmp(line, "C", 1) == 0)
-		//
+		return (parse_camera(ent, line));
 	if (ft_strncmp(line, "L", 1) == 0)
-		//
+		return(parse_light(ent, line));
 	if (ft_strncmp(line, "sp", 2) == 0)
-		//
+		return(parse_sphere(ent, line));
 	if (ft_strncmp(line, "pl", 2) == 0)
-		//
+		return(parse_plane(ent, line));
 	if (ft_strncmp(line, "cy", 2) == 0)
-		//
+		return(parse_cylinder(ent, line));
 	return (0);
 }
 
 
 
+
+int	parse_vector(char *str, t_crd *vect)
+{
+	int		i;
+	int		ret;
+	char	**nbrs;
+
+	i = -1;
+	ret = 0;
+	nbrs = ft_split(str, ',');
+	while (nbrs && nbrs[++i])
+		//if (!is_float(nbrs[i]))
+		//	ret = 1;
+	if (array_length(nbrs) != 3)
+		ret = 1;
+	else
+	{
+		vect->x = str_to_float(nbrs[0]);
+		vect->y = str_to_float(nbrs[1]);
+		vect->z = str_to_float(nbrs[2]);
+	}
+	free_array(nbrs);
+	return (ret);
+}
+
+int	array_length(char *arr[])
+{
+	int	i;
+
+	i = 0;
+	while (arr && arr[i])
+		i++;
+	return (i);
+}
 
 float	str_to_float(char *str)
 {
@@ -194,4 +373,46 @@ float	str_to_float(char *str)
 		sum += prec * sign;
 	}
 	return (sum);
+}
+
+
+int	parse_float(char *str, float *num)
+{
+	if (!is_float(str))
+		return (1);
+	*num = str_to_float(str);
+	return (0);
+}
+
+
+int	parse_color(char *str, t_color *color)
+{
+	int		i;
+	int		ret;
+	char	**rgb;
+
+	i = -1;
+	ret = 0;
+	rgb = ft_split(str, ',');
+	//while (rgb && rgb[++i])
+	//	if (!is_ulong(rgb[i]))
+	//		ret = 1;
+	if (array_length(rgb) != 3)
+		ret = 1;
+	else
+	{
+		color->r = (float) str_to_int_color(rgb[0]) / 255;
+		color->g = (float) str_to_int_color(rgb[1]) / 255;
+		color->b = (float) str_to_int_color(rgb[2]) / 255;
+	}
+	free_array(rgb);
+	return (ret);
+}
+
+int	parse_ulong(char *str, size_t *num)
+{
+	if (!is_ulong(str))
+		return (1);
+	*num = (size_t)ft_atoi(str);
+	return (0);
 }
