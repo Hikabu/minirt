@@ -6,7 +6,7 @@
 #    By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/19 15:15:41 by valeriafedo       #+#    #+#              #
-#    Updated: 2024/03/09 19:24:59 by vfedorov         ###   ########.fr        #
+#    Updated: 2024/03/09 20:51:56 by vfedorov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,13 +71,13 @@ FILE_C		+=	$(addprefix geometry/, \
 					figure.c		\
 					vector.c	)
 					
-FILE_C		+=	$(addprefix ray_tracing/, \
-					trace_ray.c		\
-					sphere_trace.c	\
-					check.c			\
-					check_cylinder.c\
-					check_sphere.c	\
-					solver.c)
+# FILE_C		+=	$(addprefix ray_tracing/, \
+# 					trace_ray.c		\
+# 					sphere_trace.c	\
+# 					check.c			\
+# 					check_cylinder.c\
+# 					check_sphere.c	\
+# 					solver.c)
 					
 FILE_C		+=	$(addprefix camera/, \
 					camera.c		)	

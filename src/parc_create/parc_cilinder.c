@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 19:37:34 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/09 19:00:07 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/09 20:49:45 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int parse_camera(t_entire *ent, char *line) {
         i++;
     }
 
-    vec_normalize(&camera->norm_vec);
+    norm_vector(&camera->norm_vec);
     if (ent->camera)
 		free(ent->camera);
     ent->camera = camera;
@@ -184,7 +184,7 @@ int parse_plane(t_entire *ent, char *line) {
         i++;
     }
 
-    vec_normalize(&plane->norm_vec);
+    norm_vector(&plane->norm_vec);
     if (ent->plane) free(ent->plane);
     ent->plane = plane;
     free_array(params);
@@ -220,7 +220,7 @@ int parse_cylinder(t_entire *ent, char *line) {
         i++;
     }
 
-    vec_normalize(&cylinder->norm_vec);
+    norm_vector(&cylinder->norm_vec);
     if (ent->cyl) free(ent->cyl);
     ent->cyl = cylinder;
     free_array(params);
