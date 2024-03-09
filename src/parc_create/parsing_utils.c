@@ -1,6 +1,8 @@
 #include "minirt.h"
 
 float	str_to_float(char *str); 
+int	is_float(char *str);
+int is_ulong(char *str);
 
 
 int	parse_vector(char *str, t_crd *vect)
@@ -8,7 +10,7 @@ int	parse_vector(char *str, t_crd *vect)
 	int		i;
 	int		ret;
 	char	**nbrs;
-
+	
 	i = -1;
 	ret = 0;
 	nbrs = ft_split(str, ',');
@@ -118,4 +120,13 @@ void	free_array(char *arr[])
 			free(arr[i++]);
 		free(arr);
 	}
+}
+
+int is_ulong(char *str)
+{
+ int i;
+ i = 0; while (str[i] && str[i])
+ {  if (ft_isdigit(str[i]) != 1)
+   return (0);  i++;
+ } return (1);
 }
