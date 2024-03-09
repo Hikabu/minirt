@@ -37,6 +37,7 @@ typedef	struct s_pixel
 	int			cyl_type;
 }	t_pixel;
 
+
 typedef enum e_type_object // only for clearness 
 {
 	NO_INTERSECT,
@@ -46,6 +47,7 @@ typedef enum e_type_object // only for clearness
 void	ray_trace(t_data *data);
 void    fill_new_vector(t_crd *result, float x, float y, float z);
 void	print_scene(t_scene	*scene);
+int		open_and_parse_file(t_entire *ent, const char *path);
 
 
 // void	error(int er);

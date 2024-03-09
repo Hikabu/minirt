@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_scene.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:34:51 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/04 20:19:46 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/03/09 17:51:12 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	print_spheres(t_sphere	*sp, char type)
 		print_coordinate(&sp->point, "\n");
 		printf("        \t\e[0;34mDiameter: \e[0m%f\n",
 			sp->diametr);
-		print_color(sp->rgb[0]);
+		// print_color(sp->rgb[0]);
 		print_color(sp->color_ambient);
 		sp = sp->next;
 		if (type != 'a')

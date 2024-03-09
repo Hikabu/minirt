@@ -14,6 +14,7 @@ int	show_parsing_error(t_entire *ent, char **arr, char *msg)
 	} */
 	ft_putendl_fd("", 2);
 	free_array(arr);
+	(void)ent;
 	return (1);
 }
 

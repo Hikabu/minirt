@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+         #
+#    By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/19 15:15:41 by valeriafedo       #+#    #+#              #
-#    Updated: 2024/03/05 01:00:24 by valeriafedo      ###   ########.fr        #
+#    Updated: 2024/03/09 19:24:59 by vfedorov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,10 @@ FILE_C		+=	$(addprefix scene/, \
 					init_image.c)
 					
 FILE_C		+=	$(addprefix parc_create/, \
-					parc_cilinder.c		)
+					parc_cilinder.c		\
+					parse_scene_file.c	\
+					parsing_error.c		\
+					parsing_utils.c	)
 
 FILE_C		+=	$(addprefix geometry/, \
 					figure.c		\

@@ -1,5 +1,8 @@
 #include "minirt.h"
 
+float	str_to_float(char *str); 
+
+
 int	parse_vector(char *str, t_crd *vect)
 {
 	int		i;

@@ -15,14 +15,28 @@
 # define ERR_NOT_A_FLOAT "Value is not a float"
 
 
-
+// typedef enum 	e_object_id					t_object_id;
 typedef struct	s_light						t_light;
 typedef struct	s_ambient_lightning			t_amlight;
 typedef struct	s_plane						t_plane;
 typedef struct	s_cylinder					t_cyl;
 typedef struct	s_scene						t_scene;
 typedef struct	s_img						t_img;
+// typedef enum 	e_object_id		/			t_object_id;
 // typedef	struct	s_coordinates_for_vector	t_crd;
+
+
+
+typedef enum e_object_id
+{
+    id_unset = 0,
+    id_ambient,
+    id_light,
+    id_camera,
+	id_cyl,
+	id_sphere,
+	id_plane,
+} t_object_id;
 
 typedef struct s_color
 {
@@ -33,73 +47,62 @@ typedef struct s_color
 
 typedef struct s_ambient_lightning
 {
-	int		id;
-	t_object_id id;
-	float	ratio;
+	t_object_id	id;
+	float		ratio;
 	t_color		rgb;
 }	t_amlight;
 
 typedef struct s_light
 {
-	int		id;
 	t_object_id id;
-	t_crd	xyz;
-	float	ratio;
-	t_color	rgb;
-	t_light	*next;
+	t_crd		xyz;
+	float		ratio;
+	t_color		rgb;
+	t_light		*next;
 }	t_light;
 
 typedef struct s_camera
 {
-	int			id;
 	t_object_id id;
 	t_crd		xyz;
 	t_crd		norm_vec;
-	int			fov;
-	t_crd	*origin;
-	t_crd	*direction;
-	t_crd	*crd;
+	size_t		fov;
+	t_crd		*origin;
+	t_crd		*direction;
+	t_crd		*crd;
 }	t_camera;
 
 typedef struct s_plane
 {
 	t_crd			point;
-	int				id;
-	t_object_id id;
+	t_object_id 	id;
 	t_crd			xyz;
 	t_crd			norm_vec;
 	t_color			rgb;
 	t_plane			*next;
 }	t_plane;
 
-typedef struct s_plat				//  represent the surfaces of objects in a scene
-{
-	t_crd	point;
-	t_crd 	orient;
-	int		color;
-	int		color_amb;
-	t_plato	*next;
-} 	t_plato;
+// typedef struct s_plat				//  represent the surfaces of objects in a scene
+// {
+// 	t_crd	point;
+// 	t_crd 	orient;
+// 	int		color;
+// 	int		color_amb;
+// 	t_plato	*next;
+// } 	t_plato;
 
 typedef struct s_cylinder
 {
 	t_crd			point;
 	t_crd			orient;
-	float			diam;
-	t_plato			plato_begin;
-	t_plato			plato_end;
-	int				id;
-	float			xyz[3]; //orinentation
-	float			norm_vec[3];  //point 
+	t_plane			plato_begin;
+	t_plane			plato_end;
 	float			heig;
-	int				rgb[3];
-	int				color; //rgb[3]
-	t_object_id id;
-	t_crd				xyz;
-	t_crd				norm_vec;
-	float				diam;
-	float				heig;
-	t_color				rgb;
+	t_object_id 	id;
+	t_crd			xyz;
+	t_crd			norm_vec;
+	float			diam;
+	t_color			rgb;
 	t_cyl			*next;
 }	t_cyl;
 
@@ -107,8 +110,8 @@ typedef struct s_cylinder
 typedef struct s_sphere
 {
 	t_crd			point;
-	int				id;
-	t_object_id id;
+	// int				id;
+	t_object_id		id;
 	t_crd			xyz;
 	float			diametr;
 	t_color			rgb;
@@ -129,6 +132,21 @@ typedef struct s_entire
 	t_crd		*crd;
 }	t_entire;
 
+int		parse_vector(char *str, t_crd *vect);
+int		parse_color(char *str, t_color *color);
+int		parse_float(char *str, float *num);
+int		show_parsing_error(t_entire *ent, char **arr, char *msg);
+int		array_length(char *arr[]);
+int		parse_ambient(t_entire *ent, char *line);
+int		parse_camera(t_entire *ent, char *line);
+int		parse_light(t_entire *ent, char *line);
+int		parse_sphere(t_entire *ent, char *line);
+int		parse_plane(t_entire *ent, char *line);
+int		parse_cylinder(t_entire *ent, char *line);
+void	free_array(char *arr[]);
+int		parse_ulong(char *str, size_t *num);
+
+int			parse_params(t_entire *ent, char *line);
 void		error(int er);
 int			parc(char *line, t_entire **ent, t_data *data);
 int			a_ligth(char *str);
