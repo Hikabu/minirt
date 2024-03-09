@@ -3,6 +3,19 @@
 
 # include "scene.h"	
 #include "minirt.h"
+
+
+# define ERR_TOO_MANY_CAMERAS "Too many camera params"
+# define ERR_TOO_MANY_AMBIENTS "Too many ambient params"
+# define ERR_INVALID_NB_PARAMS "Invalid number of params"
+# define ERR_INVALID_NB_COORDS "Invalid number of coordinates values"
+# define ERR_INVALID_NB_ORIENT "Invalid number of orientation values"
+# define ERR_INVALID_NB_COLORS "Invalid number of color values"
+# define ERR_NOT_A_ULONG "Value is not a unsigned long"
+# define ERR_NOT_A_FLOAT "Value is not a float"
+
+
+
 typedef struct	s_light						t_light;
 typedef struct	s_ambient_lightning			t_amlight;
 typedef struct	s_plane						t_plane;
@@ -21,6 +34,7 @@ typedef struct s_color
 typedef struct s_ambient_lightning
 {
 	int		id;
+	t_object_id id;
 	float	ratio;
 	t_color		rgb;
 }	t_amlight;
@@ -28,16 +42,30 @@ typedef struct s_ambient_lightning
 typedef struct s_light
 {
 	int		id;
+	t_object_id id;
 	t_crd	xyz;
 	float	ratio;
 	t_color	rgb;
 	t_light	*next;
 }	t_light;
 
+typedef struct s_camera
+{
+	int			id;
+	t_object_id id;
+	t_crd		xyz;
+	t_crd		norm_vec;
+	int			fov;
+	t_crd	*origin;
+	t_crd	*direction;
+	t_crd	*crd;
+}	t_camera;
+
 typedef struct s_plane
 {
 	t_crd			point;
 	int				id;
+	t_object_id id;
 	t_crd			xyz;
 	t_crd			norm_vec;
 	t_color			rgb;
@@ -48,6 +76,7 @@ typedef struct s_cylinder
 {
 	t_crd			point;
 	int					id;
+	t_object_id id;
 	t_crd				xyz;
 	t_crd				norm_vec;
 	float				diam;
@@ -60,6 +89,7 @@ typedef struct s_sphere
 {
 	t_crd			point;
 	int				id;
+	t_object_id id;
 	t_crd			xyz;
 	float			diametr;
 	t_color			rgb;
