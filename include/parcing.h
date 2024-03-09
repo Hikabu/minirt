@@ -3,6 +3,19 @@
 
 # include "scene.h"	
 #include "minirt.h"
+
+
+# define ERR_TOO_MANY_CAMERAS "Too many camera params"
+# define ERR_TOO_MANY_AMBIENTS "Too many ambient params"
+# define ERR_INVALID_NB_PARAMS "Invalid number of params"
+# define ERR_INVALID_NB_COORDS "Invalid number of coordinates values"
+# define ERR_INVALID_NB_ORIENT "Invalid number of orientation values"
+# define ERR_INVALID_NB_COLORS "Invalid number of color values"
+# define ERR_NOT_A_ULONG "Value is not a unsigned long"
+# define ERR_NOT_A_FLOAT "Value is not a float"
+
+
+
 typedef struct	s_light						t_light;
 typedef struct	s_ambient_lightning			t_amlight;
 typedef struct	s_plane						t_plane;
@@ -11,29 +24,51 @@ typedef struct	s_scene						t_scene;
 typedef struct	s_img						t_img;
 // typedef	struct	s_coordinates_for_vector	t_crd;
 
+typedef struct s_color
+{
+	float	r;
+	float	g;
+	float	b;
+}	t_color;
+
 typedef struct s_ambient_lightning
 {
 	int		id;
+	t_object_id id;
 	float	ratio;
-	int		rgb[3];
+	t_color		rgb;
 }	t_amlight;
 
 typedef struct s_light
 {
 	int		id;
-	float	xyz[3];
+	t_object_id id;
+	t_crd	xyz;
 	float	ratio;
-	int		rgb[3];
+	t_color	rgb;
 	t_light	*next;
 }	t_light;
+
+typedef struct s_camera
+{
+	int			id;
+	t_object_id id;
+	t_crd		xyz;
+	t_crd		norm_vec;
+	int			fov;
+	t_crd	*origin;
+	t_crd	*direction;
+	t_crd	*crd;
+}	t_camera;
 
 typedef struct s_plane
 {
 	t_crd			point;
 	int				id;
-	float			xyz[3];
-	float			norm_vec[3];
-	int				rgb[3];
+	t_object_id id;
+	t_crd			xyz;
+	t_crd			norm_vec;
+	t_color			rgb;
 	t_plane			*next;
 }	t_plane;
 
@@ -59,6 +94,12 @@ typedef struct s_cylinder
 	float			heig;
 	int				rgb[3];
 	int				color; //rgb[3]
+	t_object_id id;
+	t_crd				xyz;
+	t_crd				norm_vec;
+	float				diam;
+	float				heig;
+	t_color				rgb;
 	t_cyl			*next;
 }	t_cyl;
 
@@ -67,9 +108,10 @@ typedef struct s_sphere
 {
 	t_crd			point;
 	int				id;
-	float			xyz[3];
+	t_object_id id;
+	t_crd			xyz;
 	float			diametr;
-	int				rgb[3];
+	t_color			rgb;
 	int				color_ambient;
 	// t_vector		*center;
 	t_sphere		*next; //if several figures
@@ -78,7 +120,7 @@ typedef struct s_sphere
 typedef struct s_entire
 {
 	t_amlight	*amlight;
-	// t_camera	*camera;
+	t_camera	*camera;
 	t_scene		*scene;
 	t_light		*light;
 	t_plane		*plane;

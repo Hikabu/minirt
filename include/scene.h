@@ -37,17 +37,6 @@ typedef struct s_two_points_for_ray_direction
 	t_crd point[2]; //the direction of the ray is the vector from point[0] to point[1] - some point.
 }	t_ray;
 
-typedef struct s_camera
-{
-	int			id;
-	float		xyz[3];
-	float		norm_vec[3];
-	int			fov;
-	t_crd	*origin;
-	t_crd	*direction;
-	t_crd	*crd;
-}	t_camera;
-
 typedef	struct s_objects
 {
 	t_light		*light;
