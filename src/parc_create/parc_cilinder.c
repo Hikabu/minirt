@@ -3,25 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parc_cilinder.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 19:37:34 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/04 21:18:19 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/03/09 19:00:07 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-typedef enum e_object_id
-{
-    id_unset = 0,
-    id_ambient,
-    id_light,
-    id_camera,
-	id_cyl,
-	id_sphere,
-	id_plane,
-} t_object_id;
+
 
 int	parse_params(t_entire *ent, char *line)
 {
@@ -113,7 +104,7 @@ int parse_light(t_entire *ent, char *line) {
     int i;
 
     params = ft_split(line, ' ');
-    if (array_length(params) != 4)
+    if ( array_length(params) != 4)
         return (show_parsing_error(ent, params, ERR_INVALID_NB_PARAMS));
     ft_bzero(light, sizeof(t_light));
     light->id = id_light;
@@ -235,11 +226,6 @@ int parse_cylinder(t_entire *ent, char *line) {
     free_array(params);
     return (0);
 }
-
-
-
-
-
 void	initial_scene(t_scene *scene)
 {
 	scene->obj = calloc(1, sizeof(t_obj));
@@ -256,3 +242,4 @@ void	initial_scene(t_scene *scene)
 	scene->obj->plane = 0;
 	// printf ("what is in the road %f\n", scene->camera_point.z);
 }
+

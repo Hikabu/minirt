@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 23:57:40 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/05 23:06:23 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/03/09 19:09:28 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,10 @@ float	scalar_vector_product(t_crd *a, t_crd *b) // scalar produc of 2 vectors
 	return (res);
 }
 
-float	scalar_multiplication(t_crd *res, t_crd *vector, float lambda)
-{
-	res->x = vector->x * lambda;
-	res->y = vector->y * lambda;
-	res->z = vector->z * lambda;
-}
+// float	scalar_multiplication(t_crd *res, t_crd *vector, float lambda)
+// {
+// 	res->x = vector->x * lambda;
+// 	res->y = vector->y * lambda;
+// 	res->z = vector->z * lambda;
+// 	return (res);
+// }

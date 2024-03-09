@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 10:05:37 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/05 23:06:42 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/03/09 18:41:32 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ typedef struct	s_sphere				t_sphere;
 typedef struct	s_entire				t_entire;
 typedef struct 	s_objects				t_obj;
 typedef	struct	s_pixel					t_pixel;
+typedef struct 	s_camera				t_camera;
+typedef enum 	e_object_id				t_object_id;
 
 typedef	struct	s_coordinates_for_vector
 {
@@ -89,6 +91,7 @@ typedef struct s_vplane
 	float y_pixel;
 	
 }	t_vplane;
+
 
 
 float		vec_product(t_crd *vec1, t_crd *vec2);

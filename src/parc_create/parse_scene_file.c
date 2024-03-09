@@ -26,23 +26,6 @@ char *sanitize_line(const char *line)
     return trimmed;
 }
 
-
-int open_and_parse_file(t_entire *ent, const char *path) 
-{
-	int parse_success;
-
-    int fd = open(path, O_RDONLY);
-    if (fd < 0) 
-	{
-        perror("Error opening file");
-        return 0;
-    }
-    parse_success = parse_scene_file(ent, fd);
-    close(fd);
-
-    return parse_success; 
-}
-
 int	parse_scene_file(t_entire *ent, int fd)
 {
 	int		num;
@@ -68,3 +51,19 @@ int	parse_scene_file(t_entire *ent, int fd)
 	close(fd);
 	return (status);
 }
+int open_and_parse_file(t_entire *ent, const char *path) 
+{
+	int parse_success;
+
+    int fd = open(path, O_RDONLY);
+    if (fd < 0) 
+	{
+        perror("Error opening file");
+        return 0;
+    }
+    parse_success = parse_scene_file(ent, fd);
+    close(fd);
+
+    return parse_success; 
+}
+
