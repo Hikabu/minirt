@@ -151,12 +151,3 @@ void	free_array(char *arr[])
 		free(arr);
 	}
 }
-
-int is_ulong(char *str)
-{
- int i;
- i = 0; while (str[i] && str[i])
- {  if (ft_isdigit(str[i]) != 1)
-   return (0);  i++;
- } return (1);
-}
