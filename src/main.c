@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 12:13:38 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/09 18:42:50 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/09 20:51:06 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,15 @@ int	main(int ac, char **av)
 	
 	if (ac != 2)
 		error(2);
-	init_ent(&entire);
+	// init_ent(&entire);
 	ent = &entire;
 	if (open_and_parse_file(&entire, av[1]))
 	{
 		// readmap(av[1], &ent, &data);
-		print_entire(&ent);
-		data.scene->camera_point = ent->scene->camera_point;
+		// print_entire(&ent);
+		// data.scene->camera_point = ent->scene->camera_point;
 		// ent->scene = NULL;
-		print_scene(data.scene);
+		// print_scene(data.scene);
 		// init_image(&data);
 		// color_back(&data.simg.img);
 		// ray_trace(&data);
@@ -64,5 +64,6 @@ int	main(int ac, char **av)
 	}
 	else 
 		perror("Not successful");
+	(void)data;
 	return (0);
 }

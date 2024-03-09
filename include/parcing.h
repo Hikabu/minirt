@@ -145,6 +145,9 @@ int		parse_plane(t_entire *ent, char *line);
 int		parse_cylinder(t_entire *ent, char *line);
 void	free_array(char *arr[]);
 int		parse_ulong(char *str, size_t *num);
+int		str_to_int_color(char *str);
+int		is_ulong(char *str);
+
 
 int			parse_params(t_entire *ent, char *line);
 void		error(int er);

@@ -2,8 +2,6 @@
 
 float	str_to_float(char *str); 
 int	is_float(char *str);
-int is_ulong(char *str);
-
 
 int	parse_vector(char *str, t_crd *vect)
 {
@@ -28,6 +26,18 @@ int	parse_vector(char *str, t_crd *vect)
 	free_array(nbrs);
 	return (ret);
 }
+int	str_to_int_color(char *str)
+{
+	int	c;
+
+	c = ft_atoi(str);
+	if (c < 0)
+		return (0);
+	if (c > 255)
+		return (255);
+	return (c);
+}
+
 
 int	array_length(char *arr[])
 {
@@ -67,7 +77,6 @@ float	str_to_float(char *str)
 	return (sum);
 }
 
-
 int	parse_float(char *str, float *num)
 {
 	if (!is_float(str))
@@ -76,6 +85,19 @@ int	parse_float(char *str, float *num)
 	return (0);
 }
 
+int	is_float(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] && str[i])
+	{
+		if (ft_isdigit(str[i]) != 1 && str[i] != '-' && str[i] != '.')
+			return (0);
+		i++;
+	}
+	return (1);
+}
 
 int	parse_color(char *str, t_color *color)
 {
@@ -99,6 +121,14 @@ int	parse_color(char *str, t_color *color)
 	}
 	free_array(rgb);
 	return (ret);
+}
+int is_ulong(char *str)
+{
+ int i;
+ i = 0; while (str[i] && str[i])
+ {  if (ft_isdigit(str[i]) != 1)
+   return (0);  i++;
+ } return (1);
 }
 
 int	parse_ulong(char *str, size_t *num)
