@@ -1,20 +1,8 @@
 #include "minirt.h"
 
 float	str_to_float(char *str); 
+int	is_float(char *str);
 
-int	is_float(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] && str[i])
-	{
-		if (ft_isdigit(str[i]) != 1 && str[i] != '-' && str[i] != '.')
-			return (0);
-		i++;
-	}
-	return (1);
-}
 int	parse_vector(char *str, t_crd *vect)
 {
 	int		i;
@@ -50,13 +38,6 @@ int	str_to_int_color(char *str)
 	return (c);
 }
 
-int	parse_float(char *str, float *num)
-{
-	if (!is_float(str))
-		return (1);
-	*num = str_to_float(str);
-	return (0);
-}
 
 int	array_length(char *arr[])
 {
@@ -94,18 +75,6 @@ float	str_to_float(char *str)
 		sum += prec * sign;
 	}
 	return (sum);
-}
-
-int	str_to_int_color(char *str)
-{
-	int	c;
-
-	c = ft_atoi(str);
-	if (c < 0)
-		return (0);
-	if (c > 255)
-		return (255);
-	return (c);
 }
 
 int	parse_float(char *str, float *num)
