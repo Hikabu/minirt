@@ -17,26 +17,26 @@
 // 	free(split_str_2);
 // }
 
-// t_amlight	*to_struct_a(char **str)
-// {
-// 	t_amlight	*list;
-// 	int			i;
-// 	char		**split_str_2;
+t_amlight	*to_struct_a(char **str)
+{
+	t_amlight	*list;
+	int			i;
+	char		**split_str_2;
 
-// 	list = malloc(sizeof(t_amlight));
-// 	if (!list)
-// 		return (NULL);
-// 	init_a(list);
-// 	count_of_split(str, 3);
-// 	float_range_checker(&(list->ratio), ft_atof(str[1]), 1);
-// 	split_str_2 = ft_split(str[2], ',');
-// 	count_of_split(split_str_2, 3);
-// 	i = -1;
-// 	while (++i < 3)
-// 		int_range_checker(&(list->rgb[i]), ft_atoi(split_str_2[i]), 1);
-// 	free_a(split_str_2);
-// 	return (list);
-// }
+	list = malloc(sizeof(t_amlight));
+	if (!list)
+		return (NULL);
+	init_a(list);
+	count_of_split(str, 3);
+	float_range_checker(&(list->ratio), ft_atof(str[1]), 1);
+	split_str_2 = ft_split(str[2], ',');
+	count_of_split(split_str_2, 3);
+	i = -1;
+	while (++i < 3)
+		int_range_checker(&(list->rgb[i]), ft_atoi(split_str_2[i]), 1);
+	free_a(split_str_2);
+	return (list);
+}
 
 // void	free_c(char **split_str_1, char **split_str_2)
 // {

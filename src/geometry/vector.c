@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 23:57:40 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/09 19:09:28 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/12 22:15:19 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ float	vec_product(t_crd *vec1, t_crd *vec2)
 	result = ((vec1->x * vec2->x) + (vec1->y * vec2->y) + (vec1->z * vec2->z));
 	return (result);
 }
+
 float	scalar_vector_product(t_crd *a, t_crd *b) // scalar produc of 2 vectors
 {
 	float	res;
@@ -63,10 +64,36 @@ float	scalar_vector_product(t_crd *a, t_crd *b) // scalar produc of 2 vectors
 	return (res);
 }
 
-// float	scalar_multiplication(t_crd *res, t_crd *vector, float lambda)
-// {
-// 	res->x = vector->x * lambda;
-// 	res->y = vector->y * lambda;
-// 	res->z = vector->z * lambda;
-// 	return (res);
-// }
+float	vector_len(t_crd *vector)
+{
+	float	lenght;
+
+	if (!vector)
+		return (0);
+	lenght	= sqrtf(vector->x * vector->x + vector->y * vector->y
+		+ vector->z * vector->z);
+	return (lenght);
+}
+float	ang_bet_2_vec(t_crd *a, t_crd *b)
+{
+	float	angle;
+
+	angle = scalar_vector_product(a, b)
+		/ (vector_len(a) * vector_len(b));
+	return (angle);
+}
+void	scalar_multiplication(t_crd *result, t_crd *vector, float lambda)
+{
+	result->x = vector->x * lambda;
+	result->y = vector->y * lambda;
+	result->z = vector->z * lambda;
+}
+
+void	vector_addition(t_crd *result, t_crd *a, t_crd *b)
+{
+	if (result == NULL || a == NULL || b == NULL)
+		return ;
+	result->x = a->x + b->x;
+	result->y = a->y + b->y;
+	result->z = a->z + b->z;
+}

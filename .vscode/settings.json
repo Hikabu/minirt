@@ -4,6 +4,7 @@
         "scene.h": "c",
         "minirt.h": "c",
         "vector": "c",
-        "iosfwd": "c"
+        "iosfwd": "c",
+        "iterator": "c"
     }
 }

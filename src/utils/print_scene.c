@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:34:51 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/09 17:51:12 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/12 13:55:07 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	print_scene(t_scene	*scene)
 		sizeof(t_cyl), sizeof(t_light));
 	print_scene_characteristics(scene);
 	
-	if (scene->ent && scene->ent->sphere)
-		print_spheres(scene->ent->sphere, 'a');
+	// if (scene->ent && scene->ent->sphere)
+	// 	print_spheres(scene->ent->sphere, 'a');
 	
 }

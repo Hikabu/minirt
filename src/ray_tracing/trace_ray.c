@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 23:53:56 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/09 19:11:05 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/12 17:36:57 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ Write the color to the pixel in image */
 				-data->scene->camera_angeles[0] + lambda * pixel.x,
 				+data->scene->camera_angeles[1] + lambda * pixel.y, 1);
 			check_intersection(data, &pixel);
-			// pixel_computing(data, pixel);
+			pixel_computing(data, pixel);
 			pixel.x++;
 		}
 		pixel.y++;

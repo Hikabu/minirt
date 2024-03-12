@@ -35,13 +35,13 @@
 // 		printf("rgb = %d,%d,%d\n", ent->amlight->rgb[0], ent->amlight->rgb[1], ent->amlight->rgb[2]);
 // 	}
 	
-// 	if(ent->scene->camera)
-// 	{
-// 		printf("\ncamera\nid = %d\n", ent->scene->camera->id);
-// 		printf("xyz = %f,%f,%f\n", ent->scene->camera->xyz[0], ent->scene->camera->xyz[1], ent->scene->camera->xyz[2]);
-// 		printf("norm_vec = %f,%f,%f\n", ent->scene->camera->norm_vec[0], ent->scene->camera->norm_vec[1], ent->scene->camera->norm_vec[2]);
-// 		printf("fov = %d\n", ent->scene->camera->fov);
-// 	}
+// // 	if(ent->scene->camera)
+// // 	{
+// // 		printf("\ncamera\nid = %d\n", ent->scene->camera->id);
+// // 		printf("xyz = %f,%f,%f\n", ent->scene->camera->xyz[0], ent->scene->camera->xyz[1], ent->scene->camera->xyz[2]);
+// // 		printf("norm_vec = %f,%f,%f\n", ent->scene->camera->norm_vec[0], ent->scene->camera->norm_vec[1], ent->scene->camera->norm_vec[2]);
+// // 		printf("fov = %d\n", ent->scene->camera->fov);
+// // 	}
 
 // 	if(ent->light)
 // 	{
