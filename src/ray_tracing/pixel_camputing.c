@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 17:37:32 by vfedorov          #+#    #+#             */
-/*   Updated: 2024/03/12 22:15:25 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/13 13:47:26 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ float	pixel_computing_plane_difreflect_ratio(t_data *data, t_pixel *pixel)
 	return (-light_intens);
 }
 
-void	pixel_computing_plane(t_data *data, t_pixel *pixel)
+void	pixel_plane_computing(t_data *data, t_pixel *pixel)
 {
 	int		light;
 	float	light_ratio;
@@ -61,7 +61,7 @@ void	pixel_computing_plane(t_data *data, t_pixel *pixel)
 		pixel->plane->color_ambient);
 	if (!data->scene->obj->light || check_for_shadow(data, pixel))
 		return ;
-	light_ratio = pixel_computing_plane_difreflec_ratio(data, pixel); //eflection ratio is the amount of light that is reflected off the surface of the object 
+	light_ratio = pixel_computing_plane_difreflect_ratio(data, pixel); //eflection ratio is the amount of light that is reflected off the surface of the object 
 	if (light_ratio <= 0)
 		return ;
 	light = color_diffusal(pixel->plane->color_ambient, pixel->plane->color, 

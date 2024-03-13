@@ -6,13 +6,13 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 22:29:19 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/12 14:18:21 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/13 11:44:30 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	set_obj_in_pix(t_pixel *pixel, t_sphere *sphere, t_plane *plane, t_cyl *cyl)
+void	set_obj_in_pix(t_pixel *pixel, t_plane *plane, t_sphere *sphere, t_cyl *cyl)
 {
 	if (!pixel)
 		return ;

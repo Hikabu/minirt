@@ -57,6 +57,7 @@ typedef struct s_light
 	t_object_id id;
 	t_crd		xyz;
 	float		ratio;
+	int			color;
 	t_color		rgb;
 	t_light		*next;
 }	t_light;
@@ -87,7 +88,6 @@ typedef struct s_plane
 typedef struct s_cylinder
 {
 	t_crd			point;
-	// t_crd			orient;
 	t_plane			plato_begin;
 	t_plane			plato_end;
 	float			heig;
@@ -105,13 +105,12 @@ typedef struct s_cylinder
 typedef struct s_sphere
 {
 	t_crd			point; //coordintes
-	// int				id;
 	t_object_id		id;
 	t_crd			xyz;
 	float			diametr;
 	t_color			rgb;
 	int				color_ambient;
-	// t_vector		*center;
+	int				color;
 	t_sphere		*next; //if several figures
 }	t_sphere;
 
@@ -125,7 +124,12 @@ typedef struct s_entire
 	t_cyl		*cyl;
 	t_sphere	*sphere;
 	t_crd		*crd;
+	t_color		*col;
 }	t_entire;
+
+
+void	init_all(t_entire *ent);
+
 
 void	vector_addition(t_crd *result, t_crd *a, t_crd *b);
 int		parse_vector(char *str, t_crd *vect);

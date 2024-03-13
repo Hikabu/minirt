@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 00:42:25 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/12 17:34:57 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/13 13:18:05 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,23 @@ static	float intersection_cyl_plane(t_cyl *cyl, t_plane *plane, t_ray *ray, t_cr
 	scalar_multiplication(&r, d_ray, -1 * dist_plane);
 	vector_addition(&p, &(ray->point[0]), &r);
 	vector_subtraction(&p_ctr, &p, &plane->point);
-	if (vector_length(&p_ctr) <= cyl->diam / 2.0f)
+	if (vector_len(&p_ctr) <= cyl->diam / 2.0f)
 		return (dist_plane);
+	return (-1);
+}
+
+float	nearest_distance(float *points) //determine the nearest intersection point between a ray and an object in the scene.
+{
+	if (points[0] < 0 && points[1] < 0)
+		return (-1);
+	if (points[0] < 0)
+		points[0] = points[1];
+	else if (points[1] < 0)
+		points[1] = points[0];
+	if (points[0] <= points[1] && points[0] > 0)
+		return (points[0]);
+	if (points[1] <= points[0] && points[1] > 0)
+		return (points[1]);
 	return (-1);
 }
 
@@ -78,15 +93,16 @@ float check_intersection_cyl(t_cyl *cyl, t_pixel *pixel)
 	float	dist_plane;
 	t_crd	orpoint;
 	t_crd	direction;
-	t_crd	point_end;	
-	pixel->cyl = NO_INTERSECT;
+	t_crd	point_end;
+	
+	pixel->cyl_type = NO_INTERSECT;
 	vector_subtraction(&orpoint, &(pixel->ray.point[0]), &(cyl->point)); // vector from the cylinder's center point to the ray's starting point
 	scalar_multiplication(&direction, &(pixel->coor), -1);				 // calculates the direction vector of the ray
-	dist = intersection_cylinder_pipee(cyl, &dist, &orpoint, pixel);
+	dist = intersection_cylinder_pipee(cyl, &direction, &orpoint, pixel);
 	if (dist > 0)
 		pixel->cyl_type = PIPE;
 	define_cyl(cyl, &cyl->plato_begin, &cyl->point);
-	dist = intersection_cyl_plane(cyl, &cyl->plato_begin, &(pixel->ray), &pixel->coor);
+	dist_plane = intersection_cyl_plane(cyl, &cyl->plato_begin, &(pixel->ray), &pixel->coor);
 	scalar_multiplication(&cyl->plato_begin.xyz, &cyl->plato_begin.xyz, -1);
 	if (dist_plane != -1 && (dist_plane < dist || dist == -1))
 		dist = define_dist_type_inters(pixel, dist_plane, PLANE_BEGIN);
@@ -95,7 +111,7 @@ float check_intersection_cyl(t_cyl *cyl, t_pixel *pixel)
 	define_cyl(cyl, &cyl->plato_end, &point_end);
 	dist_plane = intersection_cyl_plane(cyl, &cyl->plato_end, &(pixel->ray), &(pixel->coor));
 	if (dist_plane != -1 && (dist_plane < dist || dist == -1))
-		dist = define_dist_type_intersection(pixel, dist_plane, PLANE_END);
+		dist = define_dist_type_inters(pixel, dist_plane, PLANE_END);
 	return (dist);
 	// to calculate the intersection point between a ray and a cylinder's pipe
 }

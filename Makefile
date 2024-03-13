@@ -6,7 +6,7 @@
 #    By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/19 15:15:41 by valeriafedo       #+#    #+#              #
-#    Updated: 2024/03/09 20:51:56 by vfedorov         ###   ########.fr        #
+#    Updated: 2024/03/13 17:50:56 by vfedorov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,20 +45,14 @@ FILE_C		+=	$(addprefix parcing/, 		\
 					get_next_line_utils.c	\
 					get_split.c				\
 					parc.c					\
-					id_check.c				\
-					free_and_to_struct1.c	\
-					free_and_to_struct2.c	\
-					free_and_to_struct3.c	\
 					error_free_exit.c)
 
 
 FILE_C		+=	$(addprefix utils/, \
-					init.c			\
-					init1.c			\
-					print_scene.c)
+					print_scene.c \
+					init.c)
 
 FILE_C		+=	$(addprefix scene/, \
-					scene.c			\
 					init_image.c)
 					
 FILE_C		+=	$(addprefix parc_create/, \
@@ -68,19 +62,17 @@ FILE_C		+=	$(addprefix parc_create/, \
 					parsing_utils.c	)
 
 FILE_C		+=	$(addprefix geometry/, \
-					figure.c		\
 					vector.c	)
 					
-# FILE_C		+=	$(addprefix ray_tracing/, \
-# 					trace_ray.c		\
-# 					sphere_trace.c	\
-# 					check.c			\
-# 					check_cylinder.c\
-# 					check_sphere.c	\
-# 					solver.c)
+FILE_C		+=	$(addprefix ray_tracing/, \
+					trace_ray.c		\
+					check.c			\
+					check_cylinder.c\
+					check_sphere.c	\
+					solver.c		)
 					
-FILE_C		+=	$(addprefix camera/, \
-					camera.c		)	
+# FILE_C		+=	$(addprefix camera/, \
+# 					camera.c		)	
 
 OBJ			=	$(addprefix objects/, $(FILE_C:%.c=%.o))
 

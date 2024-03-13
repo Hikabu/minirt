@@ -17,7 +17,8 @@
 # define HEIGHT 600
 # define BACKGROUND 1
 # define BACKGROUND_COLOR 0
-
+# define MIN_TRASHOLD 0.0001
+# define MAX_TRASHOLD 0.9985
 typedef struct 	s_light 						t_light;
 typedef struct 	s_scene							t_scene;
 typedef struct 	s_data							t_data;

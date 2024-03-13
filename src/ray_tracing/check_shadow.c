@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parc.c                                             :+:      :+:    :+:   */
+/*   check_shadow.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/10 12:20:11 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/13 11:29:36 by vfedorov         ###   ########.fr       */
+/*   Created: 2024/03/13 13:53:19 by vfedorov          #+#    #+#             */
+/*   Updated: 2024/03/13 16:12:17 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	count_of_split(char **str, int count)
+int    check_for_shadow_sphere(t_data *data, t_ray *ray, t_crd *crd)
 {
-	int	i;
+    t_sphere    *sphere;
+    float       lenght;
 
-	i = -1;
-	while (str && str[++i])
-		;
-	if (i != count)
-		error(1);
-}
-
-void	free_split(char **str)
-{
-	int	i;
-
-	i = -1;
-	while (str && str[++i])
-		free(str[i]);
-	free(str);
+    sphere = data->scene->obj->sphere;
+    lenght = -1;
+    while (sphere)
+    {
+        lenght = check_intersection_sphere(sphere, ray, crd);
+        if (lenght > MIN_TRASHOLD && lenght < MAX_TRASHOLD)
+            return (1);
+        sphere = sphere->next;
+    }
+    return (0);
 }

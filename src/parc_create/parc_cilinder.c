@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 19:37:34 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/12 17:49:12 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/13 16:45:15 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,13 @@ int parse_ambient(t_entire *ent, char *line)
     if (!amlight)
 		return 1;
     int i;
-    char	mem;
+    ent->amlight = 0;
+    ent->amlight->id = 0;
+    // char	**mem;
     // printf ("%u\n this man is ",ent->amlight);
     params = ft_split(line, ' ');
     // float_range_checker(ent->amlight, ft_atof(line, 1));
-	// mem = ft_split(line, ',');
+	// mem = ft_split(params[2], ',');
     if (ent->amlight && ent->amlight->id)
         return (show_parsing_error(ent, params, ERR_TOO_MANY_AMBIENTS));
     if (array_length(params) != 3)
@@ -92,7 +94,7 @@ int parse_ambient(t_entire *ent, char *line)
     ft_bzero(amlight, sizeof(t_amlight));
     amlight->id = id_ambient;
     i = 1;
-
+    // int b = -1;
     while (params && params[i]) {
         if (i == 1 && parse_float(params[i], &amlight->ratio))
             return (show_parsing_error(ent, params, ERR_NOT_A_FLOAT));
@@ -111,6 +113,7 @@ int parse_ambient(t_entire *ent, char *line)
 		free(ent->amlight);
     ent->amlight = amlight;
     free_array(params);
+    // free_array(mem);
     return (0);
 }
 
