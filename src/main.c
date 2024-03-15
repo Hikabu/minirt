@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 12:13:38 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/13 17:52:08 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/15 21:16:33 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int key_hook(int keycode, void *param)
 
 int	main(int ac, char **av)
 {
-	t_entire	*entire;
+	t_entire	entire;
 	t_data		data;
 	
 	if (ac != 2)

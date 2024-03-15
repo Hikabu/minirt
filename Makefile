@@ -6,7 +6,7 @@
 #    By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/19 15:15:41 by valeriafedo       #+#    #+#              #
-#    Updated: 2024/03/13 17:50:56 by vfedorov         ###   ########.fr        #
+#    Updated: 2024/03/15 21:20:02 by vfedorov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,16 +59,19 @@ FILE_C		+=	$(addprefix parc_create/, \
 					parc_cilinder.c		\
 					parse_scene_file.c	\
 					parsing_error.c		\
-					parsing_utils.c	)
+					parsing_utils.c		\
+					matrix.c)
 
 FILE_C		+=	$(addprefix geometry/, \
 					vector.c	)
 					
 FILE_C		+=	$(addprefix ray_tracing/, \
-					trace_ray.c		\
-					check.c			\
-					check_cylinder.c\
-					check_sphere.c	\
+					trace_ray.c			\
+					check_shadow.c		\
+					compute_sp_cyl.c	\
+					check.c				\
+					check_cylinder.c	\
+					check_sphere.c		\
 					solver.c		)
 					
 # FILE_C		+=	$(addprefix camera/, \

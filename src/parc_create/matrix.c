@@ -6,13 +6,13 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 21:35:59 by vfedorov          #+#    #+#             */
-/*   Updated: 2024/03/13 21:42:44 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/15 21:17:07 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void    translate_obj(t_scene *scene, t_crd *crd)
+void	translate_obj(t_scene *scene, t_crd *crd)
 {
     t_obj   obj;
 

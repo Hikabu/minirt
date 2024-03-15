@@ -129,7 +129,7 @@ typedef struct s_entire
 
 
 void	init_all(t_entire *ent);
-
+void	translate_obj(t_scene *scene, t_crd *crd);
 
 void	vector_addition(t_crd *result, t_crd *a, t_crd *b);
 int		parse_vector(char *str, t_crd *vect);

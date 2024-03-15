@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 10:05:37 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/13 21:49:39 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/15 21:22:13 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,11 +129,20 @@ void		scalar_multiplication(t_crd *res, t_crd *vector, float lambda);
 float		nearest_distance(float *points);
 //intersaction 
 t_sphere	*check_for_spheres(t_data *data, t_ray *ray, t_crd *rd, float *dist);
-
-
+float		check_intersection_sphere(t_sphere *sphere, t_ray *ray, t_crd *rd);
 
 //color shadow
 void	pixel_plane_computing(t_data *data, t_pixel *pixel);
+void	pixel_computing(t_data *data, t_pixel *pixel);
+void 	pixel_computing_sphere(t_data *data, t_pixel *pixel);
+void	pixel_computing_cyl(t_data *data, t_pixel *pixel);
+float	pixel_comp_sphere_refl_ratio(t_data *data, t_pixel *pixel);
+
 int		check_for_shadow(t_data *data, t_pixel *pixel);
+int		check_for_shadow_cyl(t_data *data, t_ray *ray, t_crd *crd);
+int		check_for_shadow_plane(t_data *data, t_ray *ray, t_crd *crd);
+int 	check_for_shadow_sphere(t_data *data, t_ray *ray, t_crd *crd);
+
+//
 
 #endif

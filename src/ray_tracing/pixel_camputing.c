@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 17:37:32 by vfedorov          #+#    #+#             */
-/*   Updated: 2024/03/13 13:47:26 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/15 21:04:46 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,6 @@ void	pixel_computing(t_data *data, t_pixel *pixel)
 	else if (pixel->sphere)
 		pixel_computing_sphere(data, pixel);
 	else if (pixel->cyl)
-		pixel_computing_cylinder(data, pixel);
+		pixel_computing_cyl(data, pixel);
 		
 }
