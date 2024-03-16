@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 10:05:37 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/15 21:22:13 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/16 19:26:41 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,6 @@ typedef struct s_two_points_for_ray_direction
 	t_crd point[2]; //the direction of the ray is the vector from point[0] to point[1] - some point.
 }	t_ray;
 
-typedef	struct s_objects
-{
-	t_light		*light;
-	t_plane		*plane;
-	t_cyl		*cyl;
-	t_sphere	*sphere;
-} t_obj;
 
 typedef struct s_scene
 {
@@ -143,6 +136,6 @@ int		check_for_shadow_cyl(t_data *data, t_ray *ray, t_crd *crd);
 int		check_for_shadow_plane(t_data *data, t_ray *ray, t_crd *crd);
 int 	check_for_shadow_sphere(t_data *data, t_ray *ray, t_crd *crd);
 
-//
+int		color_diffusal(int color_sum, int col1, int col2, float intens);
 
 #endif

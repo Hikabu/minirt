@@ -127,6 +127,13 @@ typedef struct s_entire
 	t_color		*col;
 }	t_entire;
 
+typedef	struct s_objects
+{
+	t_light		*light;
+	t_plane		*plane;
+	t_cyl		*cyl;
+	t_sphere	*sphere;
+} t_obj;
 
 void	init_all(t_entire *ent);
 void	translate_obj(t_scene *scene, t_crd *crd);

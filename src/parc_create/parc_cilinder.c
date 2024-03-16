@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 19:37:34 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/13 16:45:15 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/16 17:01:57 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,9 @@ int parse_ambient(t_entire *ent, char *line)
     ent->amlight = 0;
     ent->amlight->id = 0;
     char	**mem;
-    printf ("%u\n this man is ",ent->amlight);
+    // printf ("%u\n this man is ",ent->amlight);
     params = ft_split(line, ' ');
-    float_range_checker(ent->amlight, ft_atof(line, 1));
+    // float_range_checker(ent->amlight, ft_atof(line), 1);
 	mem = ft_split(params[2], ',');
     if (ent->amlight && ent->amlight->id)
         return (show_parsing_error(ent, params, ERR_TOO_MANY_AMBIENTS));
