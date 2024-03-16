@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 10:05:37 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/09 18:41:32 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/15 21:22:13 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@ void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int 		key_hook(int keycode, void *param);
 void		color_back(void	*img);
 void		get_fov_angles(t_scene *scene);
+void		pixel_computing(t_data *data, t_pixel *pixel);
+
 
 void		fill_coordinates_for_camera(t_camera *camera, t_crd *camera_point);
 void		initial_scene(t_scene *scene);
@@ -119,15 +121,28 @@ int			solve_quadro_eq(float a, float b, float c, float roots[2]);
 t_vplane    *get_view_plane(float width, float height, float fov);
 
 //vector 
-
+float		vector_len(t_crd *vector);
 void		vector_subtraction(t_crd *res, t_crd *a, t_crd *b);
 void		norm_vector(t_crd *vec);
 float		scalar_vector_product(t_crd *a, t_crd *b);
-float		scalar_multiplication(t_crd *res, t_crd *vector, float lambda);
-
+void		scalar_multiplication(t_crd *res, t_crd *vector, float lambda);
+float		nearest_distance(float *points);
 //intersaction 
 t_sphere	*check_for_spheres(t_data *data, t_ray *ray, t_crd *rd, float *dist);
+float		check_intersection_sphere(t_sphere *sphere, t_ray *ray, t_crd *rd);
 
+//color shadow
+void	pixel_plane_computing(t_data *data, t_pixel *pixel);
+void	pixel_computing(t_data *data, t_pixel *pixel);
+void 	pixel_computing_sphere(t_data *data, t_pixel *pixel);
+void	pixel_computing_cyl(t_data *data, t_pixel *pixel);
+float	pixel_comp_sphere_refl_ratio(t_data *data, t_pixel *pixel);
 
+int		check_for_shadow(t_data *data, t_pixel *pixel);
+int		check_for_shadow_cyl(t_data *data, t_ray *ray, t_crd *crd);
+int		check_for_shadow_plane(t_data *data, t_ray *ray, t_crd *crd);
+int 	check_for_shadow_sphere(t_data *data, t_ray *ray, t_crd *crd);
+
+//
 
 #endif

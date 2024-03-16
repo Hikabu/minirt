@@ -8,7 +8,7 @@ int	parse_vector(char *str, t_crd *vect)
 	int		i;
 	int		ret;
 	char	**nbrs;
-
+	
 	i = -1;
 	ret = 0;
 	nbrs = ft_split(str, ',');

@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 19:37:34 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/09 20:49:45 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/13 16:45:15 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,28 @@ int parse_camera(t_entire *ent, char *line) {
     return (0);
 }
 
-int parse_ambient(t_entire *ent, char *line) {
-    char **params;
+void	float_range_checker(float *key, float value, int flag_range)
+{
+	if ((flag_range == 1 && (value >= 0 && value <= 1))
+		|| (flag_range == 2 && (value >= -1 && value <= 1)))
+		*key = value;
+	else
+		error(1);
+}
+int parse_ambient(t_entire *ent, char *line)
+{
+    char    **params;
     t_amlight *amlight = malloc(sizeof(t_amlight));
     if (!amlight)
 		return 1;
     int i;
-
+    ent->amlight = 0;
+    ent->amlight->id = 0;
+    // char	**mem;
+    // printf ("%u\n this man is ",ent->amlight);
     params = ft_split(line, ' ');
+    // float_range_checker(ent->amlight, ft_atof(line, 1));
+	// mem = ft_split(params[2], ',');
     if (ent->amlight && ent->amlight->id)
         return (show_parsing_error(ent, params, ERR_TOO_MANY_AMBIENTS));
     if (array_length(params) != 3)
@@ -80,7 +94,7 @@ int parse_ambient(t_entire *ent, char *line) {
     ft_bzero(amlight, sizeof(t_amlight));
     amlight->id = id_ambient;
     i = 1;
-
+    // int b = -1;
     while (params && params[i]) {
         if (i == 1 && parse_float(params[i], &amlight->ratio))
             return (show_parsing_error(ent, params, ERR_NOT_A_FLOAT));
@@ -88,16 +102,25 @@ int parse_ambient(t_entire *ent, char *line) {
             return (show_parsing_error(ent, params, ERR_INVALID_NB_COLORS));
         i++;
     }
-
+    if(ent->amlight)
+	{
+		printf("\namlight\nid = %d\n", ent->amlight->id);
+		printf("ratio = %f\n", ent->amlight->ratio);
+		printf("rgb = %f,%f,%f\n", ent->amlight->rgb.r, ent->amlight->rgb.g, ent->amlight->rgb.b);
+	}
+    printf ("%d\n id is ",ent->amlight->id);
     if (ent->amlight)
 		free(ent->amlight);
     ent->amlight = amlight;
     free_array(params);
+    // free_array(mem);
     return (0);
 }
 
-int parse_light(t_entire *ent, char *line) {
-    char **params;
+
+int parse_light(t_entire *ent, char *line)
+{
+    char    **params;
     t_light *light = malloc(sizeof(t_light));
     if (!light)
 		return 1;

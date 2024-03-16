@@ -6,13 +6,13 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 22:29:19 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/09 19:11:38 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/13 11:44:30 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	set_obj_in_pix(t_pixel *pixel, t_sphere *sphere, t_plane *plane, t_cyl *cyl)
+void	set_obj_in_pix(t_pixel *pixel, t_plane *plane, t_sphere *sphere, t_cyl *cyl)
 {
 	if (!pixel)
 		return ;
@@ -60,31 +60,31 @@ t_plane	*check_for_planes(t_data *data, t_ray *ray, t_crd *d, float *dist)
 	return (nearest_plane);
 }
 
-// void check_intersection(t_data *data, t_pixel *pixel)
-// {
-// 	float dist; //dis from cmr to the itrs pnt of a ray with an obj in the scene
+void check_intersection(t_data *data, t_pixel *pixel)
+{
+	float dist; //dis from cmr to the itrs pnt of a ray with an obj in the scene
 
-// 	set_obj_in_pix(pixel, 0, 0, 0);
-// 	dist = -1;//no itrs yet
-// 	pixel->lenght = -1;
-// 	vector_subtraction(&(pixel->coor),
-// 						&(pixel->ray.point[0]), &(pixel->ray.point[1])); //differences
-// 	norm_vector(&(pixel->coor)); //we know direction we simplify calculating by sainf it 1 ?
-// 	pixel->plane = check_for_planes(data, &pixel->ray, &pixel->coor, &dist);//closest plne
-// 	if (dist != -1)
-// 		pixel->lenght = dist;
-// 	pixel->sphere = check_for_spheres(data, &pixel->ray, &pixel->coor, &dist);
-// 	if (dist > 0 && (pixel->lenght == -1 || dist < pixel->lenght))
-// 	{
-// 		pixel->lenght = dist;
-// 		set_obj_in_pix(pixel, 0, pixel->sphere, 0);
-// 	}
-// 	pixel->cyl = check_for_cilinder(data, pixel, 0);
-// 	if (dist != -1 && (pixel->lenght == -1 || dist < pixel->lenght))
-// 	{
-// 		pixel->lenght = dist;
-// 		set_obj_in_pix(pixel, 0, 0, pixel->cyl);
-// 	}
-// 	else
-// 		pixel->cyl = 0;
-// }
+	set_obj_in_pix(pixel, 0, 0, 0);
+	dist = -1;//no itrs yet
+	pixel->lenght = -1;
+	vector_subtraction(&(pixel->coor),
+						&(pixel->ray.point[0]), &(pixel->ray.point[1])); //differences
+	norm_vector(&(pixel->coor)); //we know direction we simplify calculating by sainf it 1 ?
+	pixel->plane = check_for_planes(data, &pixel->ray, &pixel->coor, &dist);//closest plne
+	if (dist != -1)
+		pixel->lenght = dist;
+	pixel->sphere = check_for_spheres(data, &pixel->ray, &pixel->coor, &dist);
+	if (dist > 0 && (pixel->lenght == -1 || dist < pixel->lenght))
+	{
+		pixel->lenght = dist;
+		set_obj_in_pix(pixel, 0, pixel->sphere, 0);
+	}
+	pixel->cyl = check_for_cilinder(data, pixel, 0);
+	if (dist != -1 && (pixel->lenght == -1 || dist < pixel->lenght))
+	{
+		pixel->lenght = dist;
+		set_obj_in_pix(pixel, 0, 0, pixel->cyl);
+	}
+	else
+		pixel->cyl = 0;
+}

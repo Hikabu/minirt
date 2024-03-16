@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_sphere.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 00:45:22 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/06 02:12:28 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/03/15 21:21:56 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

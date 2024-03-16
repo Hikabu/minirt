@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_image.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 16:00:24 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/04 20:48:10 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/03/12 21:16:38 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,14 @@ void	color_back(void	*img)
 		x++;
 	}
 }
+void	ft_mlx_pixel_put_img(t_img *img, int x, int y, int color) //take address from memory
+{
+	char *dst;
+
+	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
+}
+
 
 void	init_image(t_data *data)
 {

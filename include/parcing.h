@@ -57,6 +57,7 @@ typedef struct s_light
 	t_object_id id;
 	t_crd		xyz;
 	float		ratio;
+	int			color;
 	t_color		rgb;
 	t_light		*next;
 }	t_light;
@@ -79,22 +80,14 @@ typedef struct s_plane
 	t_crd			xyz;
 	t_crd			norm_vec;
 	t_color			rgb;
+	int				color;
+	int				color_ambient;
 	t_plane			*next;
 }	t_plane;
-
-// typedef struct s_plat				//  represent the surfaces of objects in a scene
-// {
-// 	t_crd	point;
-// 	t_crd 	orient;
-// 	int		color;
-// 	int		color_amb;
-// 	t_plato	*next;
-// } 	t_plato;
 
 typedef struct s_cylinder
 {
 	t_crd			point;
-	t_crd			orient;
 	t_plane			plato_begin;
 	t_plane			plato_end;
 	float			heig;
@@ -103,20 +96,21 @@ typedef struct s_cylinder
 	t_crd			norm_vec;
 	float			diam;
 	t_color			rgb;
+	int				color;
+	int				color_ambient;
 	t_cyl			*next;
 }	t_cyl;
 
 
 typedef struct s_sphere
 {
-	t_crd			point;
-	// int				id;
+	t_crd			point; //coordintes
 	t_object_id		id;
 	t_crd			xyz;
 	float			diametr;
 	t_color			rgb;
 	int				color_ambient;
-	// t_vector		*center;
+	int				color;
 	t_sphere		*next; //if several figures
 }	t_sphere;
 
@@ -130,8 +124,14 @@ typedef struct s_entire
 	t_cyl		*cyl;
 	t_sphere	*sphere;
 	t_crd		*crd;
+	t_color		*col;
 }	t_entire;
 
+
+void	init_all(t_entire *ent);
+void	translate_obj(t_scene *scene, t_crd *crd);
+
+void	vector_addition(t_crd *result, t_crd *a, t_crd *b);
 int		parse_vector(char *str, t_crd *vect);
 int		parse_color(char *str, t_color *color);
 int		parse_float(char *str, float *num);
@@ -147,7 +147,6 @@ void	free_array(char *arr[]);
 int		parse_ulong(char *str, size_t *num);
 int		str_to_int_color(char *str);
 int		is_ulong(char *str);
-
 
 int			parse_params(t_entire *ent, char *line);
 void		error(int er);
@@ -176,8 +175,13 @@ void		id_check1(char **str, t_entire **ent);
 void		error_with_free(t_entire *ent);
 
 //figures
+t_cyl	*check_for_cilinder(t_data *data, t_pixel *pixel, float *dist);
+float	check_intersection_cyl(t_cyl *cyl, t_pixel *pixel);
+float	check_intersection_plane(t_plane *plane, t_ray *ray, t_crd *rd);
 // t_sphere	*init_sphere(t_vector *center, float radius);
 
+void	ft_mlx_pixel_put_img(t_img *img, int x, int y, int color);
+float	ang_bet_2_vec(t_crd *a, t_crd *b);
 
 
 

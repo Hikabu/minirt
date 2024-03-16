@@ -16,7 +16,9 @@
 # define WIDTH 800
 # define HEIGHT 600
 # define BACKGROUND 1
-
+# define BACKGROUND_COLOR 0
+# define MIN_TRASHOLD 0.0001
+# define MAX_TRASHOLD 0.9985
 typedef struct 	s_light 						t_light;
 typedef struct 	s_scene							t_scene;
 typedef struct 	s_data							t_data;
@@ -35,12 +37,16 @@ typedef	struct s_pixel
 	t_cyl		*cyl;
 	t_ray		ray;
 	int			cyl_type;
+	float		cyl_m;
 }	t_pixel;
 
 
 typedef enum e_type_object // only for clearness 
 {
 	NO_INTERSECT,
+	PIPE,
+	PLANE_BEGIN,
+	PLANE_END,
 }	t_type_object;
 
 
