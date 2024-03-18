@@ -6,7 +6,7 @@
 #    By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/19 15:15:41 by valeriafedo       #+#    #+#              #
-#    Updated: 2024/03/15 21:20:02 by vfedorov         ###   ########.fr        #
+#    Updated: 2024/03/18 15:40:11 by vfedorov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,10 +72,9 @@ FILE_C		+=	$(addprefix ray_tracing/, \
 					check.c				\
 					check_cylinder.c	\
 					check_sphere.c		\
-					solver.c		)
+					solver.c			\
+					pixel_computing.c)
 					
-# FILE_C		+=	$(addprefix camera/, \
-# 					camera.c		)	
 
 OBJ			=	$(addprefix objects/, $(FILE_C:%.c=%.o))
 

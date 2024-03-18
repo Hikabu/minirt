@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pixel_camputing.c                                  :+:      :+:    :+:   */
+/*   pixel_computing.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 17:37:32 by vfedorov          #+#    #+#             */
-/*   Updated: 2024/03/15 21:04:46 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/18 14:41:21 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	check_for_shadow(t_data *data, t_pixel *pixel)
 	vector_subtraction(&d, &(ray.point[0]), &(ray.point[1]));
 	if (check_for_shadow_sphere(data, &ray, &d))
 		return (1);
-	if (check_for_shadow_planes(data, &ray, &d))
+	if (check_for_shadow_plane(data, &ray, &d))
 		return (1);
 	if (check_for_shadow_sphere(data, &ray, &d))
 		return (1);
@@ -57,7 +57,7 @@ void	pixel_plane_computing(t_data *data, t_pixel *pixel)
 	int		light;
 	float	light_ratio;
 
-	ft_mlx_pixel_put_img(&data->img, pixel->x, pixel->y,
+	ft_mlx_pixel_put_img(&data->simg, pixel->x, pixel->y,
 		pixel->plane->color_ambient);
 	if (!data->scene->obj->light || check_for_shadow(data, pixel))
 		return ;
@@ -65,8 +65,8 @@ void	pixel_plane_computing(t_data *data, t_pixel *pixel)
 	if (light_ratio <= 0)
 		return ;
 	light = color_diffusal(pixel->plane->color_ambient, pixel->plane->color, 
-		data->scene->obj->light->rgb, light_ratio);
-	ft_mlx_pixel_put_img(&data->img, pixel->x, pixel->y, light);
+		data->scene->obj->light->color, light_ratio);
+	ft_mlx_pixel_put_img(&data->simg, pixel->x, pixel->y, light);
 	return ;		
 }
 

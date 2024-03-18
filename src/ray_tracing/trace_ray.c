@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 23:53:56 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/16 16:58:22 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/18 16:18:27 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	get_fov_angles(t_scene *scene)
 {
 	// float vertical_angle = tan(camera_fov_rad / 2);  // calculate distance from the camera to the plane that intersects
 	// float aspect_ratio = (float)HEIGHT / (float)WIDTH;
+	printf(" scene->camera_angeles is %f\n", scene->camera_angeles[0]);
+	printf("scene->camera_fov is %f\n", scene->camera_fov);
 	scene->camera_angeles[0] = tan(scene->camera_fov * M_PI / 360); // vertical angle in radians
 	scene->camera_angeles[1] = (scene->camera_angeles[0]
 			* (((float)HEIGHT) / ((float)WIDTH))); 
@@ -64,7 +66,7 @@ Write the color to the pixel in image */
 				-data->scene->camera_angeles[0] + lambda * pixel.x,
 				+data->scene->camera_angeles[1] + lambda * pixel.y, 1);
 			check_intersection(data, &pixel);
-			// pixel_computing(data, &pixel);
+			pixel_computing(data, &pixel);
 			pixel.x++;
 		}
 		pixel.y++;

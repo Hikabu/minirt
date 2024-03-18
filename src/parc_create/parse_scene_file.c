@@ -62,6 +62,7 @@ int open_and_parse_file(t_entire *ent, const char *path)
         return 0;
     }
     parse_success = parse_scene_file(ent, fd);
+	initial_scene(ent->scene);
 	get_fov_angles(ent->scene);
 	translate_obj(ent->scene, &ent->scene->camera_point);
 	// rotate_obj(ent->scene, &ent->scene->camera_orientation);

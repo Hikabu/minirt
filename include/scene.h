@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 10:05:37 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/16 19:26:41 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/18 14:43:58 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ typedef struct s_vplane
 
 
 float		vec_product(t_crd *vec1, t_crd *vec2);
-void 		vec_normalize(t_crd *vec);
+void		norm_vector(t_crd *vec);
 float 		vec_length(t_crd *vec);
 t_crd		*vecsubtraction(t_crd *vec1, t_crd *vec2);
 t_crd		*crd_init(float x, float y, float z);
