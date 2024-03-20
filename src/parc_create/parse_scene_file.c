@@ -4,7 +4,7 @@ char *sanitize_line(const char *line)
 {
     char *result = NULL;
     int i = 0;
-	char *trimmed;
+	char *trimmed = NULL;
 
     result = malloc(ft_strlen(line) + 1);
     if (!result) 
@@ -31,7 +31,7 @@ int	parse_scene_file(t_entire *ent, int fd)
 	int		num;
 	int		status;
 	char	*line;
-
+	(void)ent;
 	num = 0;
 	status = 0;
 	while (status != 1)
@@ -61,6 +61,12 @@ int open_and_parse_file(t_entire *ent, const char *path)
         perror("Error opening file");
         return 0;
     }
+	ent->scene = (t_scene *)malloc(sizeof(t_scene));
+	if (!(ent->scene))
+		error(1);
+	ent->scene->obj = (t_obj *)malloc(sizeof(t_obj));
+	if (!(ent->scene->obj))
+		error(1);
     parse_success = parse_scene_file(ent, fd);
 	initial_scene(ent->scene);
 	get_fov_angles(ent->scene);

@@ -46,6 +46,7 @@ int	array_length(char *arr[])
 	i = 0;
 	while (arr && arr[i])
 		i++;
+	// printf ("i is %d\n", i);
 	return (i);
 }
 

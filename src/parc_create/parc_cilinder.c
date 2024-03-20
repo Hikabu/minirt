@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 19:37:34 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/18 17:36:22 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/20 17:17:36 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,13 @@ int parse_camera(t_entire *ent, char *line)
 	if (!camera)
 		return 1;
 	params = ft_split(line, ' ');
-	if (ent->camera && ent->camera->id)
-		return (show_parsing_error(ent, params, ERR_TOO_MANY_CAMERAS));
+	// if (ent->camera && ent->camera->id)
+	// 	return (show_parsing_error(ent, params, ERR_TOO_MANY_CAMERAS));
 	if (array_length(params) != 4)
 		return (show_parsing_error(ent, params, ERR_INVALID_NB_PARAMS));
 	ft_bzero(camera, sizeof(t_camera));
 	camera->id = id_camera;
 	i = 1;
-
 	while (params && params[i])
 	{
 		if (i == 1 && parse_vector(params[i], &camera->xyz))
@@ -55,10 +54,9 @@ int parse_camera(t_entire *ent, char *line)
 			return (show_parsing_error(ent, params, ERR_NOT_A_ULONG));
 		i++;
 	}
-
 	norm_vector(&camera->norm_vec);
-	if (ent->camera)
-		free(ent->camera);
+	// if (ent->camera)
+	// 	free(ent->camera);    //no free
 	ent->camera = camera;
 	free_array(params);
 	return (0);
@@ -131,8 +129,8 @@ int	parse_light(t_entire *ent, char *line)
 		i++;
 	}
 
-	if (ent->light)
-		free(ent->light);
+	// if (ent->light)
+	// 	free(ent->light);
 	ent->light = light;
 	free_array(params);
 	return (0);
@@ -242,11 +240,10 @@ int parse_cylinder(t_entire *ent, char *line)
 	free_array(params);
 	return (0);
 }
-void initial_scene(t_scene *scene)
+void	initial_scene(t_scene *scene)
 {
-	scene->obj = calloc(1, sizeof(t_obj));
-	if (!(scene->obj))
-		error(1);
+	
+	// printf("camera fow is %f\n", scene->camera_fov);
 	fill_new_vector(&scene->camera_point, 0, 0, 0);
 	fill_new_vector(&scene->camera_orientation, 0, 0, 1);
 	scene->camera_fov = 90; // default
@@ -256,5 +253,6 @@ void initial_scene(t_scene *scene)
 	scene->obj->cyl = 0;
 	scene->obj->sphere = 0;
 	scene->obj->plane = 0;
+	printf("address of scene %p\n", scene);
 	// printf ("what is in the road %f\n", scene->camera_point.z);
 }
