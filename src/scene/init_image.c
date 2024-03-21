@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 16:00:24 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/12 21:16:38 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/21 17:27:53 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,28 @@ void	init_image(t_data *data)
 		error(1);
 	data->window = mlx_new_window(data->mlx, WIDTH, HEIGHT, "minirt");
 	data->simg.img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
-	if (!data->window)
+	if (!data->window || !data->simg.img)
 		error(1);
 	mlx_put_image_to_window(data->mlx, data->window, data->simg.img, 0, 0);
-		mlx_loop(data->mlx);
-		// printf ("fdfd\n");
 	data->simg.addr = mlx_get_data_addr(data->simg.img,
 			&(data->simg.bits_per_pixel), &(data->simg.line_length), &(data->simg.endian));
+		// mlx_loop(data->mlx);
+	printf("data->mlx = %p\n", data->mlx);
 	if (!data->simg.addr)
 		error(1);
 }
+
+// void	init_image(t_global *data)
+// {
+// 	data->mlx = mlx_init();
+// 	if (!data->mlx)
+// 		error_mlx(data);
+// 	data->window = mlx_new_window(data->mlx, WIDTH, HEIGHT, "minirt");
+// 	data->img.img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
+// 	if (!data->window || !data->img.img)
+// 		error_mlx(data);
+// 	data->img.addr = mlx_get_data_addr(data->img.img,
+// 			&(data->img.bpp), &(data->img.line_length), &(data->img.endian));
+// 	if (!data->img.addr)
+// 		error_mlx(data);
+// }

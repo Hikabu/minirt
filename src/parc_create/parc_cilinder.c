@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 19:37:34 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/20 17:17:36 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/20 22:10:12 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -253,6 +253,6 @@ void	initial_scene(t_scene *scene)
 	scene->obj->cyl = 0;
 	scene->obj->sphere = 0;
 	scene->obj->plane = 0;
-	printf("address of scene %p\n", scene);
+	// printf("address of scene %p\n", scene);
 	// printf ("what is in the road %f\n", scene->camera_point.z);
 }

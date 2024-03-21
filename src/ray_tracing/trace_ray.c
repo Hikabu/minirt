@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 23:53:56 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/20 16:40:44 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/21 17:40:16 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,14 @@ Write the color to the pixel in image */
 
 	fill_new_vector(&pixel.ray.point[0], 0, 0, -1); //z for away from the viewer and direction of a ray (pixel)
 	lambda = 2 * data->scene->camera_angeles[0] / WIDTH;
+	write(1, "error\n", 6);
+	dprintf(2, "imhere\n");
+	dprintf(1, "lambda is%f\n", lambda);
 	pixel.y = 0;
 	while  (pixel.y < HEIGHT)
 	{
 		pixel.x = 0;
-		while (pixel.y < WIDTH)
+		while (pixel.x < WIDTH)
 		{
 			pixel_init(&pixel);
 			fill_new_vector(&(pixel.ray.point[1]), 
@@ -71,4 +74,5 @@ Write the color to the pixel in image */
 		}
 		pixel.y++;
 	}
+	mlx_put_image_to_window(data->mlx, data->window, data->simg.img, 0, 0);
 }

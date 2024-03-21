@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 22:29:19 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/13 11:44:30 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/21 17:42:30 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,8 @@ void check_intersection(t_data *data, t_pixel *pixel)
 		pixel->lenght = dist;
 		set_obj_in_pix(pixel, 0, pixel->sphere, 0);
 	}
-	pixel->cyl = check_for_cilinder(data, pixel, 0);
+	// pixel->cyl = check_for_cilinder(data, pixel, &dist);
+	// pixel-> = check_for_cilinder(data, pixel, &dist);
 	if (dist != -1 && (pixel->lenght == -1 || dist < pixel->lenght))
 	{
 		pixel->lenght = dist;

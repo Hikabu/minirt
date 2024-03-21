@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 17:37:32 by vfedorov          #+#    #+#             */
-/*   Updated: 2024/03/18 14:41:21 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/21 17:35:39 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	pixel_computing(t_data *data, t_pixel *pixel)
 	{
 		mlx_pixel_put(data->mlx, data->window,
 			pixel->x, pixel->y, BACKGROUND_COLOR);
-		return ;
+		// return ;
 	}
 	pixel->intersection = pixel->coor;
 	scalar_multiplication(&pixel->intersection, &pixel->intersection, 
