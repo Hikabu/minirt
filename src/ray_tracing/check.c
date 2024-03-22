@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 22:29:19 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/21 17:42:30 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/22 18:57:11 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ float	check_intersection_plane(t_plane *plane, t_ray *ray, t_crd *rd)
 	return (t);
 }
 
-t_plane	*check_for_planes(t_data *data, t_ray *ray, t_crd *d, float *dist)
+t_plane	*check_for_planes(t_entire *data, t_ray *ray, t_crd *d, float *dist)
 {
 	t_plane *plane;
 	t_plane	*nearest_plane;
@@ -60,7 +60,7 @@ t_plane	*check_for_planes(t_data *data, t_ray *ray, t_crd *d, float *dist)
 	return (nearest_plane);
 }
 
-void check_intersection(t_data *data, t_pixel *pixel)
+void check_intersection(t_entire *data, t_pixel *pixel)
 {
 	float dist; //dis from cmr to the itrs pnt of a ray with an obj in the scene
 

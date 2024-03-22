@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:34:51 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/22 15:29:42 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/22 17:54:07 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	print_spheres(t_sphere	*sp, char type)
 		else
 			printf("\e[0;33mSphere: \e[0m");
 		printf("\t\e[0;34mPoint: \e[0m");
-		print_coordinate(&sp->point, "\n");
+		print_coordinate(&sp->xyz, "\n"); 
 		printf("        \t\e[0;34mDiameter: \e[0m%f\n",
 			sp->diametr);
 		print_color(sp->color);
@@ -120,14 +120,14 @@ void	print_scene(t_entire *ent, t_scene	*scene)
 		sizeof(t_obj), sizeof(t_sphere), sizeof(t_plane),
 		sizeof(t_cyl), sizeof(t_light));
 	print_scene_characteristics(scene);
-	if (ent->scene->obj && ent->scene->obj->sphere)
-		print_spheres(scene->obj->sphere, 'a');
-	if (scene->obj && scene->obj->light)
-		print_lights(scene->obj->light);
-	if (scene->obj && scene->obj->cyl)
-		print_cylinders(scene->obj->cyl, 'a');
-	if (scene->obj && scene->obj->plane)
-		print_planes(scene->obj->plane, 'a');
+	// if (ent->scene->obj && ent->scene->obj->sphere)
+	print_spheres(ent->sphere, 'a');
+	// if (ent->scene->obj && ent->scene->obj->light)
+		print_lights(ent->light);
+	// if (ent->scene->obj && ent->scene->obj->cyl)
+		print_cylinders(ent->cyl, 'a');
+	// if (ent->scene->obj && ent->scene->obj->plane)
+		print_planes(ent->plane, 'a');
 }
 
 static void	print_scene_characteristics(t_scene *scene)

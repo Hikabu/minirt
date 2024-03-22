@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 17:37:32 by vfedorov          #+#    #+#             */
-/*   Updated: 2024/03/21 17:35:39 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/22 18:58:14 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ float	pixel_computing_plane_difreflect_ratio(t_data *data, t_pixel *pixel)
 	return (-light_intens);
 }
 
-void	pixel_plane_computing(t_data *data, t_pixel *pixel)
+void	pixel_plane_computing(t_entire *data, t_pixel *pixel)
 {
 	int		light;
 	float	light_ratio;
@@ -71,12 +71,12 @@ void	pixel_plane_computing(t_data *data, t_pixel *pixel)
 }
 
 
-void	pixel_computing(t_data *data, t_pixel *pixel)
+void	pixel_computing(t_data *dat, t_entire *data, t_pixel *pixel)
 {
 	if (pixel->lenght <= 0
 		|| (!pixel->plane && !pixel->sphere && !pixel->cyl))
 	{
-		mlx_pixel_put(data->mlx, data->window,
+		mlx_pixel_put(dat->mlx, dat->window,
 			pixel->x, pixel->y, BACKGROUND_COLOR);
 		// return ;
 	}

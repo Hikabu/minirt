@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 00:45:22 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/15 21:21:56 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/22 18:57:23 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ return (-1);
 }
 
 
-t_sphere	*check_for_spheres(t_data *data, t_ray *ray, t_crd *rd, float *dist)
+t_sphere	*check_for_spheres(t_entire *data, t_ray *ray, t_crd *rd, float *dist)
 {
 	t_sphere	*sphere;
 	t_sphere	*closest_sphere;

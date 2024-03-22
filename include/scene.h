@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 10:05:37 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/18 14:43:58 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/22 18:57:33 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int 		key_hook(int keycode, void *param);
 void		color_back(void	*img);
 void		get_fov_angles(t_scene *scene);
-void		pixel_computing(t_data *data, t_pixel *pixel);
+void		pixel_computing(t_data *dat, t_entire *data, t_pixel *pixel);
 
 
 void		fill_coordinates_for_camera(t_camera *camera, t_crd *camera_point);
@@ -109,7 +109,7 @@ t_camera	*init_camera(t_crd *origin, t_crd *direction, float fov);
 
 // scene 
 t_scene		*init_scene(t_camera *camera, t_sphere *sphere);
-void		check_intersection(t_data *data, t_pixel *pixel);
+void		check_intersection(t_entire *data, t_pixel *pixel);
 int			solve_quadro_eq(float a, float b, float c, float roots[2]);
 t_vplane    *get_view_plane(float width, float height, float fov);
 
@@ -121,12 +121,12 @@ float		scalar_vector_product(t_crd *a, t_crd *b);
 void		scalar_multiplication(t_crd *res, t_crd *vector, float lambda);
 float		nearest_distance(float *points);
 //intersaction 
-t_sphere	*check_for_spheres(t_data *data, t_ray *ray, t_crd *rd, float *dist);
+t_sphere	*check_for_spheres(t_entire *data, t_ray *ray, t_crd *rd, float *dist);
 float		check_intersection_sphere(t_sphere *sphere, t_ray *ray, t_crd *rd);
 
 //color shadow
 void	pixel_plane_computing(t_data *data, t_pixel *pixel);
-void	pixel_computing(t_data *data, t_pixel *pixel);
+// void	pixel_computing(t_data *entire, t_pixel *pixel);
 void 	pixel_computing_sphere(t_data *data, t_pixel *pixel);
 void	pixel_computing_cyl(t_data *data, t_pixel *pixel);
 float	pixel_comp_sphere_refl_ratio(t_data *data, t_pixel *pixel);

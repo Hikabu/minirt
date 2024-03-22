@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 21:45:36 by vfedorov          #+#    #+#             */
-/*   Updated: 2024/03/18 14:43:07 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/22 18:58:30 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ float	pixel_comp_sphere_refl_ratio(t_data *data, t_pixel *pixel)
 		return (light_intens);
 	return (0);
 }
-void pixel_computing_sphere(t_data *data, t_pixel *pixel)
+void pixel_computing_sphere(t_entire *data, t_pixel *pixel)
 {
 	int		light;
 	float	light_ratio;
@@ -115,7 +115,7 @@ static	float pixel_comp_cyl_refl_ratio(t_data *data, t_pixel *pixel)
 	return (0);
 }
 
-void	pixel_computing_cyl(t_data *data, t_pixel *pixel)
+void	pixel_computing_cyl(t_entire *data, t_pixel *pixel)
 {
 	int		light;
 	float	light_ratio;
