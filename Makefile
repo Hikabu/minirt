@@ -6,7 +6,7 @@
 #    By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/19 15:15:41 by valeriafedo       #+#    #+#              #
-#    Updated: 2024/03/21 17:30:37 by vfedorov         ###   ########.fr        #
+#    Updated: 2024/03/22 14:42:58 by vfedorov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ CFLAGS		=	-I include
 
 CFLAGS		+=	-Wall -Wextra -Werror -g 
 
-CFLAGS		+=	-fsanitize=address
+# CFLAGS		+=	-fsanitize=address
 
 RM			=	rm -rf
 

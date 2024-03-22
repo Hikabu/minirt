@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 12:13:38 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/21 17:45:50 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/22 14:50:15 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	main(int ac, char **av)
 	
 	if (ac != 2)
 		error(2);
-	init_all(&entire);
+	// init_all(&entire);
 	if (open_and_parse_file(&entire, av[1]) == 0)
 	{
 		printf("ibfuckinghere\n");
@@ -50,7 +50,7 @@ int	main(int ac, char **av)
 		// print_entire(&ent);
 		// data.scene->camera_point = ent->scene->camera_point;
 		// ent->scene = NULL;
-		// print_scene(data.scene);
+		print_scene(data.scene);
 		init_image(&data);
 		color_back(&data.simg.img);
 		data.scene = entire.scene;
