@@ -130,3 +130,35 @@ void rotateObject(t_sphere *sphere, float angle) {
     sphere->xyz.y = transformedPos[1];
     sphere->xyz.z = transformedPos[2];
 }
+
+
+int key_press(int keycode, t_data *data) {
+    float dx = 0, dy = 0, dz = 0;
+
+    if (keycode == 65307) { // ESC key for quitting
+        mlx_destroy_window(data->mlx, data->window);
+        exit(0);
+    } else if (keycode == 119) { // 'W' key for moving forward
+        dz = -1;
+    } else if (keycode == 115) { // 'S' key for moving backward
+        dz = 1;
+    } else if (keycode == 97) { // 'A' key for moving left
+        dx = -1;
+    } else if (keycode == 100) { // 'D' key for moving right
+        dx = 1;
+    } else if (keycode == 113) { // 'Q' key for moving up
+        dy = 1;
+    } else if (keycode == 101) { // 'E' key for moving down
+        dy = -1;
+    }
+
+    if (dx != 0 || dy != 0 || dz != 0) {
+        // Assuming you have a function to update the camera position based on dx, dy, dz
+        updateCameraPosition(data->scene->camera, dx, dy, dz);
+        // Redraw your scene here as the camera position has changed
+        mlx_clear_window(data->mlx, data->window); // Clear the previous content
+        ray_trace(data); // Re-draw your scene with the updated camera position
+    }
+
+    return 0; // Return 0 to indicate success
+}
