@@ -52,7 +52,7 @@ typedef enum e_type_object // only for clearness
 
 void	ray_trace(t_data *data);
 void    fill_new_vector(t_crd *result, float x, float y, float z);
-void	print_scene(t_scene	*scene);
+void	print_scene(t_entire *ent, t_scene	*scene);
 int		open_and_parse_file(t_entire *ent, const char *path);
 
 

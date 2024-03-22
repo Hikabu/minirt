@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:34:51 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/22 15:03:20 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/22 15:29:42 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void	print_planes(t_plane *pl, char type)
 	}
 }
 
-void	print_scene(t_scene	*scene)
+void	print_scene(t_entire *ent, t_scene	*scene)
 {
 	printf("\n\tOne pixel struct is %lu bits,\n\
 	One global struct is %lu bits,\n\
@@ -120,7 +120,7 @@ void	print_scene(t_scene	*scene)
 		sizeof(t_obj), sizeof(t_sphere), sizeof(t_plane),
 		sizeof(t_cyl), sizeof(t_light));
 	print_scene_characteristics(scene);
-	if (scene->obj && scene->obj->sphere)
+	if (ent->scene->obj && ent->scene->obj->sphere)
 		print_spheres(scene->obj->sphere, 'a');
 	if (scene->obj && scene->obj->light)
 		print_lights(scene->obj->light);
@@ -133,6 +133,7 @@ void	print_scene(t_scene	*scene)
 static void	print_scene_characteristics(t_scene *scene)
 {
 	printf("\e[0;32mCamera_point: \e[0m");
+	printf("im here\n");
 	print_coordinate(&scene->camera_point, "\n");
 	printf("\e[0;32mCamera_angles: \e[0m%f\t%f\n", scene->camera_angeles[0],
 		scene->camera_angeles[1]);
