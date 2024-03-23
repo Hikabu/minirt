@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parc_cilinder.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 19:37:34 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/20 22:10:12 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/23 16:36:47 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ int parse_camera(t_entire *ent, char *line)
 		i++;
 	}
 	norm_vector(&camera->norm_vec);
-	// if (ent->camera)
-	// 	free(ent->camera);    //no free
+	if (camera)
+		free(camera);    //no free
 	ent->camera = camera;
 	free_array(params);
 	return (0);
@@ -95,10 +95,11 @@ int parse_ambient(t_entire *ent, char *line)
 			return (show_parsing_error(ent, params, ERR_INVALID_NB_COLORS));
 		i++;
 	}
-	if (ent->amlight)
-		free(ent->amlight);
+	if (amlight)
+		free(amlight);
 	ent->amlight = amlight;
 	free_array(params);
+	(void)mem;
 	// free_array(mem);
 	return (0);
 }
@@ -129,8 +130,8 @@ int	parse_light(t_entire *ent, char *line)
 		i++;
 	}
 
-	// if (ent->light)
-	// 	free(ent->light);
+	if (light)
+		free(light);
 	ent->light = light;
 	free_array(params);
 	return (0);
@@ -143,14 +144,12 @@ int	parse_sphere(t_entire *ent, char *line)
 	if (!sphere)
 		return 1;
 	int i;
-
 	params = ft_split(line, ' ');
 	if (array_length(params) != 4)
 		return (show_parsing_error(ent, params, ERR_INVALID_NB_PARAMS));
 	ft_bzero(sphere, sizeof(t_sphere));
 	sphere->id = id_sphere;
 	i = 1;
-
 	while (params && params[i])
 	{
 		if (i == 1 && parse_vector(params[i], &sphere->xyz))
@@ -161,9 +160,8 @@ int	parse_sphere(t_entire *ent, char *line)
 			return (show_parsing_error(ent, params, ERR_INVALID_NB_COLORS));
 		i++;
 	}
-
-	if (ent->sphere)
-		free(ent->sphere);
+	if (sphere)
+		free(sphere);
 	ent->sphere = sphere;
 	free_array(params);
 	return (0);
@@ -176,14 +174,12 @@ int	parse_plane(t_entire *ent, char *line)
 	if (!plane)
 		return 1;
 	int i;
-
 	params = ft_split(line, ' ');
 	if (array_length(params) != 4)
 		return (show_parsing_error(ent, params, ERR_INVALID_NB_PARAMS));
 	ft_bzero(plane, sizeof(t_plane));
 	plane->id = id_plane;
 	i = 1;
-
 	while (params && params[i])
 	{
 		if (i == 1 && parse_vector(params[i], &plane->xyz))
@@ -194,10 +190,9 @@ int	parse_plane(t_entire *ent, char *line)
 			return (show_parsing_error(ent, params, ERR_INVALID_NB_COLORS));
 		i++;
 	}
-
 	norm_vector(&plane->norm_vec);
-	if (ent->plane)
-		free(ent->plane);
+	if (plane)
+		free(plane);
 	ent->plane = plane;
 	free_array(params);
 	return (0);
@@ -234,8 +229,8 @@ int parse_cylinder(t_entire *ent, char *line)
 	}
 
 	norm_vector(&cylinder->norm_vec);
-	if (ent->cyl)
-		free(ent->cyl);
+	if (cylinder)
+		free(cylinder);
 	ent->cyl = cylinder;
 	free_array(params);
 	return (0);

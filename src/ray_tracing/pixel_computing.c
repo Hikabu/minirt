@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   pixel_computing.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 17:37:32 by vfedorov          #+#    #+#             */
-/*   Updated: 2024/03/22 18:58:14 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/23 12:39:49 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	check_for_shadow(t_data *data, t_pixel *pixel)
+int	check_for_shadow(t_entire *data, t_pixel *pixel)
 {
 	float	dist;
 	t_ray	ray;
@@ -32,10 +32,11 @@ int	check_for_shadow(t_data *data, t_pixel *pixel)
 		return (1);
 	if (check_for_shadow_sphere(data, &ray, &d))
 		return (1);
+	(void)dist;
 	return (0);
 }
 
-float	pixel_computing_plane_difreflect_ratio(t_data *data, t_pixel *pixel)
+float	pixel_computing_plane_difreflect_ratio(t_entire *data, t_pixel *pixel)
 {
 	t_crd	light_dir;
 	t_crd	normal;
@@ -71,12 +72,12 @@ void	pixel_plane_computing(t_entire *data, t_pixel *pixel)
 }
 
 
-void	pixel_computing(t_data *dat, t_entire *data, t_pixel *pixel)
+void	pixel_computing(t_entire *data, t_pixel *pixel)
 {
 	if (pixel->lenght <= 0
 		|| (!pixel->plane && !pixel->sphere && !pixel->cyl))
 	{
-		mlx_pixel_put(dat->mlx, dat->window,
+		mlx_pixel_put(data->mlx, data->window,
 			pixel->x, pixel->y, BACKGROUND_COLOR);
 		// return ;
 	}

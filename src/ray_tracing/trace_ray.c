@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   trace_ray.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 23:53:56 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/22 18:53:01 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/23 12:36:48 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	get_fov_angles(t_scene *scene)
 			* (((float)HEIGHT) / ((float)WIDTH))); 
 }
 
-void	ray_trace(t_entire *ent, t_data *data)
+void	ray_trace(t_entire *data)
 {
 	float lambda; //angular change per pixel horizontally
 	t_pixel pixel;
@@ -54,7 +54,7 @@ Calculate the color of the pixel based on the materials, lighting, and other fac
 Write the color to the pixel in image */ 
 
 	fill_new_vector(&pixel.ray.point[0], 0, 0, -1); //z for away from the viewer and direction of a ray (pixel)
-	lambda = 2 * ent->scene->camera_angeles[0] / WIDTH;
+	lambda = 2 * data->scene->camera_angeles[0] / WIDTH;
 	write(1, "error\n", 6);
 	dprintf(2, "imhere\n");
 	dprintf(1, "lambda is%f\n", lambda);
@@ -66,10 +66,10 @@ Write the color to the pixel in image */
 		{
 			pixel_init(&pixel);
 			fill_new_vector(&(pixel.ray.point[1]), 
-				-ent->scene->camera_angeles[0] + lambda * pixel.x,
-				+ent->scene->camera_angeles[1] + lambda * pixel.y, 1);
-			check_intersection(ent, &pixel);
-			pixel_computing(data, ent, &pixel);
+				-data->scene->camera_angeles[0] + lambda * pixel.x,
+				+data->scene->camera_angeles[1] + lambda * pixel.y, 1);
+			check_intersection(data, &pixel);
+			pixel_computing(data, &pixel);
 			pixel.x++;
 		}
 		pixel.y++;

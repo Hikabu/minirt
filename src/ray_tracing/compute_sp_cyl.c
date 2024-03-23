@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   compute_sp_cyl.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 21:45:36 by vfedorov          #+#    #+#             */
-/*   Updated: 2024/03/22 18:58:30 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/23 12:38:21 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	color_diffusal(int color_sum, int col1, int col2, float intens) // blend two
 				
 }
 
-float	pixel_comp_sphere_refl_ratio(t_data *data, t_pixel *pixel)
+float	pixel_comp_sphere_refl_ratio(t_entire *data, t_pixel *pixel)
 {
 	t_crd	light_dir;
 	t_crd	normal;
@@ -98,7 +98,7 @@ static	t_crd	norm_cyl(t_pixel *pixel)
 	return (res);
 }
 
-static	float pixel_comp_cyl_refl_ratio(t_data *data, t_pixel *pixel)
+static	float pixel_comp_cyl_refl_ratio(t_entire *data, t_pixel *pixel)
 {
 	t_crd	light_dir;
 	t_crd	normal;

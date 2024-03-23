@@ -102,11 +102,11 @@ int	is_float(char *str)
 
 int	parse_color(char *str, t_color *color)
 {
-	int		i;
+	// int		i;
 	int		ret;
 	char	**rgb;
 
-	i = -1;
+	// i = -1;
 	ret = 0;
 	rgb = ft_split(str, ',');
 	//while (rgb && rgb[++i])

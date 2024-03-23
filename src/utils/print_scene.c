@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_scene.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:34:51 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/22 17:54:07 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/23 12:40:45 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ void	print_planes(t_plane *pl, char type)
 
 void	print_scene(t_entire *ent, t_scene	*scene)
 {
+	// printf("im here\n");
 	printf("\n\tOne pixel struct is %lu bits,\n\
 	One global struct is %lu bits,\n\
 	One scene struct is %lu bits,\n\

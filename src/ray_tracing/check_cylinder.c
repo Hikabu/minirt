@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_cylinder.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 00:42:25 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/13 13:18:05 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/23 12:38:47 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ float check_intersection_cyl(t_cyl *cyl, t_pixel *pixel)
 	// to calculate the intersection point between a ray and a cylinder's pipe
 }
 
-t_cyl   *check_for_cilinder(t_data *data, t_pixel *pixel, float *dist)
+t_cyl   *check_for_cilinder(t_entire *data, t_pixel *pixel, float *dist)
 {
 	t_cyl	*cyl;
 	t_cyl	*nearest_cyl;

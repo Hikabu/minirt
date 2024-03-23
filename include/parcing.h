@@ -125,6 +125,14 @@ typedef struct s_entire
 	t_sphere	*sphere;
 	t_crd		*crd;
 	t_color		*col;
+	t_img		simg;
+    void		*img;
+    char		*addr;
+    void		*mlx;
+	void		*window;
+    int			bits_per_pixel;
+    int			line_length;
+	int			endian;
 }	t_entire;
 
 typedef	struct s_objects
@@ -182,7 +190,7 @@ void		id_check1(char **str, t_entire **ent);
 void		error_with_free(t_entire *ent);
 
 //figures
-t_cyl	*check_for_cilinder(t_data *data, t_pixel *pixel, float *dist);
+t_cyl	*check_for_cilinder(t_entire *data, t_pixel *pixel, float *dist);
 float	check_intersection_cyl(t_cyl *cyl, t_pixel *pixel);
 float	check_intersection_plane(t_plane *plane, t_ray *ray, t_crd *rd);
 // t_sphere	*init_sphere(t_vector *center, float radius);

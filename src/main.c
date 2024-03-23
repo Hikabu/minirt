@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 12:13:38 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/22 15:35:46 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/23 12:35:21 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	all_exiests(t_entire *ent)
 		error_with_free(ent);
 }
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+void	my_mlx_pixel_put(t_entire *data, int x, int y, int color)
 {
 	char	*dst;
 
@@ -50,13 +50,13 @@ int	main(int ac, char **av)
 		// print_entire(&ent);
 		// data.scene->camera_point = ent->scene->camera_point;
 		// ent->scene = NULL;
-		data.scene = entire.scene;
-		data.scene->obj->sphere = entire.scene->obj->sphere;
-		print_scene(&entire, data.scene);
+		// data.scene = entire.scene;
+		// data.scene->obj->sphere = entire.scene->obj->sphere;
+		print_scene(&entire, entire.scene);
 		// init_image(&data);
 	// 	color_back(&data.simg.img);
 	// 	data.scene = entire.scene;
-	// 	ray_trace(&data);
+	// 	ray_trace(&entire);
 	// // printf("data->mlx2 = %p\n", data.mlx);
 	// 	mlx_loop(data.mlx);
 		// all_exiests(ent);

@@ -49,6 +49,7 @@ int	parse_scene_file(t_entire *ent, int fd)
 	//if (!status && is_invalid_file(ent))
 	//	status = 1;
 	close(fd);
+	(void)num;
 	return (status);
 }
 int open_and_parse_file(t_entire *ent, const char *path) 

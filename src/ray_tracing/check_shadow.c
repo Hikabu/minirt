@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   check_shadow.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 13:53:19 by vfedorov          #+#    #+#             */
-/*   Updated: 2024/03/15 21:21:32 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/23 12:37:55 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int check_for_shadow_sphere(t_data *data, t_ray *ray, t_crd *crd)
+int check_for_shadow_sphere(t_entire *data, t_ray *ray, t_crd *crd)
 {
 	t_sphere	*sphere;
 	float		lenght;
@@ -29,7 +29,7 @@ int check_for_shadow_sphere(t_data *data, t_ray *ray, t_crd *crd)
 	return (0);
 }
 
-int	check_for_shadow_plane(t_data *data, t_ray *ray, t_crd *crd)
+int	check_for_shadow_plane(t_entire *data, t_ray *ray, t_crd *crd)
 {
 	t_plane	*plane;
 	float	lenght;
@@ -46,7 +46,7 @@ int	check_for_shadow_plane(t_data *data, t_ray *ray, t_crd *crd)
 	return (0);
 }
 
-int	check_for_shadow_cyl(t_data *data, t_ray *ray, t_crd *crd)
+int	check_for_shadow_cyl(t_entire *data, t_ray *ray, t_crd *crd)
 {
 	t_pixel	pixel;
 	t_cyl	*cyl;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_image.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 16:00:24 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/21 17:27:53 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/23 12:33:46 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_mlx_pixel_put_img(t_img *img, int x, int y, int color) //take address fr
 }
 
 
-void	init_image(t_data *data)
+void	init_image(t_entire *data)
 {
 	data->mlx = mlx_init();
 	if (!data->mlx)
