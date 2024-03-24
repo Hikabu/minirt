@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 19:37:34 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/23 16:36:47 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/03/24 13:24:58 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ int parse_camera(t_entire *ent, char *line)
 		i++;
 	}
 	norm_vector(&camera->norm_vec);
-	if (camera)
-		free(camera);    //no free
 	ent->camera = camera;
+	// if (camera)
+	// 	free(camera);    //no free
 	free_array(params);
 	return (0);
 }
@@ -95,9 +95,9 @@ int parse_ambient(t_entire *ent, char *line)
 			return (show_parsing_error(ent, params, ERR_INVALID_NB_COLORS));
 		i++;
 	}
+	ent->amlight = amlight;
 	if (amlight)
 		free(amlight);
-	ent->amlight = amlight;
 	free_array(params);
 	(void)mem;
 	// free_array(mem);
@@ -129,10 +129,9 @@ int	parse_light(t_entire *ent, char *line)
 			return (show_parsing_error(ent, params, ERR_INVALID_NB_COLORS));
 		i++;
 	}
-
+	ent->light = light;	
 	if (light)
 		free(light);
-	ent->light = light;
 	free_array(params);
 	return (0);
 }
@@ -160,9 +159,9 @@ int	parse_sphere(t_entire *ent, char *line)
 			return (show_parsing_error(ent, params, ERR_INVALID_NB_COLORS));
 		i++;
 	}
+	ent->sphere = sphere;
 	if (sphere)
 		free(sphere);
-	ent->sphere = sphere;
 	free_array(params);
 	return (0);
 }
@@ -191,9 +190,9 @@ int	parse_plane(t_entire *ent, char *line)
 		i++;
 	}
 	norm_vector(&plane->norm_vec);
+	ent->plane = plane;
 	if (plane)
 		free(plane);
-	ent->plane = plane;
 	free_array(params);
 	return (0);
 }
@@ -229,15 +228,14 @@ int parse_cylinder(t_entire *ent, char *line)
 	}
 
 	norm_vector(&cylinder->norm_vec);
+	ent->cyl = cylinder;
 	if (cylinder)
 		free(cylinder);
-	ent->cyl = cylinder;
 	free_array(params);
 	return (0);
 }
-void	initial_scene(t_scene *scene)
+void	initial_scene(t_entire *ent, t_scene *scene)
 {
-	
 	// printf("camera fow is %f\n", scene->camera_fov);
 	fill_new_vector(&scene->camera_point, 0, 0, 0);
 	fill_new_vector(&scene->camera_orientation, 0, 0, 1);
@@ -248,6 +246,11 @@ void	initial_scene(t_scene *scene)
 	scene->obj->cyl = 0;
 	scene->obj->sphere = 0;
 	scene->obj->plane = 0;
-	// printf("address of scene %p\n", scene);
+	//  if (ent->camera) 
+    //     scene->camera_fov = ent->camera->fov;
+	ent->scene = scene;
+	// scene->camera_fov = ent->camera->fov;
+	// scene->obj = ent->
+	// printf("address of scene %p\n", scene);x
 	// printf ("what is in the road %f\n", scene->camera_point.z);
 }

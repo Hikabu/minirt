@@ -6,13 +6,13 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:34:51 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/23 12:40:45 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/03/24 13:30:17 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static void	print_scene_characteristics(t_scene *scene);
+static void	print_scene_characteristics(t_entire *ent, t_scene *scene);
 void		print_color(int color);
 void	print_coordinate(t_crd *coord, char *endchar);
 
@@ -120,7 +120,7 @@ void	print_scene(t_entire *ent, t_scene	*scene)
 		sizeof(t_pixel), sizeof(t_data), sizeof(t_scene),
 		sizeof(t_obj), sizeof(t_sphere), sizeof(t_plane),
 		sizeof(t_cyl), sizeof(t_light));
-	print_scene_characteristics(scene);
+	print_scene_characteristics(ent, scene);
 	// if (ent->scene->obj && ent->scene->obj->sphere)
 	print_spheres(ent->sphere, 'a');
 	// if (ent->scene->obj && ent->scene->obj->light)
@@ -131,16 +131,16 @@ void	print_scene(t_entire *ent, t_scene	*scene)
 		print_planes(ent->plane, 'a');
 }
 
-static void	print_scene_characteristics(t_scene *scene)
+static void	print_scene_characteristics(t_entire *ent, t_scene *scene)
 {
 	printf("\e[0;32mCamera_point: \e[0m");
 	printf("im here\n");
 	print_coordinate(&scene->camera_point, "\n");
-	printf("\e[0;32mCamera_angles: \e[0m%f\t%f\n", scene->camera_angeles[0],
-		scene->camera_angeles[1]);
+	printf("\e[0;32mCamera_angles: \e[0m%f\t%f\n", ent->scene->camera_angeles[0],
+		ent->scene->camera_angeles[1]);
 	printf("\e[0;32mCamera_orientation: \e[0m");
 	print_coordinate(&scene->camera_orientation, "\n");
-	printf("\e[0;32mCamera_fov: \e[0m%f\n", scene->camera_fov);
+	printf("\e[0;32mCamera_fov: \e[0m%zu\n", ent->camera->fov);
 	printf("\e[0;32mAmbient_light_intensity: \e[0m%f\n",
 		scene->ambient_light_intensiv);
 	printf("\e[0;32mAmbient_light_rgb:\e[0m\t%d, %d, %d\n",

@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 10:05:37 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/23 12:38:37 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/03/24 12:41:08 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,12 +97,12 @@ void		all_exiests(t_entire *ent);
 void		my_mlx_pixel_put(t_entire *data, int x, int y, int color);
 int 		key_hook(int keycode, void *param);
 void		color_back(void	*img);
-void		get_fov_angles(t_scene *scene);
+void		get_fov_angles(t_entire *ent, t_scene *scene);
 void		pixel_computing(t_entire *data, t_pixel *pixel);
 
 
 void		fill_coordinates_for_camera(t_camera *camera, t_crd *camera_point);
-void		initial_scene(t_scene *scene);
+void		initial_scene(t_entire *ent, t_scene *scene);
 // camera
 t_camera	*init_camera(t_crd *origin, t_crd *direction, float fov);
 

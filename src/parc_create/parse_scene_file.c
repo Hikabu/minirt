@@ -52,10 +52,11 @@ int	parse_scene_file(t_entire *ent, int fd)
 	(void)num;
 	return (status);
 }
+
 int open_and_parse_file(t_entire *ent, const char *path) 
 {
 	int parse_success;
-
+	// ent  = (t_entire *)malloc(sizeof(t_entire));
     int fd = open(path, O_RDONLY);
     if (fd < 0) 
 	{
@@ -68,13 +69,13 @@ int open_and_parse_file(t_entire *ent, const char *path)
 	ent->scene->obj = (t_obj *)malloc(sizeof(t_obj));
 	if (!(ent->scene->obj))
 		error(1);
+	initial_scene(ent, ent->scene);
     parse_success = parse_scene_file(ent, fd);
-	initial_scene(ent->scene);
-	get_fov_angles(ent->scene);
+	get_fov_angles(ent, ent->scene);
 	translate_obj(ent->scene, &ent->scene->camera_point);
 	// rotate_obj(ent->scene, &ent->scene->camera_orientation);
     close(fd);
-
     return parse_success; 
 }
+
 

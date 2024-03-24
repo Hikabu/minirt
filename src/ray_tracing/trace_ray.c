@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 23:53:56 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/23 12:36:48 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/03/24 13:29:12 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,16 @@ angeles (width and hight but in degrees)
 
 
 */
-void	get_fov_angles(t_scene *scene)
+void	get_fov_angles(t_entire *ent, t_scene *scene)
 {
+	printf("camera in function and fov is  %zu\n", ent->camera->fov);
 	// float vertical_angle = tan(camera_fov_rad / 2);  // calculate distance from the camera to the plane that intersects
 	// float aspect_ratio = (float)HEIGHT / (float)WIDTH;
-	printf(" scene->camera_angeles is %f\n", scene->camera_angeles[0]);
-	printf("scene->camera_fov is %f\n", scene->camera_fov);
-	scene->camera_angeles[0] = tan(scene->camera_fov * M_PI / 360); // vertical angle in radians
-	scene->camera_angeles[1] = (scene->camera_angeles[0]
+	ent->scene->camera_angeles[0] = tan(ent->camera->fov * M_PI / 360); // vertical angle in radians
+	ent->scene->camera_angeles[1] = (scene->camera_angeles[0]
 			* (((float)HEIGHT) / ((float)WIDTH))); 
+	printf("camera in function and cqmera_point is %f\n", scene->camera_angeles[0]);
+	printf("camera in function and cqmera_point for 1 is %f\n", scene->camera_angeles[1]);
 }
 
 void	ray_trace(t_entire *data)
