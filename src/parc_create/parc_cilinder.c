@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parc_cilinder.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 19:37:34 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/24 13:24:58 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/03/24 16:41:47 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,8 @@ int parse_ambient(t_entire *ent, char *line)
 		i++;
 	}
 	ent->amlight = amlight;
-	if (amlight)
-		free(amlight);
+	// if (amlight)
+	// 	free(amlight);
 	free_array(params);
 	(void)mem;
 	// free_array(mem);
@@ -130,8 +130,8 @@ int	parse_light(t_entire *ent, char *line)
 		i++;
 	}
 	ent->light = light;	
-	if (light)
-		free(light);
+	// if (light)
+	// 	free(light);
 	free_array(params);
 	return (0);
 }
@@ -160,8 +160,8 @@ int	parse_sphere(t_entire *ent, char *line)
 		i++;
 	}
 	ent->sphere = sphere;
-	if (sphere)
-		free(sphere);
+	// if (sphere)
+	// 	free(sphere);
 	free_array(params);
 	return (0);
 }
@@ -191,8 +191,8 @@ int	parse_plane(t_entire *ent, char *line)
 	}
 	norm_vector(&plane->norm_vec);
 	ent->plane = plane;
-	if (plane)
-		free(plane);
+	// if (plane)
+	// 	free(plane);
 	free_array(params);
 	return (0);
 }
@@ -229,23 +229,28 @@ int parse_cylinder(t_entire *ent, char *line)
 
 	norm_vector(&cylinder->norm_vec);
 	ent->cyl = cylinder;
-	if (cylinder)
-		free(cylinder);
+	// if (cylinder)
+	// 	free(cylinder);
 	free_array(params);
 	return (0);
 }
 void	initial_scene(t_entire *ent, t_scene *scene)
 {
 	// printf("camera fow is %f\n", scene->camera_fov);
-	fill_new_vector(&scene->camera_point, 0, 0, 0);
-	fill_new_vector(&scene->camera_orientation, 0, 0, 1);
+	// fill_new_vector(&ent->camera->xyz, 0, 0, 0);
+	// fill_new_vector(&ent->camera_orientation, 0, 0, 1);
 	scene->camera_fov = 90; // default
 	scene->ambient_light_intensiv = 1;
 	scene->ambient_light_rgb = 0xffffff;
+	ent->obj->light = 0;
+	ent->obj->cyl = 0;
+	ent->obj->sphere = 0;
+	ent->obj->plane = 0;
 	scene->obj->light = 0;
 	scene->obj->cyl = 0;
 	scene->obj->sphere = 0;
 	scene->obj->plane = 0;
+	// ent->obj->sphere = 0;
 	//  if (ent->camera) 
     //     scene->camera_fov = ent->camera->fov;
 	ent->scene = scene;

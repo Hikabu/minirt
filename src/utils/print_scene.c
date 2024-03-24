@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_scene.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:34:51 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/24 13:30:17 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/03/24 18:49:32 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static void	print_scene_characteristics(t_entire *ent, t_scene *scene);
 void		print_color(int color);
-void	print_coordinate(t_crd *coord, char *endchar);
+void	print_coordinate(void *coord, char *endchar);
 
-void	print_spheres(t_sphere	*sp, char type)
+void	print_spheres(t_sphere *sp, char type)
 {
 	int	i;
 
@@ -51,7 +51,7 @@ void	print_lights(t_light *l)
 		print_coordinate(&l->xyz, "\n");
 		printf("        \t\e[0;34mLighting ratio: \e[0m%f\n",
 			l->ratio);
-		print_color(l->color);
+		print_coordinate(&l->rgb, "\n");
 		l = l->next;
 	}
 }
@@ -68,11 +68,11 @@ void	print_cylinders(t_cyl	*cy, char type)
 		else
 			printf("\e[0;33mCylinder: \e[0m");
 		printf("\t\e[0;34mPoint: \e[0m");
-		print_coordinate(&cy->point, "\n");
-		printf("        \t\e[0;34mOrientation: \e[0m");
 		print_coordinate(&cy->xyz, "\n");
-		print_color(cy->color);
-		print_color(cy->color_ambient);
+		printf("        \t\e[0;34mOrientation: \e[0m");
+		print_coordinate(&cy->norm_vec, "\n");
+		print_coordinate(&cy->rgb,  "\n");
+		// print_coordinate(cy->color_ambient,  "\n");
 		printf("        \t\e[0;34mDiameter: \e[0m%f\n",
 			cy->diam);
 		printf("        \t\e[0;34mHeight: \e[0m%f\n",
@@ -95,10 +95,10 @@ void	print_planes(t_plane *pl, char type)
 		else
 			printf("\e[0;33mPlane: \e[0m");
 		printf("\t\e[0;34mPoint: \e[0m");
-		print_coordinate(&pl->point, "\n");
-		printf("        \t\e[0;34mOrientation: \e[0m");
 		print_coordinate(&pl->xyz, "\n");
-		print_color(pl->color);
+		printf("        \t\e[0;34mOrientation: \e[0m");
+		print_coordinate(&pl->norm_vec, "\n");
+		print_coordinate(&pl->rgb, "\n");
 		print_color(pl->color_ambient);
 		pl = pl->next;
 		if (type != 'a')
@@ -124,25 +124,24 @@ void	print_scene(t_entire *ent, t_scene	*scene)
 	// if (ent->scene->obj && ent->scene->obj->sphere)
 	print_spheres(ent->sphere, 'a');
 	// if (ent->scene->obj && ent->scene->obj->light)
-		print_lights(ent->light);
+	print_lights(ent->light);
 	// if (ent->scene->obj && ent->scene->obj->cyl)
-		print_cylinders(ent->cyl, 'a');
+	print_cylinders(ent->cyl, 'a');
 	// if (ent->scene->obj && ent->scene->obj->plane)
-		print_planes(ent->plane, 'a');
+	print_planes(ent->plane, 'a');
 }
 
 static void	print_scene_characteristics(t_entire *ent, t_scene *scene)
 {
 	printf("\e[0;32mCamera_point: \e[0m");
-	printf("im here\n");
-	print_coordinate(&scene->camera_point, "\n");
+	print_coordinate(&ent->camera->xyz, "\n");
 	printf("\e[0;32mCamera_angles: \e[0m%f\t%f\n", ent->scene->camera_angeles[0],
 		ent->scene->camera_angeles[1]);
 	printf("\e[0;32mCamera_orientation: \e[0m");
-	print_coordinate(&scene->camera_orientation, "\n");
+	print_coordinate(&ent->camera->norm_vec, "\n");
 	printf("\e[0;32mCamera_fov: \e[0m%zu\n", ent->camera->fov);
 	printf("\e[0;32mAmbient_light_intensity: \e[0m%f\n",
-		scene->ambient_light_intensiv);
+		ent->amlight->ratio);
 	printf("\e[0;32mAmbient_light_rgb:\e[0m\t%d, %d, %d\n",
 		scene->ambient_light_rgb >> 16 & 255,
 		scene->ambient_light_rgb >> 8 & 255,
@@ -150,12 +149,14 @@ static void	print_scene_characteristics(t_entire *ent, t_scene *scene)
 	printf("\e[0;32mObjects:\e[0m\n");
 }
 
-void	print_coordinate(t_crd *coord, char *endchar)
+void	print_coordinate(void *crd, char *endchar)
 {
+	t_crd *coord = (t_crd *)crd;
 	printf("(%f, %f, %f)", coord->x, coord->y, coord->z);
 	if (endchar)
 		printf("%s", endchar);
 }
+
 
 void	print_color(int color)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   trace_ray.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 23:53:56 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/24 13:29:12 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/03/24 18:56:20 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,7 @@ Write the color to the pixel in image */
 
 	fill_new_vector(&pixel.ray.point[0], 0, 0, -1); //z for away from the viewer and direction of a ray (pixel)
 	lambda = 2 * data->scene->camera_angeles[0] / WIDTH;
-	write(1, "error\n", 6);
-	dprintf(2, "imhere\n");
-	dprintf(1, "lambda is%f\n", lambda);
+	dprintf(1, "lambda is %f\n", lambda);
 	pixel.y = 0;
 	while  (pixel.y < HEIGHT)
 	{

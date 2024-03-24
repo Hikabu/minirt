@@ -116,9 +116,9 @@ int	parse_color(char *str, t_color *color)
 		ret = 1;
 	else
 	{
-		color->r = (float) str_to_int_color(rgb[0]) / 255;
-		color->g = (float) str_to_int_color(rgb[1]) / 255;
-		color->b = (float) str_to_int_color(rgb[2]) / 255;
+		color->r = (float) str_to_int_color(rgb[0]);
+		color->g = (float) str_to_int_color(rgb[1]);
+		color->b = (float) str_to_int_color(rgb[2]);
 	}
 	free_array(rgb);
 	return (ret);

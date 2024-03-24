@@ -67,6 +67,7 @@ int open_and_parse_file(t_entire *ent, const char *path)
 	if (!(ent->scene))
 		error(1);
 	ent->scene->obj = (t_obj *)malloc(sizeof(t_obj));
+	ent->obj = (t_obj *)malloc(sizeof(t_obj));
 	if (!(ent->scene->obj))
 		error(1);
 	initial_scene(ent, ent->scene);

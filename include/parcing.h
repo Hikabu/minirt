@@ -116,6 +116,7 @@ typedef struct s_sphere
 
 typedef struct s_entire
 {
+	t_obj		*obj;
 	t_amlight	*amlight;
 	t_camera	*camera;
 	t_scene		*scene;
