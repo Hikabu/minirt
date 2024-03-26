@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   trace_ray.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 23:53:56 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/24 23:16:22 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/03/26 15:28:09 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ Write the color to the pixel in image */
 	fill_new_vector(&pixel.ray.point[0], 0, 0, -1); //z for away from the viewer and direction of a ray (pixel)
 	lambda = 2 * data->scene->camera_angeles[0] / WIDTH;
 	// printf("angel is %f\n", data->scene->camera_angeles[0]);
-	// dprintf(1, "lambda is %f\n", lambda);
+	dprintf(1, "lambda is %f\n", lambda);
 	pixel.y = 0;
 	while  (pixel.y < HEIGHT)
 	{
@@ -67,7 +67,8 @@ Write the color to the pixel in image */
 			// printf("pixel.ray = %f\n", pixel.ray.point[0].x);
 			fill_new_vector(&(pixel.ray.point[1]), 
 				-data->scene->camera_angeles[0] + lambda * pixel.x,
-				+data->scene->camera_angeles[1] + lambda * pixel.y, 1);
+				+data->scene->camera_angeles[1] + lambda * pixel.y, 1); //shoot rays from the camera towards the scene for color calculation.
+			printf("ray point[1] is %f %f %f\n", pixel.ray.point[1].x, pixel.ray.point[1].y, pixel.ray.point[1].z);
 			check_intersection(data, &pixel);
 			pixel_computing(data, &pixel);
 			pixel.x++;

@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 00:45:22 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/22 18:57:23 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/26 15:34:28 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ t_sphere	*check_for_spheres(t_entire *data, t_ray *ray, t_crd *rd, float *dist)
 	float		tmp;
 	float		lenght;
 
-	sphere = data->scene->obj->sphere;
+	sphere = data->sphere;
 	closest_sphere = 0;
 	lenght = -1;
 	while (sphere)

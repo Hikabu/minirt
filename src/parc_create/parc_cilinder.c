@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 19:37:34 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/24 16:41:47 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/26 15:43:34 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,8 +160,8 @@ int	parse_sphere(t_entire *ent, char *line)
 		i++;
 	}
 	ent->sphere = sphere;
-	// if (sphere)
-	// 	free(sphere);
+	// if (sphere->next)
+	// 	sphere = sphere->next;
 	free_array(params);
 	return (0);
 }

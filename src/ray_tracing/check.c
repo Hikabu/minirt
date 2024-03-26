@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 22:29:19 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/24 23:17:54 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/03/26 15:33:11 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_plane	*check_for_planes(t_entire *data, t_ray *ray, t_crd *d, float *dist)
 	t_plane	*nearest_plane;
 	float	nearest_dist;
 
-	plane = data->scene->obj->plane;   //planes?
+	plane = data->plane;   //planes?
 	nearest_dist = -1;
 	nearest_plane = 0;
 	while (plane)
