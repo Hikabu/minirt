@@ -99,30 +99,45 @@ int	is_float(char *str)
 	}
 	return (1);
 }
+int convert_color_to_int(const t_color color)
+{
+  float red = color.r;
+  float green = color.g;
+  float blue = color.b;
+
+  red = fmaxf(0.0f, fminf(red, 1.0f));
+  green = fmaxf(0.0f, fminf(green, 1.0f));
+  blue = fmaxf(0.0f, fminf(blue, 1.0f));
+  int int_red = (int) (red * 255.0f);
+  int int_green = (int) (green * 255.0f);
+  int int_blue = (int) (blue * 255.0f);
+  return (0xFF << 24) | (int_red << 16) | (int_green << 8) | int_blue;
+}
 
 int	parse_color(char *str, t_color *color)
 {
-	// int		i;
+	int		i;
 	int		ret;
 	char	**rgb;
 
-	// i = -1;
+	i = -1;
 	ret = 0;
 	rgb = ft_split(str, ',');
-	//while (rgb && rgb[++i])
-	//	if (!is_ulong(rgb[i]))
-	//		ret = 1;
+	while (rgb && rgb[++i])
+		if (!is_ulong(rgb[i]))
+			ret = 1;
 	if (array_length(rgb) != 3)
 		ret = 1;
 	else
 	{
-		color->r = (float) str_to_int_color(rgb[0]);
-		color->g = (float) str_to_int_color(rgb[1]);
-		color->b = (float) str_to_int_color(rgb[2]);
+		color->r = (float) str_to_int_color(rgb[0]) / 255;
+		color->g = (float) str_to_int_color(rgb[1]) / 255;
+		color->b = (float) str_to_int_color(rgb[2]) / 255;
 	}
 	free_array(rgb);
 	return (ret);
 }
+
 int is_ulong(char *str)
 {
  int i;

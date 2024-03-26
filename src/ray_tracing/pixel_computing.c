@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pixel_computing.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 17:37:32 by vfedorov          #+#    #+#             */
-/*   Updated: 2024/03/23 12:39:49 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/03/26 23:02:08 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ void	pixel_plane_computing(t_entire *data, t_pixel *pixel)
 	float	light_ratio;
 
 	ft_mlx_pixel_put_img(&data->simg, pixel->x, pixel->y,
-		pixel->plane->color_ambient);
-	if (!data->scene->obj->light || check_for_shadow(data, pixel))
+		convert_color_to_int(pixel->plane->rgb));
+	if (!data->light || check_for_shadow(data, pixel))
 		return ;
 	light_ratio = pixel_computing_plane_difreflect_ratio(data, pixel); //eflection ratio is the amount of light that is reflected off the surface of the object 
 	if (light_ratio <= 0)
@@ -89,7 +89,7 @@ void	pixel_computing(t_entire *data, t_pixel *pixel)
 	if (pixel->plane)
 		pixel_plane_computing(data, pixel);
 	else if (pixel->sphere)
-		pixel_computing_sphere(data, pixel);
+		pixel_computing_sphere( data, pixel);
 	else if (pixel->cyl)
 		pixel_computing_cyl(data, pixel);
 		

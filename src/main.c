@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 12:13:38 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/26 15:09:26 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/03/26 23:03:57 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,6 @@ void	all_exiests(t_entire *ent)
 		error_with_free(ent);
 }
 
-void	my_mlx_pixel_put(t_entire *data, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = data->addr + (y * data->simg.line_length + x * (data->simg.bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
-}
 
 int key_hook(int keycode, void *param)
 {

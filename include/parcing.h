@@ -14,18 +14,12 @@
 # define ERR_NOT_A_ULONG "Value is not a unsigned long"
 # define ERR_NOT_A_FLOAT "Value is not a float"
 
-
-// typedef enum 	e_object_id					t_object_id;
 typedef struct	s_light						t_light;
 typedef struct	s_ambient_lightning			t_amlight;
 typedef struct	s_plane						t_plane;
 typedef struct	s_cylinder					t_cyl;
 typedef struct	s_scene						t_scene;
 typedef struct	s_img						t_img;
-// typedef enum 	e_object_id		/			t_object_id;
-// typedef	struct	s_coordinates_for_vector	t_crd;
-
-
 
 typedef enum e_object_id
 {
@@ -145,63 +139,48 @@ typedef	struct s_objects
 	t_sphere	*sphere;
 } t_obj;
 
-void	init_all(t_entire *ent);
-void	translate_obj(t_scene *scene, t_crd *crd);
+// typedef t_crd  t_color;
 
-void	vector_addition(t_crd *result, t_crd *a, t_crd *b);
-int		parse_vector(char *str, t_crd *vect);
-int		parse_color(char *str, t_color *color);
-int		parse_float(char *str, float *num);
-int		show_parsing_error(t_entire *ent, char **arr, char *msg);
-int		array_length(char *arr[]);
-int		parse_ambient(t_entire *ent, char *line);
-int		parse_camera(t_entire *ent, char *line);
-int		parse_light(t_entire *ent, char *line);
-int		parse_sphere(t_entire *ent, char *line);
-int		parse_plane(t_entire *ent, char *line);
-int		parse_cylinder(t_entire *ent, char *line);
-void	free_array(char *arr[]);
-int		parse_ulong(char *str, size_t *num);
-int		str_to_int_color(char *str);
-int		is_ulong(char *str);
+
+void		init_all(t_entire *ent);
+void		translate_obj(t_scene *scene, t_crd *crd);
+
+void		vector_addition(t_crd *result, t_crd *a, t_crd *b);
+int			parse_vector(char *str, t_crd *vect);
+int			parse_color(char *str, t_color *color);
+int			parse_float(char *str, float *num);
+int			show_parsing_error(t_entire *ent, char **arr, char *msg);
+int			array_length(char *arr[]);
+int			parse_ambient(t_entire *ent, char *line);
+int			parse_camera(t_entire *ent, char *line);
+int			parse_light(t_entire *ent, char *line);
+int			parse_sphere(t_entire *ent, char *line);
+int			parse_plane(t_entire *ent, char *line);
+int			parse_cylinder(t_entire *ent, char *line);
+void		free_array(char *arr[]);
+int			parse_ulong(char *str, size_t *num);
+int			str_to_int_color(char *str);
+int			is_ulong(char *str);
 
 int			parse_params(t_entire *ent, char *line);
 void		error(int er);
-int			parc(char *line, t_entire **ent, t_data *data);
-int			a_ligth(char *str);
-int			readmap(char *str, t_entire **ent, t_data *data);
-void		id_check(char **str, t_entire **ent);
-// void		id_check(char **str, t_entire **ent, t_scene *scene);
 void		count_of_split(char **str, int count);
-void		free_a(char **split_str_2);
-// void		free_c(char **split_str_1, char **split_str_2);
-void		free_l(char **split_str_1, char **split_str_3);
-void		free_pl(char **split_str_1, char **split_str_2, char **split_str_3);
-void		free_cy(char **split_str_1, char **split_str_2, char **split_str_5);
-void		free_sp(char **split_str_1, char **split_str_3);
-t_amlight	*to_struct_a(char **str);
-// t_camera	*to_struct_c(char **str);
-t_camera	*to_struct_c(char **str, t_scene *scene);
-t_light		*to_struct_l(char **str);
-t_plane		*to_struct_pl(char **str);
-t_cyl		*to_struct_cy(char **str);
-t_sphere	*to_struct_sp(char **str);
-void		int_range_checker(int *key, int value, int flag_range);
 void		float_range_checker(float *key, float value, int flag_range);
-void		id_check1(char **str, t_entire **ent);
 void		error_with_free(t_entire *ent);
 
 //figures
-t_cyl	*check_for_cilinder(t_entire *data, t_pixel *pixel, float *dist);
-float	check_intersection_cyl(t_cyl *cyl, t_pixel *pixel);
-float	check_intersection_plane(t_plane *plane, t_ray *ray, t_crd *rd);
-// t_sphere	*init_sphere(t_vector *center, float radius);
+t_cyl		*check_for_cilinder(t_entire *data, t_pixel *pixel, float *dist);
+float		check_intersection_cyl(t_cyl *cyl, t_pixel *pixel);
+float		check_intersection_plane(t_plane *plane, t_ray *ray, t_crd *rd);
 
-void	ft_mlx_pixel_put_img(t_img *img, int x, int y, int color);
-float	ang_bet_2_vec(t_crd *a, t_crd *b);
+void		ft_mlx_pixel_put_img(t_img *img, int x, int y, int color);
+// void		ft_mlx_pixel_put_img(unsigned char *data, int x, int y,  const int color);
+float		ang_bet_2_vec(t_crd *a, t_crd *b);
+t_color		*int_to_rgb(const int r, const int g, const int b);
 
+//color
 
-
-void	print_entire(t_entire **e);
+int 		convert_color_to_int(const t_color color);
+void		print_entire(t_entire **e);
 
 #endif

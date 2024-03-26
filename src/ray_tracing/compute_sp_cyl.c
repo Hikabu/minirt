@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   compute_sp_cyl.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 21:45:36 by vfedorov          #+#    #+#             */
-/*   Updated: 2024/03/23 12:38:21 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/03/26 22:55:33 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ int	color_diffusal(int color_sum, int col1, int col2, float intens) // blend two
 	return (res);
 				
 }
-
 float	pixel_comp_sphere_refl_ratio(t_entire *data, t_pixel *pixel)
 {
 	t_crd	light_dir;
@@ -65,8 +64,8 @@ void pixel_computing_sphere(t_entire *data, t_pixel *pixel)
 	int		light;
 	float	light_ratio;
 
-	ft_mlx_pixel_put_img(&data->simg, pixel->x, pixel->y, pixel->sphere->color_ambient);
-	if (!data->scene->obj->light || check_for_shadow(data, pixel))
+	ft_mlx_pixel_put_img(&data->simg, pixel->x, pixel->y, convert_color_to_int(pixel->sphere->rgb));
+	if (!data->light || check_for_shadow(data, pixel))
 		return ;
 	light_ratio = pixel_comp_sphere_refl_ratio(data, pixel);
 	if (light_ratio <= 0)
@@ -121,7 +120,7 @@ void	pixel_computing_cyl(t_entire *data, t_pixel *pixel)
 	float	light_ratio;
 
 	ft_mlx_pixel_put_img(&data->simg, pixel->x, pixel->y,
-		pixel->cyl->color_ambient);
+		convert_color_to_int(pixel->cyl->rgb));
 	if (!data->scene->obj->light || check_for_shadow(data, pixel))
 		return ;
 	light_ratio = pixel_comp_cyl_refl_ratio(data, pixel);

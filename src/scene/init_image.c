@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_image.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 16:00:24 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/23 12:33:46 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/03/26 22:41:34 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,39 @@ void	color_back(void	*img)
 	{
 		y = 0;
 		while (y < HEIGHT)
-			my_mlx_pixel_put(img, x, y++, BACKGROUND);
+			ft_mlx_pixel_put_img(img, x, y++, BACKGROUND);
 		x++;
 	}
 }
-void	ft_mlx_pixel_put_img(t_img *img, int x, int y, int color) //take address from memory
+//lets do our color struct int
+
+
+t_color	*int_to_rgb(const int r, const int g, const int b)
+{
+	t_color	*rgb;
+
+	if(!(rgb = malloc(sizeof(*rgb))))
+		error(1);
+	rgb->r = r;
+	rgb->g = g;
+	rgb->b = b;
+	return (rgb);
+}
+// // ft_put_pixel(img->data, pixel, rgb_to_int(*color), scene->resolution);
+// void	ft_mlx_pixel_put_img(unsigned char *data, int x, int y,  const int color)
+// {
+// 	int	(*tab)[x][1]; // prepare the cast
+
+// 	tab = (void *)data; // cast for change 1 dimension array to 2 dimensions
+// 	*tab[y][x] = color; // set the pixel at the coord x,y with the color value
+// }
+void	ft_mlx_pixel_put_img(t_img *img, int x, int y, int color) //set that color in the image
 {
 	char *dst;
 
 	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 }
-
-
 void	init_image(t_entire *data)
 {
 	data->mlx = mlx_init();

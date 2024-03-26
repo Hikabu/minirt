@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 22:29:19 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/26 15:33:11 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/26 15:56:43 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,20 @@ void	set_obj_in_pix(t_pixel *pixel, t_plane *plane, t_sphere *sphere, t_cyl *cyl
 	pixel->sphere = sphere;
 }
 
-float	check_intersection_plane(t_plane *plane, t_ray *ray, t_crd *rd)
+float	check_intersection_plane(t_plane *plane, t_ray *ray, t_crd *rd) //distance from the ray's origin to the intersection point
 {
 	float	t;
 	float	dot_dn;
 	t_crd	sub_ra;
 
-	dot_dn = scalar_vector_product(rd, &(plane->norm_vec));
+	dot_dn = scalar_vector_product(rd, &(plane->norm_vec)); //projection of one vector onto another.
 	if (dot_dn == 0)
 		return (-1);
 	vector_subtraction(&sub_ra, &(ray->point[0]), &(plane->xyz));
 	t = scalar_vector_product(&sub_ra, &(plane->norm_vec)) / dot_dn;
 	if (t < 0)
 		return (-1);
+	printf("t is %f\n", t);
 	return (t);
 }
 

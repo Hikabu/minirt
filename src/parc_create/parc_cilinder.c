@@ -6,11 +6,12 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 19:37:34 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/26 15:43:34 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/26 20:50:26 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
 
 int	parse_params(t_entire *ent, char *line)
 {
@@ -107,11 +108,11 @@ int parse_ambient(t_entire *ent, char *line)
 int	parse_light(t_entire *ent, char *line)
 {
 	char **params;
+	
 	t_light *light = malloc(sizeof(t_light));
 	if (!light)
 		return 1;
 	int i;
-
 	params = ft_split(line, ' ');
 	if (array_length(params) != 4)
 		return (show_parsing_error(ent, params, ERR_INVALID_NB_PARAMS));

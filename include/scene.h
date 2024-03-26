@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 10:05:37 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/24 12:41:08 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/03/26 21:02:23 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,33 +85,22 @@ typedef struct s_vplane
 	
 }	t_vplane;
 
-
-
 float		vec_product(t_crd *vec1, t_crd *vec2);
 void		norm_vector(t_crd *vec);
 float 		vec_length(t_crd *vec);
-t_crd		*vecsubtraction(t_crd *vec1, t_crd *vec2);
-t_crd		*crd_init(float x, float y, float z);
 void		init_image(t_entire *data);
 void		all_exiests(t_entire *ent);
-void		my_mlx_pixel_put(t_entire *data, int x, int y, int color);
 int 		key_hook(int keycode, void *param);
 void		color_back(void	*img);
 void		get_fov_angles(t_entire *ent, t_scene *scene);
 void		pixel_computing(t_entire *data, t_pixel *pixel);
 
 
-void		fill_coordinates_for_camera(t_camera *camera, t_crd *camera_point);
 void		initial_scene(t_entire *ent, t_scene *scene);
-// camera
-t_camera	*init_camera(t_crd *origin, t_crd *direction, float fov);
-
-
 // scene 
-t_scene		*init_scene(t_camera *camera, t_sphere *sphere);
+// t_scene		*init_scene(t_camera *camera, t_sphere *sphere);
 void		check_intersection(t_entire *data, t_pixel *pixel);
 int			solve_quadro_eq(float a, float b, float c, float roots[2]);
-t_vplane    *get_view_plane(float width, float height, float fov);
 
 //vector 
 float		vector_len(t_crd *vector);
