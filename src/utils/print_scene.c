@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_scene.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:34:51 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/24 18:49:32 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/26 15:08:30 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,14 +121,14 @@ void	print_scene(t_entire *ent, t_scene	*scene)
 		sizeof(t_obj), sizeof(t_sphere), sizeof(t_plane),
 		sizeof(t_cyl), sizeof(t_light));
 	print_scene_characteristics(ent, scene);
-	// if (ent->scene->obj && ent->scene->obj->sphere)
-	print_spheres(ent->sphere, 'a');
-	// if (ent->scene->obj && ent->scene->obj->light)
-	print_lights(ent->light);
-	// if (ent->scene->obj && ent->scene->obj->cyl)
-	print_cylinders(ent->cyl, 'a');
-	// if (ent->scene->obj && ent->scene->obj->plane)
-	print_planes(ent->plane, 'a');
+	if (ent->sphere)
+		print_spheres(ent->sphere, 'a');
+	if (ent->light)
+		print_lights(ent->light);
+	if (ent->plane)
+		print_planes(ent->plane, 'a');
+	if (ent->cyl)
+		print_cylinders(ent->cyl, 'a');
 }
 
 static void	print_scene_characteristics(t_entire *ent, t_scene *scene)

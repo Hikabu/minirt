@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   trace_ray.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 23:53:56 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/24 18:56:20 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/24 23:16:22 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@ void	ray_trace(t_entire *data)
 For each pixel - cast a ray into the scene in the direction specified by vector
 Calculate the color of the pixel based on the materials, lighting, and other factors at the point of intersection
 Write the color to the pixel in image */ 
-
 	fill_new_vector(&pixel.ray.point[0], 0, 0, -1); //z for away from the viewer and direction of a ray (pixel)
 	lambda = 2 * data->scene->camera_angeles[0] / WIDTH;
-	dprintf(1, "lambda is %f\n", lambda);
+	// printf("angel is %f\n", data->scene->camera_angeles[0]);
+	// dprintf(1, "lambda is %f\n", lambda);
 	pixel.y = 0;
 	while  (pixel.y < HEIGHT)
 	{
@@ -64,6 +64,7 @@ Write the color to the pixel in image */
 		while (pixel.x < WIDTH)
 		{
 			pixel_init(&pixel);
+			// printf("pixel.ray = %f\n", pixel.ray.point[0].x);
 			fill_new_vector(&(pixel.ray.point[1]), 
 				-data->scene->camera_angeles[0] + lambda * pixel.x,
 				+data->scene->camera_angeles[1] + lambda * pixel.y, 1);
@@ -74,4 +75,5 @@ Write the color to the pixel in image */
 		pixel.y++;
 	}
 	mlx_put_image_to_window(data->mlx, data->window, data->simg.img, 0, 0);
+	// color_back(&(data->img)); // if we will increase image for black fone
 }

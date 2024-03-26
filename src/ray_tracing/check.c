@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 22:29:19 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/22 18:57:11 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/24 23:17:54 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ t_plane	*check_for_planes(t_entire *data, t_ray *ray, t_crd *d, float *dist)
 	return (nearest_plane);
 }
 
-void check_intersection(t_entire *data, t_pixel *pixel)
+void check_intersection(t_entire *data, t_pixel *pixel) //what objects are visible in the rendered image.
 {
 	float dist; //dis from cmr to the itrs pnt of a ray with an obj in the scene
 

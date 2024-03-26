@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 12:13:38 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/24 18:56:10 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/26 15:09:26 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,12 @@ int	main(int ac, char **av)
 		// data.scene = entire.scene;
 		// data.scene->obj->sphere = entire.scene->obj->sphere;
 		print_scene(&entire, entire.scene);
-		init_image(&entire);
-	// 	color_back(&data.simg.img);
+		// init_image(&entire);
+		// color_back(entire.img);
 	// 	data.scene = entire.scene;
 		ray_trace(&entire);
 	// // printf("data->mlx2 = %p\n", data.mlx);
-		mlx_loop(entire.mlx);
+		// mlx_loop(entire.mlx);
 		// all_exiests(ent);
 		// printf("camera after function %f\n", ent->scene->camera_point.z);
 		// system("leaks miniRT");

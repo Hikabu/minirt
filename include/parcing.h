@@ -127,6 +127,7 @@ typedef struct s_entire
 	t_crd		*crd;
 	t_color		*col;
 	t_img		simg;
+	t_pixel		*pixel;
     void		*img;
     char		*addr;
     void		*mlx;
