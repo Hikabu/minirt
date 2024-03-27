@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 16:00:24 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/26 22:41:34 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/27 17:23:52 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ t_color	*int_to_rgb(const int r, const int g, const int b)
 // 	tab = (void *)data; // cast for change 1 dimension array to 2 dimensions
 // 	*tab[y][x] = color; // set the pixel at the coord x,y with the color value
 // }
-void	ft_mlx_pixel_put_img(t_img *img, int x, int y, int color) //set that color in the image
+void	ft_mlx_pixel_put_img(t_img *img, int x, int y, const int color) //set that color in the image
 {
 	char *dst;
 

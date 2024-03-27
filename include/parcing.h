@@ -34,9 +34,9 @@ typedef enum e_object_id
 
 typedef struct s_color
 {
-	float	r;
-	float	g;
-	float	b;
+	int	r;
+	int	g;
+	int	b;
 }	t_color;
 
 typedef struct s_ambient_lightning
@@ -173,14 +173,14 @@ t_cyl		*check_for_cilinder(t_entire *data, t_pixel *pixel, float *dist);
 float		check_intersection_cyl(t_cyl *cyl, t_pixel *pixel);
 float		check_intersection_plane(t_plane *plane, t_ray *ray, t_crd *rd);
 
-void		ft_mlx_pixel_put_img(t_img *img, int x, int y, int color);
+void		ft_mlx_pixel_put_img(t_img *img, int x, int y, const int color);
 // void		ft_mlx_pixel_put_img(unsigned char *data, int x, int y,  const int color);
 float		ang_bet_2_vec(t_crd *a, t_crd *b);
 t_color		*int_to_rgb(const int r, const int g, const int b);
 
 //color
-
-int 		convert_color_to_int(const t_color color);
+int			rgb_to_int(const t_color rgb);
+// int 		convert_color_to_int(const t_color color);
 void		print_entire(t_entire **e);
 
 #endif

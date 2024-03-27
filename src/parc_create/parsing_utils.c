@@ -99,19 +99,12 @@ int	is_float(char *str)
 	}
 	return (1);
 }
-int convert_color_to_int(const t_color color)
-{
-  float red = color.r;
-  float green = color.g;
-  float blue = color.b;
 
-  red = fmaxf(0.0f, fminf(red, 1.0f));
-  green = fmaxf(0.0f, fminf(green, 1.0f));
-  blue = fmaxf(0.0f, fminf(blue, 1.0f));
-  int int_red = (int) (red * 255.0f);
-  int int_green = (int) (green * 255.0f);
-  int int_blue = (int) (blue * 255.0f);
-  return (0xFF << 24) | (int_red << 16) | (int_green << 8) | int_blue;
+
+// lets watch whart will be 
+int	rgb_to_int(const t_color rgb)
+{
+	return(rgb.r << 16 | rgb.g << 8 | rgb.b);
 }
 
 int	parse_color(char *str, t_color *color)

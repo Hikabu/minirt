@@ -47,6 +47,9 @@ typedef enum e_type_object // only for clearness
 	PIPE,
 	PLANE_BEGIN,
 	PLANE_END,
+	PLANE,
+	SPHERE,
+	CYLINDER,
 }	t_type_object;
 
 

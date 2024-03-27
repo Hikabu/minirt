@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 21:45:36 by vfedorov          #+#    #+#             */
-/*   Updated: 2024/03/26 22:55:33 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/27 21:32:34 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ float	pixel_comp_sphere_refl_ratio(t_entire *data, t_pixel *pixel)
 		&pixel->intersection);
 	norm_vector(&light_dir);
 	light_intens = ang_bet_2_vec(&light_dir, &normal) 
-		* data->scene->obj->light->ratio; // ratio_light??
+		* data->light->ratio; // ratio_light??
 	if (light_intens > 0)
 		return (light_intens);
 	return (0);
@@ -63,8 +63,12 @@ void pixel_computing_sphere(t_entire *data, t_pixel *pixel)
 {
 	int		light;
 	float	light_ratio;
-
-	ft_mlx_pixel_put_img(&data->simg, pixel->x, pixel->y, convert_color_to_int(pixel->sphere->rgb));
+	// int		i = 0;
+	// printf("pixel->plane is %d\n", pixel->plane->rgb.r);
+	// i = rgb_to_int(pixel->plane->rgb);
+	// int combined_color = rgb_to_int(pixel->plane->rgb);
+	// printf("i is %d\n", combined_color);
+	ft_mlx_pixel_put_img(&data->simg, pixel->x, pixel->y, pixel->sphere->color);
 	if (!data->light || check_for_shadow(data, pixel))
 		return ;
 	light_ratio = pixel_comp_sphere_refl_ratio(data, pixel);
@@ -120,7 +124,7 @@ void	pixel_computing_cyl(t_entire *data, t_pixel *pixel)
 	float	light_ratio;
 
 	ft_mlx_pixel_put_img(&data->simg, pixel->x, pixel->y,
-		convert_color_to_int(pixel->cyl->rgb));
+		pixel->cyl->color);
 	if (!data->scene->obj->light || check_for_shadow(data, pixel))
 		return ;
 	light_ratio = pixel_comp_cyl_refl_ratio(data, pixel);

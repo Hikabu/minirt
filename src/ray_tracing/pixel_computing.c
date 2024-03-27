@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 17:37:32 by vfedorov          #+#    #+#             */
-/*   Updated: 2024/03/26 23:02:08 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/27 22:15:48 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,15 @@ void	pixel_plane_computing(t_entire *data, t_pixel *pixel)
 {
 	int		light;
 	float	light_ratio;
+	int		i;
 
+	i = rgb_to_int(pixel->plane->rgb);
+	printf("i is %d\n", i);
+	// t_color	*clr;
+	
+	// clr = pixel->plane->rgb;
 	ft_mlx_pixel_put_img(&data->simg, pixel->x, pixel->y,
-		convert_color_to_int(pixel->plane->rgb));
+		pixel->plane->color);
 	if (!data->light || check_for_shadow(data, pixel))
 		return ;
 	light_ratio = pixel_computing_plane_difreflect_ratio(data, pixel); //eflection ratio is the amount of light that is reflected off the surface of the object 
@@ -79,13 +85,14 @@ void	pixel_computing(t_entire *data, t_pixel *pixel)
 	{
 		mlx_pixel_put(data->mlx, data->window,
 			pixel->x, pixel->y, BACKGROUND_COLOR);
-		// return ;
+		return ;
 	}
 	pixel->intersection = pixel->coor;
 	scalar_multiplication(&pixel->intersection, &pixel->intersection, 
 		-pixel->lenght);
 	vector_addition(&pixel->intersection, &pixel->ray.point[0], 
 		&pixel->intersection);
+	printf ("pixel is x pont  %f\n", pixel->plane->point.x);
 	if (pixel->plane)
 		pixel_plane_computing(data, pixel);
 	else if (pixel->sphere)

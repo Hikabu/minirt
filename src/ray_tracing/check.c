@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 22:29:19 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/26 15:56:43 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/27 22:17:33 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,11 @@ void check_intersection(t_entire *data, t_pixel *pixel) //what objects are visib
 	dist = -1;//no itrs yet
 	pixel->lenght = -1;
 	vector_subtraction(&(pixel->coor),
-						&(pixel->ray.point[0]), &(pixel->ray.point[1])); //differences
+		&(pixel->ray.point[0]), &(pixel->ray.point[1])); //differences
 	norm_vector(&(pixel->coor)); //we know direction we simplify calculating by sainf it 1 ?
 	pixel->plane = check_for_planes(data, &pixel->ray, &pixel->coor, &dist);//closest plne
+	// printf("pixel->plane is %f\n", pixel->plane->xyz.x);
+	printf("pixel is x %f\n", pixel->plane->point.x);
 	if (dist != -1)
 		pixel->lenght = dist;
 	pixel->sphere = check_for_spheres(data, &pixel->ray, &pixel->coor, &dist);
@@ -80,8 +82,7 @@ void check_intersection(t_entire *data, t_pixel *pixel) //what objects are visib
 		pixel->lenght = dist;
 		set_obj_in_pix(pixel, 0, pixel->sphere, 0);
 	}
-	// pixel->cyl = check_for_cilinder(data, pixel, &dist);
-	// pixel-> = check_for_cilinder(data, pixel, &dist);
+	pixel->cyl = check_for_cilinder(data, pixel, &dist);
 	if (dist != -1 && (pixel->lenght == -1 || dist < pixel->lenght))
 	{
 		pixel->lenght = dist;

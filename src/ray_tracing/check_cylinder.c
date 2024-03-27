@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_cylinder.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 00:42:25 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/23 12:38:47 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/03/27 18:38:09 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,18 +96,18 @@ float check_intersection_cyl(t_cyl *cyl, t_pixel *pixel)
 	t_crd	point_end;
 	
 	pixel->cyl_type = NO_INTERSECT;
-	vector_subtraction(&orpoint, &(pixel->ray.point[0]), &(cyl->point)); // vector from the cylinder's center point to the ray's starting point
+	vector_subtraction(&orpoint, &(pixel->ray.point[0]), &(cyl->xyz)); // vector from the cylinder's center point to the ray's starting point
 	scalar_multiplication(&direction, &(pixel->coor), -1);				 // calculates the direction vector of the ray
 	dist = intersection_cylinder_pipee(cyl, &direction, &orpoint, pixel);
 	if (dist > 0)
 		pixel->cyl_type = PIPE;
-	define_cyl(cyl, &cyl->plato_begin, &cyl->point);
+	define_cyl(cyl, &cyl->plato_begin, &cyl->xyz);
 	dist_plane = intersection_cyl_plane(cyl, &cyl->plato_begin, &(pixel->ray), &pixel->coor);
 	scalar_multiplication(&cyl->plato_begin.xyz, &cyl->plato_begin.xyz, -1);
 	if (dist_plane != -1 && (dist_plane < dist || dist == -1))
 		dist = define_dist_type_inters(pixel, dist_plane, PLANE_BEGIN);
 	scalar_multiplication(&point_end, &cyl->xyz, cyl->heig);
-	vector_addition(&point_end, &cyl->point, &point_end);
+	vector_addition(&point_end, &cyl->xyz, &point_end);
 	define_cyl(cyl, &cyl->plato_end, &point_end);
 	dist_plane = intersection_cyl_plane(cyl, &cyl->plato_end, &(pixel->ray), &(pixel->coor));
 	if (dist_plane != -1 && (dist_plane < dist || dist == -1))
@@ -122,7 +122,7 @@ t_cyl   *check_for_cilinder(t_entire *data, t_pixel *pixel, float *dist)
 	t_cyl	*nearest_cyl;
 	float	nearest_dist;
 
-	cyl = data->scene->obj->cyl;
+	cyl = data->cyl;
 	nearest_dist = -1;
 	nearest_cyl = 0;
 	while (cyl)
