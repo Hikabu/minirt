@@ -12,7 +12,7 @@
 
 #include "minirt.h"
 
-// int	readmap(char *str, t_entire **ent, t_data *data)
+// int	readmap(char *str, t_entire **ent, t_entire *data)
 // {
 // 	int		fd;
 // 	char	*line;

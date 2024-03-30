@@ -35,7 +35,7 @@ void	translate_obj(t_scene *scene, t_crd *crd)
     while (obj.light)
     {
         vector_subtraction(&obj.light->xyz, &obj.light->xyz, crd);
-        obj.light = obj.light->next;
+        //obj.light = obj.light->next;
     }
 }
 

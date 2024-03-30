@@ -89,7 +89,7 @@ static	t_crd	norm_cyl(t_pixel *pixel)
 	{
 		scalar_multiplication(&v, &pixel->cyl->xyz,
 			pixel->cyl_m);
-		vector_subtraction(&res, &pixel->intersection, &pixel->cyl->point);
+		vector_subtraction(&res, &pixel->intersection, &pixel->cyl->xyz);
 		vector_subtraction(&res, &res, &v);
 	}
 	else if (pixel->cyl_type == PLANE_BEGIN)

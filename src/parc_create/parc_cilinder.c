@@ -160,10 +160,12 @@ int	parse_sphere(t_entire *ent, char *line)
 			return (show_parsing_error(ent, params, ERR_INVALID_NB_COLORS));
 		i++;
 	}
-	ent->sphere = sphere;
-	// if (sphere->next)
-	// 	sphere = sphere->next;
+	if (ent->sphere)
+		ent->sphere->next = sphere;
+	else
+		ent->sphere = sphere;
 	free_array(params);
+
 	return (0);
 }
 

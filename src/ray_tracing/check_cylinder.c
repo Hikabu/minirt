@@ -17,7 +17,7 @@ static float intersection_cylinder_pipee(t_cyl *cyl, t_crd *crd, t_crd *os, t_pi
 
 static void	define_cyl(t_cyl *cyl, t_plane *plane, t_crd *point)
 {
-	plane->point = *point;
+	(void) point;
 	plane->color = cyl->color;
 	plane->xyz = cyl->xyz;
 	plane->color_ambient = cyl->color;
@@ -35,7 +35,7 @@ static	float intersection_cyl_plane(t_cyl *cyl, t_plane *plane, t_ray *ray, t_cr
 		return (-1);
 	scalar_multiplication(&r, d_ray, -1 * dist_plane);
 	vector_addition(&p, &(ray->point[0]), &r);
-	vector_subtraction(&p_ctr, &p, &plane->point);
+	vector_subtraction(&p_ctr, &p, &plane->xyz);
 	if (vector_len(&p_ctr) <= cyl->diam / 2.0f)
 		return (dist_plane);
 	return (-1);

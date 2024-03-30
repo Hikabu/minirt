@@ -19,9 +19,8 @@
 # define BACKGROUND_COLOR 0
 # define MIN_TRASHOLD 0.0001
 # define MAX_TRASHOLD 0.9985
-typedef struct 	s_light 						t_light;
-typedef struct 	s_scene							t_scene;
-typedef struct 	s_data							t_data;
+// typedef struct 	s_light 						t_light;
+//typedef struct 	s_scene							t_scene;
 // typedef	struct	s_coordinates_for_vector		t_crd;
 // typedef struct 	s_two_points_for_ray_direction	t_ray;
 

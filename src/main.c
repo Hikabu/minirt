@@ -31,7 +31,6 @@ int key_hook(int keycode, void *param)
 int	main(int ac, char **av)
 {
 	t_entire	entire;
-	t_data		data;
 	
 	if (ac != 2)
 		error(2);
@@ -39,28 +38,27 @@ int	main(int ac, char **av)
 	if (open_and_parse_file(&entire, av[1]) == 0)
 	{
 		// printf("ibfuckinghere\n");
-		// readmap(av[1], &ent, &data);
-		// print_entire(&ent);
-		// data.scene->camera_point = ent->scene->camera_point;
-		// ent->scene = NULL;
-		// data.scene = entire.scene;
-		// data.scene->obj->sphere = entire.scene->obj->sphere;
+		// readmap(av[1], &entire, &entire);
+		// print_entire(&entire);
+		// entire.scene->camera_point = entire->scene->camera_point;
+		// entire->scene = NULL;
+		// entire.scene = entire.scene;
+		// entire.scene->obj->sphere = entire.scene->obj->sphere;
 		print_scene(&entire, entire.scene);
 		// init_image(&entire);
 		// color_back(entire.img);
-	// 	data.scene = entire.scene;
+	// 	entire.scene = entire.scene;
 		ray_trace(&entire);
-	// // printf("data->mlx2 = %p\n", data.mlx);
+	// // printf("entire->mlx2 = %p\n", entire.mlx);
 		// mlx_loop(entire.mlx);
-		// all_exiests(ent);
-		// printf("camera after function %f\n", ent->scene->camera_point.z);
+		// all_exiests(entire);
+		// printf("camera after function %f\n", entire->scene->camera_point.z);
 		// system("leaks miniRT");
 		// (void)win;
 		// (void)av;
 	}
 	// else 
 	// 	perror("Not successful");
-	(void)data;
 	(void)entire;
 	(void)av;
 	return (0);

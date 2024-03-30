@@ -73,7 +73,6 @@ void check_intersection(t_entire *data, t_pixel *pixel) //what objects are visib
 	norm_vector(&(pixel->coor)); //we know direction we simplify calculating by sainf it 1 ?
 	pixel->plane = check_for_planes(data, &pixel->ray, &pixel->coor, &dist);//closest plne
 	// printf("pixel->plane is %f\n", pixel->plane->xyz.x);
-	printf("pixel is x %f\n", pixel->plane->point.x);
 	if (dist != -1)
 		pixel->lenght = dist;
 	pixel->sphere = check_for_spheres(data, &pixel->ray, &pixel->coor, &dist);

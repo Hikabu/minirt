@@ -47,8 +47,7 @@ typedef struct s_scene
 	float		camera_angeles[2];
 	float		ambient_light_intensiv;
 	t_crd		camera_point; // from where trace the rays
-	t_crd		camera_orientation; //where the camera will look this 2 like viewpoint
-	t_entire	*ent;
+	t_crd		camera_orientation; // where the camera will look this 2 like viewpoint
 	t_obj		*obj;
 	t_camera	*camera;
 }	t_scene;
@@ -61,20 +60,6 @@ typedef struct s_img
 	int		line_length;
 	int		endian;
 }	t_img;
-
-typedef struct s_data
-{
-	// t_scene		*scene;
-	// t_img		simg;
-    // void		*img;
-    // char		*addr;
-    // void		*mlx;
-	// void		*window;
-    // int			bits_per_pixel;
-    // int			line_length;
-	// int			endian;
-	t_entire	*ent;
-}	t_data;
 
 typedef struct s_vplane
 {
@@ -115,7 +100,7 @@ float		check_intersection_sphere(t_sphere *sphere, t_ray *ray, t_crd *rd);
 
 //color shadow
 void	pixel_plane_computing(t_entire *data, t_pixel *pixel);
-// void	pixel_computing(t_data *entire, t_pixel *pixel);
+// void	pixel_computing(t_ent *entire, t_pixel *pixel);
 void 	pixel_computing_sphere(t_entire *data, t_pixel *pixel);
 void	pixel_computing_cyl(t_entire *data, t_pixel *pixel);
 float	pixel_comp_sphere_refl_ratio(t_entire *data, t_pixel *pixel);

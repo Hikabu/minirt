@@ -31,7 +31,7 @@ float	check_intersection_sphere(t_sphere *sphere, t_ray *ray, t_crd *rd)
 	float	points[2];
 	t_crd	orpoint;
 
-vector_subtraction(&orpoint, &sphere->point, &(ray->point[0]));
+vector_subtraction(&orpoint, &sphere->xyz, &(ray->point[0]));
 if (!solve_quadro_eq(scalar_vector_product(rd, rd),
 		2 * scalar_vector_product(rd, &orpoint), 
 		scalar_vector_product(&orpoint, &orpoint)

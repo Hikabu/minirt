@@ -44,16 +44,13 @@ void	print_lights(t_light *l)
 	int	i;
 
 	i = 0;
-	while (l)
-	{
-		printf("\e[0;33mLight %d: \e[0m", i++);
-		printf("\t\e[0;34mPoint: \e[0m");
-		print_coordinate(&l->xyz, "\n");
-		printf("        \t\e[0;34mLighting ratio: \e[0m%f\n",
-			l->ratio);
-		print_coordinate(&l->rgb, "\n");
-		l = l->next;
-	}
+
+	printf("\e[0;33mLight %d: \e[0m", i++);
+	printf("\t\e[0;34mPoint: \e[0m");
+	print_coordinate(&l->xyz, "\n");
+	printf("        \t\e[0;34mLighting ratio: \e[0m%f\n",
+		l->ratio);
+	print_coordinate(&l->rgb, "\n");
 }
 
 void	print_cylinders(t_cyl	*cy, char type)
@@ -117,7 +114,7 @@ void	print_scene(t_entire *ent, t_scene	*scene)
 	One plane struct is %lu bits,\n\
 	One cylinder struct is %lu bits,\n\
 	One light struct is %lu bits,\n",
-		sizeof(t_pixel), sizeof(t_data), sizeof(t_scene),
+		sizeof(t_pixel), sizeof(t_entire), sizeof(t_scene),
 		sizeof(t_obj), sizeof(t_sphere), sizeof(t_plane),
 		sizeof(t_cyl), sizeof(t_light));
 	print_scene_characteristics(ent, scene);

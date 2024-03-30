@@ -92,7 +92,7 @@ void	pixel_computing(t_entire *data, t_pixel *pixel)
 		-pixel->lenght);
 	vector_addition(&pixel->intersection, &pixel->ray.point[0], 
 		&pixel->intersection);
-	printf ("pixel is x pont  %f\n", pixel->plane->point.x);
+	//printf ("pixel is x pont  %f\n", pixel->plane->point.x);
 	if (pixel->plane)
 		pixel_plane_computing(data, pixel);
 	else if (pixel->sphere)

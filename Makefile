@@ -49,8 +49,7 @@ FILE_C		+=	$(addprefix parcing/, 		\
 
 
 FILE_C		+=	$(addprefix utils/, \
-					print_scene.c \
-					init.c)
+					print_scene.c)
 
 FILE_C		+=	$(addprefix scene/, \
 					init_image.c)

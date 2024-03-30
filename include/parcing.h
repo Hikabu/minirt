@@ -14,12 +14,12 @@
 # define ERR_NOT_A_ULONG "Value is not a unsigned long"
 # define ERR_NOT_A_FLOAT "Value is not a float"
 
-typedef struct	s_light						t_light;
-typedef struct	s_ambient_lightning			t_amlight;
-typedef struct	s_plane						t_plane;
-typedef struct	s_cylinder					t_cyl;
-typedef struct	s_scene						t_scene;
-typedef struct	s_img						t_img;
+// typedef struct	s_light						t_light;
+// typedef struct	s_ambient_lightning			t_amlight;
+// typedef struct	s_plane						t_plane;
+// typedef struct	s_cylinder					t_cyl;
+// typedef struct	s_scene						t_scene;
+// typedef struct	s_img						t_img;
 
 typedef enum e_object_id
 {
@@ -51,9 +51,8 @@ typedef struct s_light
 	t_object_id id;
 	t_crd		xyz;
 	float		ratio;
-	int			color;
 	t_color		rgb;
-	t_light		*next;
+	int			color; // for mix
 }	t_light;
 
 typedef struct s_camera
@@ -62,62 +61,65 @@ typedef struct s_camera
 	t_crd		xyz;
 	t_crd		norm_vec;
 	size_t		fov;
-	t_crd		*origin;
-	t_crd		*direction;
-	t_crd		*crd;
+
+	t_crd		*direction; // for direction, is nor parsed at once
 }	t_camera;
+
+typedef struct s_sphere
+{
+	t_object_id		id;
+	t_crd			xyz;
+	float			diametr;
+	t_color			rgb;
+
+	int				color_ambient;
+	int				color;
+	
+	t_sphere		*next; // if several figures
+}	t_sphere;
 
 typedef struct s_plane
 {
-	t_crd			point;
 	t_object_id 	id;
 	t_crd			xyz;
 	t_crd			norm_vec;
 	t_color			rgb;
-	int				color;
-	int				color_ambient;
+
+	int				color; // for mix
+	int				color_ambient; // shadow
+
 	t_plane			*next;
 }	t_plane;
 
 typedef struct s_cylinder
 {
-	t_crd			point;
-	t_plane			plato_begin;
-	t_plane			plato_end;
-	float			heig;
 	t_object_id 	id;
 	t_crd			xyz;
 	t_crd			norm_vec;
 	float			diam;
+	float			heig;
 	t_color			rgb;
+
+	t_plane			plato_begin; // ??
+	t_plane			plato_end;  // ??
+
 	int				color;
 	int				color_ambient;
+
 	t_cyl			*next;
 }	t_cyl;
-
-
-typedef struct s_sphere
-{
-	t_crd			point; //coordintes
-	t_object_id		id;
-	t_crd			xyz;
-	float			diametr;
-	t_color			rgb;
-	int				color_ambient;
-	int				color;
-	t_sphere		*next; //if several figures
-}	t_sphere;
 
 typedef struct s_entire
 {
 	t_obj		*obj;
 	t_amlight	*amlight;
 	t_camera	*camera;
-	t_scene		*scene;
 	t_light		*light;
 	t_plane		*plane;
 	t_cyl		*cyl;
 	t_sphere	*sphere;
+
+	t_scene		*scene;
 	t_crd		*crd;
 	t_color		*col;
 	t_img		simg;
@@ -138,8 +140,6 @@ typedef	struct s_objects
 	t_cyl		*cyl;
 	t_sphere	*sphere;
 } t_obj;
-
-// typedef t_crd  t_color;
 
 
 void		init_all(t_entire *ent);
