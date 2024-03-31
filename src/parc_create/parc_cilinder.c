@@ -12,21 +12,68 @@
 
 #include "minirt.h"
 
+void	push_object(t_obj *obj, t_obj **objs)
+{
+	t_obj	*tmp;
+
+	if (!(*objs))
+		*objs = obj;
+	else
+	{
+		tmp = *objs;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = obj;
+	}
+}
+
+t_obj	*create_object(t_rt *rt, t_obj_id id)
+{
+	t_obj	*obj;
+
+	obj = ft_calloc(sizeof(t_obj), 1);
+	obj->id = id;
+	// obj->speckv = SPECULAR_KV;
+	// obj->specn = SPECULAR_N;
+	// obj->mirror = MIRROR;
+	// obj->refract = REFRACT;
+	// obj->pattern_len = PATTERN_LEN;
+	// obj->pattern_num = PATTERN_NUM;
+	// obj->has_bump = FALSE;
+	// obj->texture.img = NULL;
+	// obj->has_texture = FALSE;
+	// obj->bump.img = NULL;
+	push_object(obj, &rt->objs);
+	rt->num_objs++;
+	return (obj);
+}
 
 int	parse_params(t_entire *ent, char *line)
 {
+	t_obj	*obj;
+
 	if (ft_strncmp(line, "A", 1) == 0) 
 		return (parse_ambient(ent, line));
 	if (ft_strncmp(line, "C", 1) == 0)
 		return (parse_camera(ent, line));
 	if (ft_strncmp(line, "L", 1) == 0)
 		return(parse_light(ent, line));
-	if (ft_strncmp(line, "sp", 2) == 0)
-		return(parse_sphere(ent, line));
-	if (ft_strncmp(line, "pl", 2) == 0)
+	if (ft_strncmp(line, "sp", 2, obj) == 0)
+	{
+		obj = create_object(ent, id_sphere);
+		return(parse_sphere(ent, line, obj));
+	}
+	if (ft_strncmp(line, "pl", 2, obj)) == 0)
+	{
+		obj = create_object(ent, id_plane);
 		return(parse_plane(ent, line));
-	if (ft_strncmp(line, "cy", 2) == 0)
+	}
+	if (ft_strncmp(line, "cy", 2, obj)) == 0)
+	{
+		obj = create_object(ent, id_cyl);
 		return(parse_cylinder(ent, line));
+	}
+
 	return (0);
 }
 
@@ -137,10 +184,11 @@ int	parse_light(t_entire *ent, char *line)
 	return (0);
 }
 
-int	parse_sphere(t_entire *ent, char *line)
+int	parse_sphere(t_entire *ent, char *line, t_obj *obj)
 {
 	char **params;
 	t_sphere *sphere = malloc(sizeof(t_sphere));
+	
 	if (!sphere)
 		return 1;
 	int i;
@@ -160,16 +208,13 @@ int	parse_sphere(t_entire *ent, char *line)
 			return (show_parsing_error(ent, params, ERR_INVALID_NB_COLORS));
 		i++;
 	}
-	if (ent->sphere)
-		ent->sphere->next = sphere;
-	else
-		ent->sphere = sphere;
+	obj->object.sphere = sphere;
 	free_array(params);
 
 	return (0);
 }
 
-int	parse_plane(t_entire *ent, char *line)
+int	parse_plane(t_entire *ent, char *line,  t_obj *obj)
 {
 	char **params;
 	t_plane *plane = malloc(sizeof(t_plane));
@@ -193,14 +238,12 @@ int	parse_plane(t_entire *ent, char *line)
 		i++;
 	}
 	norm_vector(&plane->norm_vec);
-	ent->plane = plane;
-	// if (plane)
-	// 	free(plane);
+	obj->object.plane = plane;
 	free_array(params);
 	return (0);
 }
 
-int parse_cylinder(t_entire *ent, char *line)
+int parse_cylinder(t_entire *ent, char *line, t_obj *obj)
 {
 	char **params;
 	t_cyl *cylinder = malloc(sizeof(t_cyl));
@@ -231,9 +274,8 @@ int parse_cylinder(t_entire *ent, char *line)
 	}
 
 	norm_vector(&cylinder->norm_vec);
-	ent->cyl = cylinder;
-	// if (cylinder)
-	// 	free(cylinder);
+	obj->object.cyl = cylinder;
+
 	free_array(params);
 	return (0);
 }

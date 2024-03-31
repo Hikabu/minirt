@@ -32,6 +32,33 @@ typedef enum e_object_id
 	id_plane,
 } t_object_id;
 
+typedef struct s_obj
+{
+	t_obj_id		id;
+	// t_obj_union		object;
+	// float			speckv;
+	// float			specn;
+	// float			mirror;
+	// float			refract;
+	// t_vect			ex;
+	// t_vect			ey;
+	// t_vect			ez;
+	// t_vect			coords;
+	// t_color			color;
+	// t_color			color2;
+	// float			h;
+	// float			pattern_len;
+	// int				pattern_num;
+	// float			alpha;
+	// float			bump_f;
+	// float			texture_f;
+	// t_bool			has_bump;
+	// t_bool			has_texture;
+	// t_img			bump;
+	// t_img			texture;
+	struct s_obj	*next;
+}	t_obj;
+
 typedef struct s_color
 {
 	int	r;
@@ -111,7 +138,6 @@ typedef struct s_cylinder
 
 typedef struct s_entire
 {
-	t_obj		*obj;
 	t_amlight	*amlight;
 	t_camera	*camera;
 	t_light		*light;
@@ -131,6 +157,8 @@ typedef struct s_entire
     int			bits_per_pixel;
     int			line_length;
 	int			endian;
+	t_obj		*obj;
+	size_t			num_objs;
 }	t_entire;
 
 typedef	struct s_objects
