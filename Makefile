@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+         #
+#    By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/19 15:15:41 by valeriafedo       #+#    #+#              #
-#    Updated: 2024/01/20 01:24:52 by valeriafedo      ###   ########.fr        #
+#    Updated: 2024/04/02 18:57:45 by vfedorov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ HEADER		=	$(addprefix include/,	\
 
 CFLAGS		=	-I include
 
-CFLAGS		+=	-Wall -Wextra -Werror -g
+CFLAGS		+=	-Wall -Wextra -Werror -g 
 
 # CFLAGS		+=	-fsanitize=address
 
@@ -45,16 +45,36 @@ FILE_C		+=	$(addprefix parcing/, 		\
 					get_next_line_utils.c	\
 					get_split.c				\
 					parc.c					\
-					id_check.c				\
-					free_and_to_struct1.c	\
-					free_and_to_struct2.c	\
-					free_and_to_struct3.c	\
 					error_free_exit.c)
 
 
 FILE_C		+=	$(addprefix utils/, \
-					init.c			\
-					init1.c)
+					print_scene.c)
+
+FILE_C		+=	$(addprefix scene/, \
+					init_image.c)
+					
+FILE_C		+=	$(addprefix parc_create/, \
+					parc_cilinder.c		\
+					parse_scene_file.c	\
+					parsing_error.c		\
+					parsing_utils.c		\
+					matrix.c)
+
+FILE_C		+=	$(addprefix geometry/, \
+					vector.c	)
+					
+FILE_C		+=	$(addprefix ray_tracing/, \
+					trace_ray.c			\
+					check_shadow.c		\
+					compute_sp_cyl.c	\
+					check.c				\
+					check_cylinder.c	\
+					check_sphere.c		\
+					solver.c			\
+					pixel_computing.c	\
+					rgb_utils.c)
+					
 
 OBJ			=	$(addprefix objects/, $(FILE_C:%.c=%.o))
 

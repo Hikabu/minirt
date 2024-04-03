@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 21:13:05 by vfedorov          #+#    #+#             */
-/*   Updated: 2023/01/27 05:31:01 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/03/18 16:08:25 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,28 @@
 
 int	ft_atoi(const char *str)
 {
-	int	count;
-	int	i;
-	int	otr;
+	int				i;
+	int				minus;
+	unsigned int	nb;
 
-	count = 0;
 	i = 0;
-	otr = 1;
-	while (str[count] == '\n' || str[count] == '\t' || str[count] == '\f'
-		|| str[count] == '\r' || str[count] == '\v' || str[count] == ' ')
-		count++;
-	if (str[count] == '-')
-		otr = -1;
-	if (str[count] == '-' || str[count] == '+')
-		count++;
-	while (str[count] >= 48 && str[count] <= 57)
+	minus = 1;
+	nb = 0;
+	while (str[i] == 32 || str[i] == '\t' || str[i] == '\n' || str[i] == '\v'
+		|| str[i] == '\f' || str[i] == '\r')
+		i++;
+	if (str[i] == '+')
+		i++;
+	else if (str[i] == '-')
 	{
-		i = i * 10 + str[count] - 48;
-		count++;
+		minus = -minus;
+		i++;
 	}
-	if (str[count])
-		error(1);
-	return (otr * i);
+	while (str[i] >= '0' && str[i] <= '9')
+		nb = 10 * nb + str[i++] - '0';
+	if (nb > 2147483647 && minus == 1)
+		return (-1);
+	if (nb > 2147483648 && minus == -1)
+		return (0);
+	return (minus * nb);
 }

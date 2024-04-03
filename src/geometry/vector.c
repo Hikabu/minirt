@@ -3,37 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   vector.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 23:57:40 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/02/01 15:34:42 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/04/02 17:30:39 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_vector	*vector_init(float x, float y, float z)  // take pointer to vector and init it
+void    fill_new_vector(t_crd *result, float x, float y, float z) // take pointer to vector and init it
 {
-    t_vector *vec;
-
-    vec = malloc(sizeof(t_vector));
-    if (!vec)
-        error(1);
-    vec->x = x;
-    vec->y = y;
-    vec->z = z;
-    return (vec);
+    if (result == NULL)
+        return ;
+    result->x = x;
+    result->y = y;
+    result->z = z;  
 }
 
-t_vector	*vecsubtraction(t_vector *vec1, t_vector *vec2) // vec1 - vec2 
+void	vector_subtraction(t_crd *res, t_crd *a, t_crd *b)
 {
-    t_vector *result;
-
-	result = vector_init(vec1->x - vec2->x, vec1->y - vec2->y, vec1->z - vec2->z);
-	return (result);
+	if (res == NULL || a == NULL || b == NULL)
+		return ;
+	res->x = a->x - b->x;
+	res->y = a->y - b->y;
+	res->z = a->z - b->z;
 }
 
-float vec_length(t_vector *vec) //find length of vector
+float vec_length(t_crd *vec) //find length of vector
 {
 	float result;
 	
@@ -41,7 +38,7 @@ float vec_length(t_vector *vec) //find length of vector
 	return (result);
 }
 
-void vec_normalize(t_vector *vec) //normalize vector
+void norm_vector(t_crd *vec) //normalize vector
 {
 	float length;
 
@@ -51,10 +48,57 @@ void vec_normalize(t_vector *vec) //normalize vector
 	vec->z /= length;
 }
 
-float	vec_product(t_vector *vec1, t_vector *vec2)
+float	vec_product(t_crd *vec1, t_crd *vec2)
 {
 	float result;
 
 	result = ((vec1->x * vec2->x) + (vec1->y * vec2->y) + (vec1->z * vec2->z));
 	return (result);
+}
+
+float	scalar_vector_product(t_crd *a, t_crd *b) // scalar produc of 2 vectors
+{
+	float	res;
+	// printf ("a->x = %f\n", a->x);
+	// printf ("a->y = %f\n", a->y);
+	// printf ("a->z = %f\n", a->z);
+	// printf ("b->x = %f\n", b->x);
+	// printf ("b->y = %f\n", b->y);
+	// printf ("b->z = %f\n", b->z);
+	res = (a->x * b->x) + (a->y * b->y) + (a->z * b->z);
+	return (res);
+}
+
+float	vector_len(t_crd *vector)
+{
+	float	lenght;
+
+	if (!vector)
+		return (0);
+	lenght	= sqrtf(vector->x * vector->x + vector->y * vector->y
+		+ vector->z * vector->z);
+	return (lenght);
+}
+float	ang_bet_2_vec(t_crd *a, t_crd *b)
+{
+	float	angle;
+
+	angle = scalar_vector_product(a, b)
+		/ (vector_len(a) * vector_len(b));
+	return (angle);
+}
+void	scalar_multiplication(t_crd *result, t_crd *vector, float lambda)
+{
+	result->x = vector->x * lambda;
+	result->y = vector->y * lambda;
+	result->z = vector->z * lambda;
+}
+
+void	vector_addition(t_crd *result, t_crd *a, t_crd *b)
+{
+	if (result == NULL || a == NULL || b == NULL)
+		return ;
+	result->x = a->x + b->x;
+	result->y = a->y + b->y;
+	result->z = a->z + b->z;
 }

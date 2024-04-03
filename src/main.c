@@ -3,34 +3,48 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 12:13:38 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/01/19 17:49:14 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/04/03 12:47:25 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	all_exists(t_entire *ent)
+void	all_exiests(t_entire *ent)
 {
-	if (!ent->amlight || !ent->camera
+	if (!ent->amlight || !ent->scene->camera
 		|| !ent->light || !ent->plane
 		|| !ent->cyl || !ent->sphere)
 		error_with_free(ent);
 }
 
+
+int key_hook(int keycode, void *param)
+{
+	printf("keycode: %d\n", keycode);
+	(void)param;
+	return (0);
+}
+
 int	main(int ac, char **av)
 {
 	t_entire	entire;
-	t_entire	*ent;
-
-	init_ent(&entire);
-	ent = &entire;
+	
 	if (ac != 2)
 		error(2);
-	readmap(av[1], &ent);
-	all_exists(ent);
-	system("leaks miniRT");
+	if (open_and_parse_file(&entire, av[1]) == 0)
+	{
+		print_scene(&entire, entire.scene);
+		init_image(&entire);
+		ray_trace(&entire);
+		mlx_loop(entire.mlx);
+		// all_exiests(entire);
+	}
+	// else 
+	// 	perror("Not successful");
+	(void)entire;
+	(void)av;
 	return (0);
 }
