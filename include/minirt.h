@@ -13,9 +13,9 @@
 # include "scene.h"
 # include "utils.h"
 # include "parcing.h"
-# define WIDTH 320
-# define HEIGHT 240
-# define BACKGROUND 1
+# define WIDTH 800
+# define HEIGHT 600
+# define BACKGROUND 0
 # define BACKGROUND_COLOR 0
 # define MIN_TRASHOLD 0.0001
 # define MAX_TRASHOLD 0.9985

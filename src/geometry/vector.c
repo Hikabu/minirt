@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 23:57:40 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/04/02 17:30:39 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/04/05 17:56:32 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,6 @@ float	vec_product(t_crd *vec1, t_crd *vec2)
 float	scalar_vector_product(t_crd *a, t_crd *b) // scalar produc of 2 vectors
 {
 	float	res;
-	// printf ("a->x = %f\n", a->x);
-	// printf ("a->y = %f\n", a->y);
-	// printf ("a->z = %f\n", a->z);
-	// printf ("b->x = %f\n", b->x);
-	// printf ("b->y = %f\n", b->y);
-	// printf ("b->z = %f\n", b->z);
 	res = (a->x * b->x) + (a->y * b->y) + (a->z * b->z);
 	return (res);
 }

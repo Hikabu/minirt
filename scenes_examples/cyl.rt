@@ -1,0 +1,10 @@
+A	0.1							255,255,255
+
+C 	0,0,-5		0,0,1 		90
+
+L 	5,0,1			0.9	255,255,255
+
+
+
+#cylinder	x,y,z		orient vector		diameter	hight		RGB
+cy			0,2,2	-1,0,0   		1			1			0,255,0

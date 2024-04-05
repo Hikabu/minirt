@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 22:29:19 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/04/03 14:53:25 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/04/05 18:13:35 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ t_plane	*check_for_planes(t_entire *data, t_ray *ray, t_crd *d, float *dist)
 	while (plane)
 	{
 		*dist = check_intersection_plane(plane, ray, d);
-		printf("dist %f\n", *dist);
 		if (*dist > -1 && (nearest_dist == -1 || *dist < nearest_dist))
 		{
 			nearest_dist = *dist;
@@ -64,31 +63,31 @@ t_plane	*check_for_planes(t_entire *data, t_ray *ray, t_crd *d, float *dist)
 	return (nearest_plane);
 }
 
-void check_intersection(t_entire *data, t_pixel *pixel) //what objects are visible in the rendered image.
+void	check_intersection(t_entire *data, t_pixel *pixel) //what objects are visible in the rendered image.
 {
 	float dist; //dis from cmr to the itrs pnt of a ray with an obj in the scene
 
 	set_obj_in_pix(pixel, 0, 0, 0);
-	dist = -1;//no itrs yet
-	pixel->lenght = -1;
+	dist = -1;//no itrs yet -1
+	pixel->lenght = -1; //-1
 	vector_subtraction(&(pixel->coor),
 		&(pixel->ray.point[0]), &(pixel->ray.point[1])); //differences
 	norm_vector(&(pixel->coor)); //we know direction we simplify calculating by sainf it 1 ?
-	// pixel->plane = check_for_planes(data, &pixel->ray, &pixel->coor, &dist);//closest plne
-	// if (dist != -1)
-	// 	pixel->lenght = dist;
+	pixel->plane = check_for_planes(data, &pixel->ray, &pixel->coor, &dist);//closest plne
+	if (dist != -1)
+		pixel->lenght = dist;
 	pixel->sphere = check_for_spheres(data, &pixel->ray, &pixel->coor, &dist);
 	if (dist > 0 && (pixel->lenght == -1 || dist < pixel->lenght))
 	{
 		pixel->lenght = dist;
 		set_obj_in_pix(pixel, 0, pixel->sphere, 0);
 	}
-	// pixel->cyl = check_for_cilinder(data, pixel, &dist);
-	// if (dist != -1 && (pixel->lenght == -1 || dist < pixel->lenght))
-	// {
-	// 	pixel->lenght = dist;
-	// 	set_obj_in_pix(pixel, 0, 0, pixel->cyl);
-	// }
-	// else
-	// 	pixel->cyl = 0;
+	pixel->cyl = check_for_cilinder(data, pixel, &dist);
+	if (dist != -1 && (pixel->lenght == -1 || dist < pixel->lenght))
+	{
+		pixel->lenght = dist;
+		set_obj_in_pix(pixel, 0, 0, pixel->cyl);
+	}
+	else
+		pixel->cyl = 0;
 }

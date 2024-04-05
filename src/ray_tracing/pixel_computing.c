@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 17:37:32 by vfedorov          #+#    #+#             */
-/*   Updated: 2024/04/03 18:53:46 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/04/05 18:30:05 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,9 @@ void	pixel_plane_computing(t_entire *data, t_pixel *pixel)
 {
 	int		light;
 	float	light_ratio;
-	int		color;
-	printf("im in plane\n");
-	color = rgb_to_int(data->plane->rgb);
-	printf ("color is %d\n", color);
+
 	ft_mlx_pixel_put_img(&data->simg, pixel->x, pixel->y,
-		pixel->plane->color_ambient);
+		data->plane->color_ambient);
 	if (!data->light || check_for_shadow(data, pixel))
 		return ;
 	light_ratio = pixel_computing_plane_difreflect_ratio(data, pixel); //eflection ratio is the amount of light that is reflected off the surface of the object 
@@ -88,11 +85,11 @@ void	pixel_computing(t_entire *data, t_pixel *pixel)
 		-pixel->lenght);
 	vector_addition(&pixel->intersection, &pixel->ray.point[0], 
 		&pixel->intersection);
-	// if (pixel->plane)
-	// 	pixel_plane_computing(data, pixel);
-	if (pixel->sphere)
+	if (pixel->plane)
+		pixel_plane_computing(data, pixel);
+	else if (pixel->sphere)
 		pixel_computing_sphere( data, pixel);
-	// else if (pixel->cyl)
+	// if (pixel->cyl)
 	// 	pixel_computing_cyl(data, pixel);
 		
 }

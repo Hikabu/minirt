@@ -47,6 +47,7 @@ int	parse_scene_file(t_entire *ent, int fd)
 	}
 	//if (!status && is_invalid_file(ent))
 	//	status = 1;
+	(void)num;
 	close(fd);
 	return (status);
 }

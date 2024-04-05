@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 19:37:34 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/04/03 18:32:24 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/04/05 14:35:42 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ int parse_camera(t_entire *ent, char *line)
 	if (!camera)
 		return 1;
 	params = ft_split(line, ' ');
-	// if (ent->camera && ent->camera->id)
-	// 	return (show_parsing_error(ent, params, ERR_TOO_MANY_CAMERAS));
 	if (array_length(params) != 4)
 		return (show_parsing_error(ent, params, ERR_INVALID_NB_PARAMS));
 	ft_bzero(camera, sizeof(t_camera));
@@ -56,8 +54,6 @@ int parse_camera(t_entire *ent, char *line)
 	}
 	norm_vector(&camera->norm_vec);
 	ent->camera = camera;
-	// if (camera)
-	// 	free(camera);    //no free
 	free_array(params);
 	return (0);
 }
@@ -85,7 +81,6 @@ int parse_ambient(t_entire *ent, char *line)
 	if (array_length(params) != 3)
 		return (show_parsing_error(ent, params, ERR_INVALID_NB_PARAMS));
 	ft_bzero(amlight, sizeof(t_amlight));
-	// amlight->id = id_ambient;
 	i = 1;
 	while (params && params[i])
 	{
@@ -98,6 +93,7 @@ int parse_ambient(t_entire *ent, char *line)
 	amlight->color = rgb_to_int(amlight->rgb);
 	ent->amlight = amlight;
 	free_array(params);
+	(void)mem;
 	return (0);
 }
 
@@ -126,9 +122,8 @@ int	parse_light(t_entire *ent, char *line)
 			return (show_parsing_error(ent, params, ERR_INVALID_NB_COLORS));
 		i++;
 	}
+	light->color = rgb_to_int(light->rgb);
 	ent->light = light;	
-	// if (light)
-	// 	free(light);
 	free_array(params);
 	return (0);
 }
@@ -159,7 +154,6 @@ int	parse_sphere(t_entire *ent, char *line)
 	sphere->color = rgb_to_int(sphere->rgb);
 	sphere->color_ambient = parser_return_color_ambient(sphere->color,
 			 ent->amlight->color, ent->amlight->ratio);
-	printf("sphere->color_ambient: %d\n", sphere->color_ambient);
 	ent->sphere = sphere;
 	free_array(params);
 	
@@ -230,8 +224,6 @@ int parse_cylinder(t_entire *ent, char *line)
 	cylinder->color = rgb_to_int(cylinder->rgb);
 	norm_vector(&cylinder->norm_vec);
 	ent->cyl = cylinder;
-	// if (cylinder)
-	// 	free(cylinder);
 	free_array(params);
 	return (0);
 }
@@ -240,10 +232,6 @@ void	initial_scene(t_entire *ent)
 	ent->scene->camera_fov = 90; // default
 	ent->scene->ambient_light_intensiv = 1;
 	ent->scene->ambient_light_rgb = 0xffffff;
-	// ent->light = 0;
-	// ent->cyl = 0;
-	// ent->sphere = 0;
-	// ent->plane = 0;
 	ent->light = 0;
 	ent->cyl = 0;
 	ent->sphere = 0;
