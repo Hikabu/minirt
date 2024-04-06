@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   compute_sp_cyl.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 21:45:36 by vfedorov          #+#    #+#             */
-/*   Updated: 2024/04/06 18:50:42 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/04/06 22:08:11 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

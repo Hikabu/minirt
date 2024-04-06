@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_cylinder.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 00:42:25 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/04/06 20:16:50 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/04/06 22:04:50 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ static float intersection_cylinder_pipee(t_cyl *cyl, t_crd *crd, t_crd *os, t_pi
 	points[0] = nearest_distance(points);
 	if (points[0] == -1)
 		return (-1);
+	pixel->cyl_m = dot_ocv + dot_dv * points[0]; //distance from the cylinder's center point to the intersection point
 	if (pixel->cyl_m < 0 || pixel->cyl_m > cyl->heig)
 		return (-1);
 	return (points[0]);
