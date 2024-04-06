@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   compute_sp_cyl.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 21:45:36 by vfedorov          #+#    #+#             */
-/*   Updated: 2024/04/05 14:37:31 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/04/06 18:50:42 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,15 +87,15 @@ static	t_crd	norm_cyl(t_pixel *pixel)
 
 	if (pixel->cyl_type == PIPE)
 	{
-		scalar_multiplication(&v, &pixel->cyl->xyz,
+		scalar_multiplication(&v, &pixel->cyl->norm_vec,
 			pixel->cyl_m);
 		vector_subtraction(&res, &pixel->intersection, &pixel->cyl->xyz);
 		vector_subtraction(&res, &res, &v);
 	}
 	else if (pixel->cyl_type == PLANE_BEGIN)
-		res = pixel->cyl->plato_begin.xyz;
+		res = pixel->cyl->plato_begin.norm_vec;
 	else
-		res = pixel->cyl->plato_end.xyz;
+		res = pixel->cyl->plato_end.norm_vec;
 		
 	norm_vector(&res);
 	return (res);

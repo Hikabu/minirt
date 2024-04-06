@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pixel_computing.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 17:37:32 by vfedorov          #+#    #+#             */
-/*   Updated: 2024/04/05 18:30:05 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/04/06 18:41:52 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	pixel_computing(t_entire *data, t_pixel *pixel)
 		pixel_plane_computing(data, pixel);
 	else if (pixel->sphere)
 		pixel_computing_sphere( data, pixel);
-	// if (pixel->cyl)
-	// 	pixel_computing_cyl(data, pixel);
+	if (pixel->cyl)
+		pixel_computing_cyl(data, pixel);
 		
 }
