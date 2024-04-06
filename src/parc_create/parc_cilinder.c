@@ -14,18 +14,29 @@
 
 int	parse_params(t_entire *ent, char *line)
 {
+	t_objj *objj;
+
 	if (ft_strncmp(line, "A", 1) == 0) 
 		return (parse_ambient(ent, line));
 	if (ft_strncmp(line, "C", 1) == 0)
 		return (parse_camera(ent, line));
 	if (ft_strncmp(line, "L", 1) == 0)
-		return(parse_light(ent, line));
+		return (parse_light(ent, line));
 	if (ft_strncmp(line, "sp", 2) == 0)
-		return(parse_sphere(ent, line));
+	{
+		objj = create_object(ent, id_sphere);
+		return(parse_sphere(ent, line, objj));
+	}
 	if (ft_strncmp(line, "pl", 2) == 0)
-		return(parse_plane(ent, line));
+	{
+		objj = create_object(ent, id_plane);
+		return(parse_plane(ent, line, objj));
+	}
 	if (ft_strncmp(line, "cy", 2) == 0)
-		return(parse_cylinder(ent, line));
+	{
+		objj = create_object(ent, id_plane);
+		return(parse_cylinder(ent, line, objj));
+	}
 	return (0);
 }
 
@@ -65,6 +76,8 @@ void float_range_checker(float *key, float value, int flag_range)
 	else
 		error(1);
 }
+
+
 int parse_ambient(t_entire *ent, char *line)
 {
 	char **params;
@@ -128,7 +141,7 @@ int	parse_light(t_entire *ent, char *line)
 	return (0);
 }
 
-int	parse_sphere(t_entire *ent, char *line)
+int	parse_sphere(t_entire *ent, char *line, t_objj *objj)
 {
 	char **params;
 	t_sphere *sphere = malloc(sizeof(t_sphere));
@@ -154,13 +167,13 @@ int	parse_sphere(t_entire *ent, char *line)
 	sphere->color = rgb_to_int(sphere->rgb);
 	sphere->color_ambient = parser_return_color_ambient(sphere->color,
 			 ent->amlight->color, ent->amlight->ratio);
-	ent->sphere = sphere;
+	objj->object.sphere = *sphere;
 	free_array(params);
 	
 	return (0);
 }
 
-int	parse_plane(t_entire *ent, char *line)
+int	parse_plane(t_entire *ent, char *line, t_objj *objj)
 {
 	char **params;
 	t_plane *plane = malloc(sizeof(t_plane));
@@ -185,14 +198,12 @@ int	parse_plane(t_entire *ent, char *line)
 	}
 	plane->color = rgb_to_int(plane->rgb);
 	norm_vector(&plane->norm_vec);
-	ent->plane = plane;
-	// if (plane)
-	// 	free(plane);
+	objj->object.plane = *plane;
 	free_array(params);
 	return (0);
 }
 
-int parse_cylinder(t_entire *ent, char *line)
+int parse_cylinder(t_entire *ent, char *line, t_objj *objj)
 {
 	char **params;
 	t_cyl *cylinder = malloc(sizeof(t_cyl));
@@ -223,7 +234,8 @@ int parse_cylinder(t_entire *ent, char *line)
 	}
 	cylinder->color = rgb_to_int(cylinder->rgb);
 	norm_vector(&cylinder->norm_vec);
-	ent->cyl = cylinder;
+	// ent->cyl = cylinder;
+	objj->object.cylinder = *cylinder;
 	free_array(params);
 	return (0);
 }
@@ -236,4 +248,30 @@ void	initial_scene(t_entire *ent)
 	ent->cyl = 0;
 	ent->sphere = 0;
 	ent->plane = 0;
+}
+
+void	push_object(t_objj *obj, t_objj **objs)
+{
+	t_objj	*tmp;
+
+	if (!(*objs))
+		*objs = obj;
+	else
+	{
+		tmp = *objs;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = obj;
+	}
+}
+
+t_objj	*create_object(t_entire *ent, t_object_id id)
+{
+	t_objj	*objj;
+
+	objj = ft_calloc(sizeof(t_objj), 1);
+	objj->id = id;
+	push_object(objj, &ent->objj);
+	ent->num_objs++;
+	return (objj);
 }
