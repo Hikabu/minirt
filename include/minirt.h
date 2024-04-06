@@ -15,10 +15,11 @@
 # include "parcing.h"
 # define WIDTH 800
 # define HEIGHT 600
-# define BACKGROUND 1
+# define BACKGROUND 0
 # define BACKGROUND_COLOR 0
 # define MIN_TRASHOLD 0.0001
 # define MAX_TRASHOLD 0.9985
+# define ALBEDO 0.18
 // typedef struct 	s_light 						t_light;
 //typedef struct 	s_scene							t_scene;
 // typedef	struct	s_coordinates_for_vector		t_crd;

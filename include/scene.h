@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 10:05:37 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/26 21:02:23 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/04/02 14:35:02 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct s_scene
 	t_camera	*camera;
 }	t_scene;
 
-typedef struct s_img
+typedef struct s_img //information about the final image being rendered
 {
 	void	*img;
 	char	*addr;
@@ -81,7 +81,7 @@ void		get_fov_angles(t_entire *ent, t_scene *scene);
 void		pixel_computing(t_entire *data, t_pixel *pixel);
 
 
-void		initial_scene(t_entire *ent, t_scene *scene);
+void		initial_scene(t_entire *ent);
 // scene 
 // t_scene		*init_scene(t_camera *camera, t_sphere *sphere);
 void		check_intersection(t_entire *data, t_pixel *pixel);

@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 16:00:24 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/27 17:23:52 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/04/05 17:52:53 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,7 @@ t_color	*int_to_rgb(const int r, const int g, const int b)
 	rgb->b = b;
 	return (rgb);
 }
-// // ft_put_pixel(img->data, pixel, rgb_to_int(*color), scene->resolution);
-// void	ft_mlx_pixel_put_img(unsigned char *data, int x, int y,  const int color)
-// {
-// 	int	(*tab)[x][1]; // prepare the cast
 
-// 	tab = (void *)data; // cast for change 1 dimension array to 2 dimensions
-// 	*tab[y][x] = color; // set the pixel at the coord x,y with the color value
-// }
 void	ft_mlx_pixel_put_img(t_img *img, int x, int y, const int color) //set that color in the image
 {
 	char *dst;
@@ -69,23 +62,6 @@ void	init_image(t_entire *data)
 	mlx_put_image_to_window(data->mlx, data->window, data->simg.img, 0, 0);
 	data->simg.addr = mlx_get_data_addr(data->simg.img,
 			&(data->simg.bits_per_pixel), &(data->simg.line_length), &(data->simg.endian));
-		// mlx_loop(data->mlx);
-	printf("data->mlx = %p\n", data->mlx);
 	if (!data->simg.addr)
 		error(1);
 }
-
-// void	init_image(t_global *data)
-// {
-// 	data->mlx = mlx_init();
-// 	if (!data->mlx)
-// 		error_mlx(data);
-// 	data->window = mlx_new_window(data->mlx, WIDTH, HEIGHT, "minirt");
-// 	data->img.img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
-// 	if (!data->window || !data->img.img)
-// 		error_mlx(data);
-// 	data->img.addr = mlx_get_data_addr(data->img.img,
-// 			&(data->img.bpp), &(data->img.line_length), &(data->img.endian));
-// 	if (!data->img.addr)
-// 		error_mlx(data);
-// }

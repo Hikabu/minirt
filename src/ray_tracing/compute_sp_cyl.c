@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 21:45:36 by vfedorov          #+#    #+#             */
-/*   Updated: 2024/03/27 21:32:34 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/04/05 14:37:31 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ int	color_diffusal(int color_sum, int col1, int col2, float intens) // blend two
 	if (tmp > 255)
 		res = 0xff0000;
 	else
-		res = (tmp >> 8 & 0xff)
+		res = tmp << 16;
+	tmp = (color_sum >> 8 & 0xff)
 			+ (int)(intens * ((float)(col1 >> 8 & 255)
 				*((float)(col2 >> 8 & 255))));
 	if (tmp > 255)
@@ -42,6 +43,7 @@ int	color_diffusal(int color_sum, int col1, int col2, float intens) // blend two
 	return (res);
 				
 }
+
 float	pixel_comp_sphere_refl_ratio(t_entire *data, t_pixel *pixel)
 {
 	t_crd	light_dir;
@@ -50,32 +52,30 @@ float	pixel_comp_sphere_refl_ratio(t_entire *data, t_pixel *pixel)
 
 	vector_subtraction(&normal, &pixel->intersection, &pixel->sphere->xyz);
 	norm_vector(&normal);
-	vector_subtraction(&light_dir, &data->scene->obj->light->xyz,
+	vector_subtraction(&light_dir, &data->light->xyz,
 		&pixel->intersection);
 	norm_vector(&light_dir);
+
 	light_intens = ang_bet_2_vec(&light_dir, &normal) 
 		* data->light->ratio; // ratio_light??
 	if (light_intens > 0)
 		return (light_intens);
-	return (0);
+	return ( 0);
 }
+
 void pixel_computing_sphere(t_entire *data, t_pixel *pixel)
 {
 	int		light;
 	float	light_ratio;
-	// int		i = 0;
-	// printf("pixel->plane is %d\n", pixel->plane->rgb.r);
-	// i = rgb_to_int(pixel->plane->rgb);
-	// int combined_color = rgb_to_int(pixel->plane->rgb);
-	// printf("i is %d\n", combined_color);
-	ft_mlx_pixel_put_img(&data->simg, pixel->x, pixel->y, pixel->sphere->color);
+
+	ft_mlx_pixel_put_img(&data->simg, pixel->x, pixel->y, pixel->sphere->color_ambient);
 	if (!data->light || check_for_shadow(data, pixel))
 		return ;
 	light_ratio = pixel_comp_sphere_refl_ratio(data, pixel);
 	if (light_ratio <= 0)
 		return ;
-	light = color_diffusal(pixel->sphere->color_ambient, pixel->sphere->color,
-		data->scene->obj->light->color, light_ratio);
+	light = color_diffusal(pixel->sphere->color_ambient, data->sphere->color,
+		data->light->color, light_ratio);
 	ft_mlx_pixel_put_img(&data->simg, pixel->x, pixel->y, light);
 	return ;
 }
@@ -108,11 +108,11 @@ static	float pixel_comp_cyl_refl_ratio(t_entire *data, t_pixel *pixel)
 	float	light_intensity;
 
 	normal = norm_cyl(pixel);
-	vector_subtraction(&light_dir, &data->scene->obj->light->xyz,
+	vector_subtraction(&light_dir, &data->light->xyz,
 		&pixel->intersection);
 	norm_vector(&light_dir);
 	light_intensity = ang_bet_2_vec(&light_dir, &normal)
-		* data->scene->obj->light->ratio;
+		* data->light->ratio;
 	if (light_intensity > 0)
 		return (light_intensity);
 	return (0);
@@ -124,14 +124,14 @@ void	pixel_computing_cyl(t_entire *data, t_pixel *pixel)
 	float	light_ratio;
 
 	ft_mlx_pixel_put_img(&data->simg, pixel->x, pixel->y,
-		pixel->cyl->color);
-	if (!data->scene->obj->light || check_for_shadow(data, pixel))
+		pixel->cyl->color_ambient);
+	if (!data->light || check_for_shadow(data, pixel))
 		return ;
 	light_ratio = pixel_comp_cyl_refl_ratio(data, pixel);
 	if (light_ratio <= 0)
 		return ;
 	light = color_diffusal(pixel->cyl->color_ambient, 
-			pixel->cyl->color, data->scene->obj->light->color, 
+			pixel->cyl->color, data->light->color, 
 			light_ratio);
 	ft_mlx_pixel_put_img(&data->simg, pixel->x, pixel->y, light);
 	return ;

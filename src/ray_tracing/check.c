@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 22:29:19 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/27 22:17:33 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/04/05 18:13:35 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,17 @@ float	check_intersection_plane(t_plane *plane, t_ray *ray, t_crd *rd) //distance
 	float	t;
 	float	dot_dn;
 	t_crd	sub_ra;
-
-	dot_dn = scalar_vector_product(rd, &(plane->norm_vec)); //projection of one vector onto another.
+	if (!plane)
+	{
+		return -10.0;
+	}
+	dot_dn = scalar_vector_product(rd, &(plane->norm_vec)); //projection of one vector onto another.(rewrittedd)
 	if (dot_dn == 0)
 		return (-1);
 	vector_subtraction(&sub_ra, &(ray->point[0]), &(plane->xyz));
 	t = scalar_vector_product(&sub_ra, &(plane->norm_vec)) / dot_dn;
 	if (t < 0)
 		return (-1);
-	printf("t is %f\n", t);
 	return (t);
 }
 
@@ -61,18 +63,17 @@ t_plane	*check_for_planes(t_entire *data, t_ray *ray, t_crd *d, float *dist)
 	return (nearest_plane);
 }
 
-void check_intersection(t_entire *data, t_pixel *pixel) //what objects are visible in the rendered image.
+void	check_intersection(t_entire *data, t_pixel *pixel) //what objects are visible in the rendered image.
 {
 	float dist; //dis from cmr to the itrs pnt of a ray with an obj in the scene
 
 	set_obj_in_pix(pixel, 0, 0, 0);
-	dist = -1;//no itrs yet
-	pixel->lenght = -1;
+	dist = -1;//no itrs yet -1
+	pixel->lenght = -1; //-1
 	vector_subtraction(&(pixel->coor),
 		&(pixel->ray.point[0]), &(pixel->ray.point[1])); //differences
 	norm_vector(&(pixel->coor)); //we know direction we simplify calculating by sainf it 1 ?
 	pixel->plane = check_for_planes(data, &pixel->ray, &pixel->coor, &dist);//closest plne
-	// printf("pixel->plane is %f\n", pixel->plane->xyz.x);
 	if (dist != -1)
 		pixel->lenght = dist;
 	pixel->sphere = check_for_spheres(data, &pixel->ray, &pixel->coor, &dist);

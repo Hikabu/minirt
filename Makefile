@@ -6,7 +6,7 @@
 #    By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/19 15:15:41 by valeriafedo       #+#    #+#              #
-#    Updated: 2024/03/22 14:42:58 by vfedorov         ###   ########.fr        #
+#    Updated: 2024/04/02 18:57:45 by vfedorov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,7 +72,8 @@ FILE_C		+=	$(addprefix ray_tracing/, \
 					check_cylinder.c	\
 					check_sphere.c		\
 					solver.c			\
-					pixel_computing.c)
+					pixel_computing.c	\
+					rgb_utils.c)
 					
 
 OBJ			=	$(addprefix objects/, $(FILE_C:%.c=%.o))

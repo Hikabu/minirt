@@ -101,36 +101,6 @@ int	is_float(char *str)
 }
 
 
-// lets watch whart will be 
-int	rgb_to_int(const t_color rgb)
-{
-	return(rgb.r << 16 | rgb.g << 8 | rgb.b);
-}
-
-int	parse_color(char *str, t_color *color)
-{
-	int		i;
-	int		ret;
-	char	**rgb;
-
-	i = -1;
-	ret = 0;
-	rgb = ft_split(str, ',');
-	while (rgb && rgb[++i])
-		if (!is_ulong(rgb[i]))
-			ret = 1;
-	if (array_length(rgb) != 3)
-		ret = 1;
-	else
-	{
-		color->r = (float) str_to_int_color(rgb[0]) / 255;
-		color->g = (float) str_to_int_color(rgb[1]) / 255;
-		color->b = (float) str_to_int_color(rgb[2]) / 255;
-	}
-	free_array(rgb);
-	return (ret);
-}
-
 int is_ulong(char *str)
 {
  int i;

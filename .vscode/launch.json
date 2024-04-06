@@ -9,7 +9,11 @@
             "request": "launch",
             "name": "Debug",
             "program": "${workspaceFolder}/minirt",
+<<<<<<< HEAD
             "args": ["scenes_examples/8_spheres.rt"],
+=======
+            "args": ["scenes_examples/.rt"],
+>>>>>>> new_version
             "cwd": "${workspaceFolder}"
         }
     ]

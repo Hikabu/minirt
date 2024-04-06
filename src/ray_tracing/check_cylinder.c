@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 00:42:25 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/27 18:38:09 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/04/06 17:30:35 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static void	define_cyl(t_cyl *cyl, t_plane *plane, t_crd *point)
 {
 	(void) point;
 	plane->color = cyl->color;
+	plane->norm_vec = cyl->norm_vec;
 	plane->xyz = cyl->xyz;
 	plane->color_ambient = cyl->color;
 }
@@ -56,17 +57,17 @@ float	nearest_distance(float *points) //determine the nearest intersection point
 	return (-1);
 }
 
-static float intersection_cylinder_pipee(t_cyl *cyl, t_crd *crd, t_crd *os, t_pixel *pixel)
+static float intersection_cylinder_pipee(t_cyl *cyl, t_crd *crd, t_crd *os, t_pixel *pixel) //"origin-to-shape" vector
 {
 	float	points[2];
 	float	dot_dv;
 	float	dot_ocv;
 	t_crd	coef;
 
-	dot_dv = scalar_vector_product(crd, &(cyl->xyz));
-	dot_ocv = scalar_vector_product(os, &(cyl->xyz));
+	dot_dv = scalar_vector_product(crd, &(cyl->norm_vec));
+	dot_ocv = scalar_vector_product(os, &(cyl->norm_vec));
 	coef.x = scalar_vector_product(crd, crd) - dot_dv * dot_dv;
-	coef.y = 2.0f * (scalar_vector_product(crd, os) - dot_dv * scalar_vector_product(os, &(cyl->xyz)));
+	coef.y = 2.0f * (scalar_vector_product(crd, os) - dot_dv * scalar_vector_product(os, &(cyl->norm_vec)));
 	coef.z = scalar_vector_product(os, os) - dot_ocv * dot_ocv - (cyl->diam / 2) * (cyl->diam / 2);
 	if (!solve_quadro_eq(coef.x, coef.y, coef.z, points))
 		return (-1);
@@ -87,7 +88,7 @@ static float define_dist_type_inters(t_pixel *pixel, float dist_plane, int type)
 	return (dist);
 }   
 
-float check_intersection_cyl(t_cyl *cyl, t_pixel *pixel)
+float check_intersection_cyl(t_cyl *cyl, t_pixel *pixel) //calculate the intersection between a ray and a cylinde
 {
 	float	dist;
 	float	dist_plane;
@@ -102,12 +103,14 @@ float check_intersection_cyl(t_cyl *cyl, t_pixel *pixel)
 	if (dist > 0)
 		pixel->cyl_type = PIPE;
 	define_cyl(cyl, &cyl->plato_begin, &cyl->xyz);
-	dist_plane = intersection_cyl_plane(cyl, &cyl->plato_begin, &(pixel->ray), &pixel->coor);
-	scalar_multiplication(&cyl->plato_begin.xyz, &cyl->plato_begin.xyz, -1);
+	dist_plane = intersection_cyl_plane(cyl, &cyl->plato_begin, &(pixel->ray), &(pixel->coor));
+	scalar_multiplication(&cyl->plato_begin.norm_vec,
+		&cyl->plato_begin.norm_vec, -1);
 	if (dist_plane != -1 && (dist_plane < dist || dist == -1))
 		dist = define_dist_type_inters(pixel, dist_plane, PLANE_BEGIN);
-	scalar_multiplication(&point_end, &cyl->xyz, cyl->heig);
+	scalar_multiplication(&point_end, &cyl->norm_vec, cyl->heig);
 	vector_addition(&point_end, &cyl->xyz, &point_end);
+	printf ("cyl->plato_end %f %f %f\n", cyl->plato_end.xyz.x, cyl->plato_end.xyz.y, cyl->plato_end.xyz.z);
 	define_cyl(cyl, &cyl->plato_end, &point_end);
 	dist_plane = intersection_cyl_plane(cyl, &cyl->plato_end, &(pixel->ray), &(pixel->coor));
 	if (dist_plane != -1 && (dist_plane < dist || dist == -1))

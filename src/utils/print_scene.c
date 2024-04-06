@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_scene.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:34:51 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/26 15:08:30 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/04/02 17:13:39 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@ void	print_coordinate(void *coord, char *endchar);
 void	print_spheres(t_sphere *sp, char type)
 {
 	int	i;
-
+	t_sphere *tmp = sp;
+	
 	i = 0;
-	while (sp)
+	while (tmp)
 	{
 		if (type == 'a')
 			printf("\e[0;33mSphere %d: \e[0m", i++);
@@ -33,7 +34,7 @@ void	print_spheres(t_sphere *sp, char type)
 			sp->diametr);
 		print_color(sp->color);
 		print_color(sp->color_ambient);
-		sp = sp->next;
+		tmp = tmp->next;
 		if (type != 'a')
 			break ;
 	}
@@ -68,7 +69,7 @@ void	print_cylinders(t_cyl	*cy, char type)
 		print_coordinate(&cy->xyz, "\n");
 		printf("        \t\e[0;34mOrientation: \e[0m");
 		print_coordinate(&cy->norm_vec, "\n");
-		print_coordinate(&cy->rgb,  "\n");
+		print_color(cy->color);
 		// print_coordinate(cy->color_ambient,  "\n");
 		printf("        \t\e[0;34mDiameter: \e[0m%f\n",
 			cy->diam);
@@ -95,7 +96,7 @@ void	print_planes(t_plane *pl, char type)
 		print_coordinate(&pl->xyz, "\n");
 		printf("        \t\e[0;34mOrientation: \e[0m");
 		print_coordinate(&pl->norm_vec, "\n");
-		print_coordinate(&pl->rgb, "\n");
+		print_color(pl->color);
 		print_color(pl->color_ambient);
 		pl = pl->next;
 		if (type != 'a')
