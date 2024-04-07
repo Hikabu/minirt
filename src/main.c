@@ -36,9 +36,9 @@ int	main(int ac, char **av)
 	if (open_and_parse_file(&entire, av[1]) == 0)
 	{
 		print_scene(&entire, entire.scene);
-		init_image(&entire);
-		ray_trace(&entire);
-		mlx_loop(entire.mlx);
+		// init_image(&entire);
+		// ray_trace(&entire);
+		// mlx_loop(entire.mlx);
 		// all_exiests(entire);
 	}
 	// else 
