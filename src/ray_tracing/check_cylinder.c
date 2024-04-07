@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 00:42:25 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/04/06 17:30:35 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/04/06 22:04:50 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ static float intersection_cylinder_pipee(t_cyl *cyl, t_crd *crd, t_crd *os, t_pi
 	points[0] = nearest_distance(points);
 	if (points[0] == -1)
 		return (-1);
+	pixel->cyl_m = dot_ocv + dot_dv * points[0]; //distance from the cylinder's center point to the intersection point
 	if (pixel->cyl_m < 0 || pixel->cyl_m > cyl->heig)
 		return (-1);
 	return (points[0]);
@@ -110,7 +111,6 @@ float check_intersection_cyl(t_cyl *cyl, t_pixel *pixel) //calculate the interse
 		dist = define_dist_type_inters(pixel, dist_plane, PLANE_BEGIN);
 	scalar_multiplication(&point_end, &cyl->norm_vec, cyl->heig);
 	vector_addition(&point_end, &cyl->xyz, &point_end);
-	printf ("cyl->plato_end %f %f %f\n", cyl->plato_end.xyz.x, cyl->plato_end.xyz.y, cyl->plato_end.xyz.z);
 	define_cyl(cyl, &cyl->plato_end, &point_end);
 	dist_plane = intersection_cyl_plane(cyl, &cyl->plato_end, &(pixel->ray), &(pixel->coor));
 	if (dist_plane != -1 && (dist_plane < dist || dist == -1))
