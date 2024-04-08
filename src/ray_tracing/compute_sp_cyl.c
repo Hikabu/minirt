@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 21:45:36 by vfedorov          #+#    #+#             */
-/*   Updated: 2024/04/06 22:08:11 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/04/08 21:15:42 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ float	pixel_comp_sphere_refl_ratio(t_entire *data, t_pixel *pixel)
 
 void pixel_computing_sphere(t_entire *data, t_pixel *pixel)
 {
+
 	int		light;
 	float	light_ratio;
 
@@ -74,9 +75,10 @@ void pixel_computing_sphere(t_entire *data, t_pixel *pixel)
 	light_ratio = pixel_comp_sphere_refl_ratio(data, pixel);
 	if (light_ratio <= 0)
 		return ;
-	light = color_diffusal(pixel->sphere->color_ambient, data->sphere->color,
+	light = color_diffusal(pixel->sphere->color_ambient, pixel->sphere->color,
 		data->light->color, light_ratio);
 	ft_mlx_pixel_put_img(&data->simg, pixel->x, pixel->y, light);
+
 	return ;
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 12:13:38 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/04/06 19:36:48 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/04/08 21:20:59 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ int	main(int ac, char **av)
 	if (open_and_parse_file(&entire, av[1]) == 0)
 	{
 		print_scene(&entire, entire.scene);
-		// init_image(&entire);
-		// ray_trace(&entire);
-		// mlx_loop(entire.mlx);
+		init_image(&entire);
+		ray_trace(&entire);
+		mlx_loop(entire.mlx);
 		// all_exiests(entire);
 	}
 	// else 

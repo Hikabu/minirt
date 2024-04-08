@@ -9,7 +9,7 @@
             "request": "launch",
             "name": "Debug",
             "program": "${workspaceFolder}/minirt",
-            "args": ["scenes_examples/basic_1.rt"],
+            "args": ["scenes_examples/.rt"],
             "cwd": "${workspaceFolder}"
         }
     ]

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solver.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 00:59:45 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/03/05 16:05:27 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/04/07 20:56:58 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -6,7 +6,7 @@
 #    By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/19 15:15:41 by valeriafedo       #+#    #+#              #
-#    Updated: 2024/04/02 18:57:45 by vfedorov         ###   ########.fr        #
+#    Updated: 2024/04/07 19:52:21 by vfedorov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ HEADER		=	$(addprefix include/,	\
 
 CFLAGS		=	-I include
 
-CFLAGS		+=	-Wall -Wextra -Werror -g 
+CFLAGS		+=	-Wall -Wextra -Werror -g
 
 # CFLAGS		+=	-fsanitize=address
 

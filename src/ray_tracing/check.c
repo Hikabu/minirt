@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 22:29:19 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/04/05 18:13:35 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/04/08 22:32:41 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	set_obj_in_pix(t_pixel *pixel, t_plane *plane, t_sphere *sphere, t_cyl *cyl)
 {
+	
 	if (!pixel)
 		return ;
 	pixel->plane = plane;
@@ -23,13 +24,12 @@ void	set_obj_in_pix(t_pixel *pixel, t_plane *plane, t_sphere *sphere, t_cyl *cyl
 
 float	check_intersection_plane(t_plane *plane, t_ray *ray, t_crd *rd) //distance from the ray's origin to the intersection point
 {
+	
 	float	t;
 	float	dot_dn;
 	t_crd	sub_ra;
 	if (!plane)
-	{
 		return -10.0;
-	}
 	dot_dn = scalar_vector_product(rd, &(plane->norm_vec)); //projection of one vector onto another.(rewrittedd)
 	if (dot_dn == 0)
 		return (-1);
@@ -40,24 +40,29 @@ float	check_intersection_plane(t_plane *plane, t_ray *ray, t_crd *rd) //distance
 	return (t);
 }
 
+
 t_plane	*check_for_planes(t_entire *data, t_ray *ray, t_crd *d, float *dist)
 {
+
 	t_plane *plane;
 	t_plane	*nearest_plane;
 	float	nearest_dist;
+	t_objj *current;
 
-	plane = data->plane;   //planes?
+	current = data->objj;
 	nearest_dist = -1;
 	nearest_plane = 0;
-	while (plane)
+	while (current != NULL)
 	{
+		// printf ("current->plane->color_ambient in min= %d\n", current->plane->color_ambient);
+		plane = (t_plane *)&(current->object.plane);
 		*dist = check_intersection_plane(plane, ray, d);
 		if (*dist > -1 && (nearest_dist == -1 || *dist < nearest_dist))
 		{
 			nearest_dist = *dist;
-			nearest_plane = plane;
-		} 
-		plane = plane->next;
+			nearest_plane = (t_plane *)&(current->object.plane);
+		}
+		current = current->next;
 	}
 	*dist = nearest_dist;
 	return (nearest_plane);
@@ -82,12 +87,12 @@ void	check_intersection(t_entire *data, t_pixel *pixel) //what objects are visib
 		pixel->lenght = dist;
 		set_obj_in_pix(pixel, 0, pixel->sphere, 0);
 	}
-	pixel->cyl = check_for_cilinder(data, pixel, &dist);
-	if (dist != -1 && (pixel->lenght == -1 || dist < pixel->lenght))
-	{
-		pixel->lenght = dist;
-		set_obj_in_pix(pixel, 0, 0, pixel->cyl);
-	}
-	else
-		pixel->cyl = 0;
+	// pixel->cyl = check_for_cilinder(data, pixel, &dist);
+	// if (dist != -1 && (pixel->lenght == -1 || dist < pixel->lenght))
+	// {
+	// 	pixel->lenght = dist;
+	// 	set_obj_in_pix(pixel, 0, 0, pixel->cyl);
+	// }
+	// else
+	// 	pixel->cyl = 0;
 }

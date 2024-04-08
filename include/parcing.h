@@ -118,6 +118,9 @@ typedef struct s_objj
 {
 	t_object_id		id;
 	t_obj_union		object;
+	t_sphere		*sphere;
+	t_plane			*plane;	
+	t_cyl			*cylinder;
 	struct s_objj	*next;
 }	t_objj;
 
@@ -156,8 +159,14 @@ typedef	struct s_objects
 	t_sphere	*sphere;
 } t_obj;
 
+t_objj	*create_object_sphere(t_entire *ent, t_object_id id);
+t_objj	*create_object_plane(t_entire *ent, t_object_id id);
 
-void		init_all(t_entire *ent);
+
+
+
+
+
 void		translate_obj(t_scene *scene, t_crd *crd);
 
 void		vector_addition(t_crd *result, t_crd *a, t_crd *b);

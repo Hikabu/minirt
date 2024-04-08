@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 19:37:34 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/04/05 14:35:42 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/04/08 22:36:00 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ int	parse_params(t_entire *ent, char *line)
 		objj = create_object(ent, id_plane);
 		return(parse_plane(ent, line, objj));
 	}
-	if (ft_strncmp(line, "cy", 2) == 0)
-	{
-		objj = create_object(ent, id_plane);
-		return(parse_cylinder(ent, line, objj));
-	}
+	// if (ft_strncmp(line, "cy", 2) == 0)
+	// {
+	// 	objj = create_object(ent, id_plane);
+	// 	return(parse_cylinder(ent, line, objj));
+	// }
 	return (0);
 }
 
@@ -136,6 +136,7 @@ int	parse_light(t_entire *ent, char *line)
 		i++;
 	}
 	light->color = rgb_to_int(light->rgb);
+	printf ("light->color = %d\n", light->color);
 	ent->light = light;	
 	free_array(params);
 	return (0);
@@ -197,8 +198,11 @@ int	parse_plane(t_entire *ent, char *line, t_objj *objj)
 		i++;
 	}
 	plane->color = rgb_to_int(plane->rgb);
+	plane->color_ambient = parser_return_color_ambient(plane->color,
+			 ent->amlight->color, ent->amlight->ratio);
 	norm_vector(&plane->norm_vec);
 	objj->object.plane = *plane;
+	printf ("objj->object.plane->color_ambient = %d\n", objj->object.plane.color_ambient);
 	free_array(params);
 	return (0);
 }

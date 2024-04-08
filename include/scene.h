@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 10:05:37 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/04/02 14:35:02 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/04/08 21:03:51 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,6 @@ typedef struct s_img //information about the final image being rendered
 	int		endian;
 }	t_img;
 
-typedef struct s_vplane
-{
-	float width;
-	float height;
-	float x_pixel;
-	float y_pixel;
-	
-}	t_vplane;
 
 float		vec_product(t_crd *vec1, t_crd *vec2);
 void		norm_vector(t_crd *vec);
