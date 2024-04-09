@@ -25,7 +25,7 @@
 // typedef	struct	s_coordinates_for_vector		t_crd;
 // typedef struct 	s_two_points_for_ray_direction	t_ray;
 typedef struct s_light t_light;
-
+typedef struct s_objj	t_objj;
 typedef	struct s_pixel
 {
 	int			x;
