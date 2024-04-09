@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pixel_computing.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 17:37:32 by vfedorov          #+#    #+#             */
-/*   Updated: 2024/04/06 18:41:52 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/04/08 22:31:27 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	pixel_plane_computing(t_entire *data, t_pixel *pixel)
 	float	light_ratio;
 
 	ft_mlx_pixel_put_img(&data->simg, pixel->x, pixel->y,
-		data->plane->color_ambient);
+		pixel->plane->color_ambient);
 	if (!data->light || check_for_shadow(data, pixel))
 		return ;
 	light_ratio = pixel_computing_plane_difreflect_ratio(data, pixel); //eflection ratio is the amount of light that is reflected off the surface of the object 

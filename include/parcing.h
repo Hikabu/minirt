@@ -14,12 +14,6 @@
 # define ERR_NOT_A_ULONG "Value is not a unsigned long"
 # define ERR_NOT_A_FLOAT "Value is not a float"
 
-// typedef struct	s_light						t_light;
-// typedef struct	s_ambient_lightning			t_amlight;
-// typedef struct	s_plane						t_plane;
-// typedef struct	s_cylinder					t_cyl;
-// typedef struct	s_scene						t_scene;
-// typedef struct	s_img						t_img;
 
 typedef enum e_object_id
 {
@@ -111,6 +105,25 @@ typedef struct s_cylinder
 	t_cyl			*next;
 }	t_cyl;
 
+
+typedef union u_object
+{
+	t_sphere	sphere;
+	t_plane		plane;
+	t_cyl	cylinder;
+}	t_obj_union;
+
+
+typedef struct s_objj
+{
+	t_object_id		id;
+	t_obj_union		object;
+	t_sphere		*sphere;
+	t_plane			*plane;	
+	t_cyl			*cylinder;
+	struct s_objj	*next;
+}	t_objj;
+
 typedef struct s_entire
 {
 	t_obj		*obj;
@@ -133,6 +146,9 @@ typedef struct s_entire
     int			bits_per_pixel;
     int			line_length;
 	int			endian;
+	t_objj		*objj;
+	size_t			num_objs;
+
 }	t_entire;
 
 typedef	struct s_objects
@@ -143,8 +159,14 @@ typedef	struct s_objects
 	t_sphere	*sphere;
 } t_obj;
 
+t_objj	*create_object_sphere(t_entire *ent, t_object_id id);
+t_objj	*create_object_plane(t_entire *ent, t_object_id id);
 
-void		init_all(t_entire *ent);
+
+
+
+
+
 void		translate_obj(t_scene *scene, t_crd *crd);
 
 void		vector_addition(t_crd *result, t_crd *a, t_crd *b);
@@ -156,9 +178,16 @@ int			array_length(char *arr[]);
 int			parse_ambient(t_entire *ent, char *line);
 int			parse_camera(t_entire *ent, char *line);
 int			parse_light(t_entire *ent, char *line);
-int			parse_sphere(t_entire *ent, char *line);
-int			parse_plane(t_entire *ent, char *line);
-int			parse_cylinder(t_entire *ent, char *line);
+// int			parse_sphere(t_entire *ent, char *line);
+int			parse_sphere(t_entire *ent, char *line, t_objj *objj);
+
+int			parse_plane(t_entire *ent, char *line, t_objj *objj);
+// int			parse_plane(t_entire *ent, char *line);
+
+// int			parse_cylinder(t_entire *ent, char *line);
+int			parse_cylinder(t_entire *ent, char *line, t_objj *objj);
+t_objj	*create_object(t_entire *ent, t_object_id id);
+
 void		free_array(char *arr[]);
 int			parse_ulong(char *str, size_t *num);
 int			str_to_int_color(char *str);

@@ -54,7 +54,7 @@ void	print_lights(t_light *l)
 	print_coordinate(&l->rgb, "\n");
 }
 
-void	print_cylinders(t_cyl	*cy, char type)
+void	print_cylinders(t_cyl *cy, char type)
 {
 	int	i;
 
@@ -104,6 +104,54 @@ void	print_planes(t_plane *pl, char type)
 	}
 }
 
+
+void print_all_objj(t_entire *entire)
+{
+    if (entire == NULL || entire->objj == NULL) {
+        printf("No objj objects to print.\n");
+        return;
+    }
+    printf("Printing all objj objects:\n");
+    const t_objj *current = entire->objj;
+    while (current != NULL) {
+        // Print details of current objj object
+        printf("ID: %d\n", current->id);
+
+		t_plane *pl;
+		t_sphere *sp;
+		t_cyl *cy;
+
+        switch (current->id) 
+		{
+            case id_plane:
+                // printf("Type: Plane\n");
+				pl = (t_plane *)&(current->object.plane);
+				print_planes(pl, 'a');
+                break;
+
+            case id_sphere:
+                // printf("Type: Sphere\n");
+				sp = (t_sphere *)&(current->object.sphere);
+				print_spheres(sp, 'a');
+                break;
+            case id_cyl:
+                // printf("Type: Cylinder\n");
+				cy = (t_cyl *)&(current->object.cylinder);
+				print_cylinders(cy, 'a');
+                break;
+            // Add more cases if needed for other object types
+
+            default:
+                printf("Unknown object type\n");
+                break;
+        }
+
+        // Print other details of objj if needed
+        current = current->next; // Move to next objj object
+    }
+}
+
+
 void	print_scene(t_entire *ent, t_scene	*scene)
 {
 	// printf("im here\n");
@@ -119,14 +167,17 @@ void	print_scene(t_entire *ent, t_scene	*scene)
 		sizeof(t_obj), sizeof(t_sphere), sizeof(t_plane),
 		sizeof(t_cyl), sizeof(t_light));
 	print_scene_characteristics(ent, scene);
-	if (ent->sphere)
-		print_spheres(ent->sphere, 'a');
-	if (ent->light)
-		print_lights(ent->light);
-	if (ent->plane)
-		print_planes(ent->plane, 'a');
-	if (ent->cyl)
-		print_cylinders(ent->cyl, 'a');
+
+    print_all_objj(ent);
+
+	// if (ent->sphere)
+	// 	print_spheres(ent->sphere, 'a');
+	// if (ent->light)
+	// 	print_lights(ent->light);
+	// if (ent->plane)
+	// 	print_planes(ent->plane, 'a');
+	// if (ent->cyl)
+	// 	print_cylinders(ent->cyl, 'a');
 }
 
 static void	print_scene_characteristics(t_entire *ent, t_scene *scene)

@@ -24,18 +24,21 @@
 //typedef struct 	s_scene							t_scene;
 // typedef	struct	s_coordinates_for_vector		t_crd;
 // typedef struct 	s_two_points_for_ray_direction	t_ray;
-
+typedef struct s_light t_light;
+typedef struct s_objj	t_objj;
 typedef	struct s_pixel
 {
 	int			x;
 	int			y;
 	t_crd		coor;
+	t_objj		*objj;
 	t_crd		intersection;
 	float		lenght;
 	t_plane		*plane;
 	t_sphere	*sphere;
 	t_cyl		*cyl;
 	t_ray		ray;
+	t_light		*light;
 	int			cyl_type;
 	float		cyl_m;
 }	t_pixel;

@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 00:45:22 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/04/07 16:49:42 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/04/08 22:20:01 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,49 +26,52 @@
 	 the sphere at two points (entering and exiting). If - one root, 
 	  the ray is tangent to the sphere at that point.
 */
+
 float	check_intersection_sphere(t_sphere *sphere, t_ray *ray, t_crd *rd)
 {
 	float	points[2];
-	t_crd	orpoint;
+	t_crd	orpoint; //points from the ray's starting point towards the center of the sphere.
 
-vector_subtraction(&orpoint, &sphere->xyz, &(ray->point[0]));
-if (!solve_quadro_eq(scalar_vector_product(rd, rd),
-		2 * scalar_vector_product(rd, &orpoint), 
-		scalar_vector_product(&orpoint, &orpoint)
-		- ((sphere->diametr /2) * (sphere->diametr / 2)), 
-		points) || (points[0] < 0 && points[1] < 0))
+	vector_subtraction(&orpoint, &sphere->xyz, &(ray->point[0]));
+	float f1 = scalar_vector_product(rd, rd);
+	float f2 = 2 * scalar_vector_product(rd, &orpoint);
+	float f3 = scalar_vector_product(&orpoint, &orpoint) - ((sphere->diametr /2) * (sphere->diametr / 2));
+
+	if ((!(int)solve_quadro_eq(f1, f2, f3, points) ))
+		return (-1);
+	if (points[0] < 0)
+		points[0] = points[1];
+	else if (points[1] < 0)
+		points[1] = points[0];
+	if (points[0] <= points[1] && points[0] > 0)
+		return (points[0]);
+	if (points[1] <= points[0] && points[1] > 0)
+		return (points[1]);
 	return (-1);
-if (points[0] < 0)
-	points[0] = points[1];
-else if (points[1] < 0)
-	points[1] = points[0];
-if (points[0] <= points[1] && points[0] > 0)
-	return (points[0]);
-if (points[1] <= points[0] && points[1] > 0)
-	return (points[1]);
-return (-1);
 }
 
 
 t_sphere	*check_for_spheres(t_entire *data, t_ray *ray, t_crd *rd, float *dist)
 {
-	t_sphere	*sphere;
 	t_sphere	*closest_sphere;
 	float		tmp;
 	float		lenght;
-
-	sphere = data->sphere;
+	
 	closest_sphere = 0;
 	lenght = -1;
-	while (sphere)
+
+    t_objj *current = data->objj; ///
+    while (current != NULL)
 	{
+		t_sphere *sphere;
+		sphere = (t_sphere *)&(current->object.sphere);
 		tmp = check_intersection_sphere(sphere, ray, rd);
 		if (tmp > 0 && (lenght == -1 || tmp < lenght))
 		{
 			lenght = tmp;
-			closest_sphere = sphere;
+			closest_sphere = (t_sphere *)&(current->object.sphere);
 		}	
-		sphere = sphere->next;
+        current = current->next;
 	}
 	*dist = lenght;
 	return (closest_sphere);
