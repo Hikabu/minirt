@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 00:45:22 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/04/08 22:20:01 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/04/17 17:58:48 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ float	check_intersection_sphere(t_sphere *sphere, t_ray *ray, t_crd *rd)
 	float f1 = scalar_vector_product(rd, rd);
 	float f2 = 2 * scalar_vector_product(rd, &orpoint);
 	float f3 = scalar_vector_product(&orpoint, &orpoint) - ((sphere->diametr /2) * (sphere->diametr / 2));
-
 	if ((!(int)solve_quadro_eq(f1, f2, f3, points) ))
 		return (-1);
 	if (points[0] < 0)
@@ -60,7 +59,7 @@ t_sphere	*check_for_spheres(t_entire *data, t_ray *ray, t_crd *rd, float *dist)
 	closest_sphere = 0;
 	lenght = -1;
 
-    t_objj *current = data->objj; ///
+    t_objj *current = data->objj;
     while (current != NULL)
 	{
 		t_sphere *sphere;
