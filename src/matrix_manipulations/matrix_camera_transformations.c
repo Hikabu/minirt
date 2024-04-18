@@ -132,7 +132,7 @@ void rotateObject(t_sphere *sphere, float angle) {
 }
 
 
-int key_press(int keycode, t_ent *data) {
+int key_press(int keycode, t_entire *data) {
     float dx = 0, dy = 0, dz = 0;
 
     if (keycode == 65307) { // ESC key for quitting

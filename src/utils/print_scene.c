@@ -155,17 +155,17 @@ void print_all_objj(t_entire *entire)
 void	print_scene(t_entire *ent, t_scene	*scene)
 {
 	// printf("im here\n");
-	printf("\n\tOne pixel struct is %lu bits,\n\
-	One global struct is %lu bits,\n\
-	One scene struct is %lu bits,\n\
-	One obj struct is %lu bits,\n\
-	One sphere struct is %lu bits,\n\
-	One plane struct is %lu bits,\n\
-	One cylinder struct is %lu bits,\n\
-	One light struct is %lu bits,\n",
-		sizeof(t_pixel), sizeof(t_entire), sizeof(t_scene),
-		sizeof(t_obj), sizeof(t_sphere), sizeof(t_plane),
-		sizeof(t_cyl), sizeof(t_light));
+	// printf("\n\tOne pixel struct is %lu bits,\n\
+	// One global struct is %lu bits,\n\
+	// One scene struct is %lu bits,\n\
+	// One obj struct is %lu bits,\n\
+	// One sphere struct is %lu bits,\n\
+	// One plane struct is %lu bits,\n\
+	// One cylinder struct is %lu bits,\n\
+	// One light struct is %lu bits,\n",
+	// 	sizeof(t_pixel), sizeof(t_entire), sizeof(t_scene),
+	// 	sizeof(t_obj), sizeof(t_sphere), sizeof(t_plane),
+	// 	sizeof(t_cyl), sizeof(t_light));
 	print_scene_characteristics(ent, scene);
 
     print_all_objj(ent);

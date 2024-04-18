@@ -19,7 +19,10 @@ int	parse_params(t_entire *ent, char *line)
 	if (ft_strncmp(line, "A", 1) == 0) 
 		return (parse_ambient(ent, line));
 	if (ft_strncmp(line, "C", 1) == 0)
+	{
+		printf("INNN");
 		return (parse_camera(ent, line));
+	}
 	if (ft_strncmp(line, "L", 1) == 0)
 		return (parse_light(ent, line));
 	if (ft_strncmp(line, "sp", 2) == 0)
@@ -32,11 +35,11 @@ int	parse_params(t_entire *ent, char *line)
 		objj = create_object(ent, id_plane);
 		return(parse_plane(ent, line, objj));
 	}
-	// if (ft_strncmp(line, "cy", 2) == 0)
-	// {
-	// 	objj = create_object(ent, id_plane);
-	// 	return(parse_cylinder(ent, line, objj));
-	// }
+	if (ft_strncmp(line, "cy", 2) == 0)
+	{
+		objj = create_object(ent, id_cyl);
+		return(parse_cylinder(ent, line, objj));
+	}
 	return (0);
 }
 

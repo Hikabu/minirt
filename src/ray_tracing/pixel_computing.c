@@ -73,7 +73,7 @@ void	pixel_plane_computing(t_entire *data, t_pixel *pixel)
 
 void	pixel_computing(t_entire *data, t_pixel *pixel)
 {
-	if (pixel->lenght <= 0
+	if (pixel->lenght < 0
 		|| (!pixel->plane && !pixel->sphere && !pixel->cyl))
 	{
 		mlx_pixel_put(data->mlx, data->window,
