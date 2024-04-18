@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 21:45:36 by vfedorov          #+#    #+#             */
-/*   Updated: 2024/04/08 21:15:42 by vfedorov         ###   ########.fr       */
+/*   Updated: 2024/04/17 17:49:02 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,8 @@ float	pixel_comp_sphere_refl_ratio(t_entire *data, t_pixel *pixel)
 	vector_subtraction(&light_dir, &data->light->xyz,
 		&pixel->intersection);
 	norm_vector(&light_dir);
-
 	light_intens = ang_bet_2_vec(&light_dir, &normal) 
-		* data->light->ratio; // ratio_light??
+		* data->light->ratio;
 	if (light_intens > 0)
 		return (light_intens);
 	return ( 0);
@@ -75,10 +74,13 @@ void pixel_computing_sphere(t_entire *data, t_pixel *pixel)
 	light_ratio = pixel_comp_sphere_refl_ratio(data, pixel);
 	if (light_ratio <= 0)
 		return ;
+	// printf ("pixel->sphere->color %d\n", pixel->sphere->color);
+	// printf ("data->light->color %d\n", data->light->color);
+	// printf ("light_ratio %f\n", light_ratio);
 	light = color_diffusal(pixel->sphere->color_ambient, pixel->sphere->color,
 		data->light->color, light_ratio);
+	// printf("light %d\n", light);
 	ft_mlx_pixel_put_img(&data->simg, pixel->x, pixel->y, light);
-
 	return ;
 }
 
