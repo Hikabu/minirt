@@ -13,6 +13,7 @@
 # define ERR_INVALID_NB_COLORS "Invalid number of color values"
 # define ERR_NOT_A_ULONG "Value is not a unsigned long"
 # define ERR_NOT_A_FLOAT "Value is not a float"
+# define ERR_IS_NOT_RT_FILE "isn't a rt file"
 
 
 typedef enum e_object_id

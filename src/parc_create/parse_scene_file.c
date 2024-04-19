@@ -43,6 +43,7 @@ int	parse_scene_file(t_entire *ent, int fd)
 		//ent->lnum = num;
 		if (parse_params(ent, line))
 			status = 1;
+		// printf("_______%s_______\n", line);
 		free(line);
 	}
 	//if (!status && is_invalid_file(ent))
@@ -52,7 +53,7 @@ int	parse_scene_file(t_entire *ent, int fd)
 	return (status);
 }
 
-int open_and_parse_file(t_entire *ent, const char *path)
+int open_and_parse_file(t_entire *ent, char *path)
 {
 	int	parse_success;
 	// ent  = (t_entire *)malloc(sizeof(t_entire));
@@ -62,6 +63,9 @@ int open_and_parse_file(t_entire *ent, const char *path)
 		perror("Error opening file");
 		return 0;
 	}
+	if (!is_rt_file(path))
+		return (!show_error("isn't a rt file"));
+
 	ent->scene = (t_scene *)malloc(sizeof(t_scene));
 	if (!(ent->scene))
 		error(1);
@@ -75,4 +79,14 @@ int open_and_parse_file(t_entire *ent, const char *path)
 	//  rotate_obj(ent->scene, &ent->scene->camera_orientation);
 	close(fd);
 	return parse_success;
+}
+
+int	is_rt_file(char *path)
+{
+	int	len;
+
+	len = ft_strlen(path) - 3;
+	if (len > 0)
+		return (ft_strncmp(path + len, ".rt", 3) == 0);
+	return (0);
 }
