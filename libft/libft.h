@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:15:19 by vfedorov          #+#    #+#             */
-/*   Updated: 2024/02/26 19:41:08 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/04/19 18:24:54 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include "../include/parcing.h"
-# include "../include/utils.h"
 
 typedef struct s_list
 {
@@ -72,8 +71,5 @@ void	ft_lstdelone(t_list *lst, void (*del)(void*));
 
 int		ft_strcmp(const char *s1, const char *s2);
 double	ft_atof(const char *ptr);
-void	ft_lstadd_back_plane(t_plane **lst, t_plane *new);
-void	ft_lstadd_back_cyl(t_cyl **lst, t_cyl *new);
-void	ft_lstadd_back_sphere(t_sphere **lst, t_sphere *new);
 
 #endif

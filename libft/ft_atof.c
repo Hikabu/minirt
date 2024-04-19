@@ -6,10 +6,11 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 21:13:05 by vfedorov          #+#    #+#             */
-/*   Updated: 2024/01/19 21:37:07 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/04/19 18:27:51 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
 #include "libft.h"
 
 double	ft_af(const char *ptr, int i)
@@ -56,3 +57,4 @@ double	ft_atof(const char *ptr)
 	}
 	return (nshan * ft_af(ptr, i));
 }
+*/

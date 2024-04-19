@@ -3,25 +3,23 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+         #
+#    By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/01/19 15:15:41 by valeriafedo       #+#    #+#              #
-#    Updated: 2024/04/07 19:52:21 by vfedorov         ###   ########.fr        #
+#    Created: 2022/09/29 16:43:25 by jmabel            #+#    #+#              #
+#    Updated: 2024/04/19 19:36:02 by valeriafedo      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
-
 
 .PHONY		:	all clean fclean re libft debug
 
 NAME		=	miniRT
 
-HEADER		=	$(addprefix include/,	\
-					minirt.h			\
-					parcing.h			\
-					scene.h				\
-					get_next_line.h		\
-					utils.h)
+HEADER		=	$(addprefix include/,\
+					minirt.h\
+					vector.h\
+					parcing.h\
+					scene.h\
+					get_next_line.h)
 
 CFLAGS		=	-I include
 
@@ -36,46 +34,55 @@ LIBFT_H		=	./libft/libft.h
 
 LIBMLX		=	./libmlx/libmlx.a
 
-SRCS		=	$(addprefix src/, $(FILE_C))
-
 FILE_C		=	main.c
 
-FILE_C		+=	$(addprefix parcing/, 		\
-					get_next_line.c			\
-					get_next_line_utils.c	\
-					get_split.c				\
-					parc.c					\
-					error_free_exit.c)
+FILE_C		+=	$(addprefix image/,\
+				hook.c\
+				search_objects.c\
+				resize_objects.c\
+				change_objects.c\
+				image.c)
 
+FILE_C		+=	$(addprefix raytracer/,\
+				check_intersection.c\
+				intersection.c\
+				intersection_cylinder.c\
+				raytracer.c\
+				compute_pixel_sphere.c\
+				compute_pixel_plane.c\
+				pixel_computing.c\
+				compute_pixel_cylinder.c\
+				solver.c)
 
-FILE_C		+=	$(addprefix utils/, \
-					print_scene.c)
+FILE_C		+=	$(addprefix vector/,\
+				scalar_product.c\
+				vector_create.c\
+				vector_length_normalizing.c\
+				vector_linear_operations.c\
+				vector_print.c)
 
-FILE_C		+=	$(addprefix scene/, \
-					init_image.c)
-					
-FILE_C		+=	$(addprefix parc_create/, \
-					parc_cilinder.c		\
-					parse_scene_file.c	\
-					parsing_error.c		\
-					parsing_utils.c		\
-					matrix.c			\
-					rotate_camera.c)
+FILE_C		+=	$(addprefix utils/,\
+				get_next_line.c\
+				print_scene.c\
+				print_tips.c)
+				
+FILE_C		+=	$(addprefix parser/,\
+				parser.c\
+				free_scene.c\
+				parser_readscene.c\
+				parser_utils.c\
+				parser_readfloat.c\
+				parser_readplane.c\
+				parser_readsphere.c\
+				parser_readcylinder.c\
+				parser_set_ambinet_light.c)
 
-FILE_C		+=	$(addprefix geometry/, \
-					vector.c	)
-					
-FILE_C		+=	$(addprefix ray_tracing/, \
-					trace_ray.c			\
-					check_shadow.c		\
-					compute_sp_cyl.c	\
-					check.c				\
-					check_cylinder.c	\
-					check_sphere.c		\
-					solver.c			\
-					pixel_computing.c	\
-					rgb_utils.c)
-					
+FILE_C		+=	$(addprefix camera_move/,\
+				camera_rotate.c\
+				camera_rotation_utils.c\
+				camera_translate.c)
+
+SRCS		=	$(addprefix src/, $(FILE_C))
 
 OBJ			=	$(addprefix objects/, $(FILE_C:%.c=%.o))
 
