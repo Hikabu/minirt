@@ -74,12 +74,8 @@ void pixel_computing_sphere(t_entire *data, t_pixel *pixel)
 	light_ratio = pixel_comp_sphere_refl_ratio(data, pixel);
 	if (light_ratio <= 0)
 		return ;
-	// printf ("pixel->sphere->color %d\n", pixel->sphere->color);
-	// printf ("data->light->color %d\n", data->light->color);
-	// printf ("light_ratio %f\n", light_ratio);
 	light = color_diffusal(pixel->sphere->color_ambient, pixel->sphere->color,
 		data->light->color, light_ratio);
-	// printf("light %d\n", light);
 	ft_mlx_pixel_put_img(&data->simg, pixel->x, pixel->y, light);
 	return ;
 }

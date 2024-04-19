@@ -54,7 +54,7 @@ void	ray_trace(t_entire *data)
 			pixel_init(&pixel);
 			fill_new_vector(&(pixel.ray.point[1]), 
 				-data->scene->camera_angeles[0] + lambda * pixel.x,
-				+data->scene->camera_angeles[1] - lambda * pixel.y, data->camera->norm_vec.z); //shoot rays from the camera towards the scene for color calculation.
+				+data->scene->camera_angeles[1] - lambda * pixel.y, 0); //shoot rays from the camera towards the scene for color calculation.
 			check_intersection(data, &pixel);
 			pixel_computing(data, &pixel);
 			pixel.x++;

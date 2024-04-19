@@ -59,7 +59,8 @@ FILE_C		+=	$(addprefix parc_create/, \
 					parse_scene_file.c	\
 					parsing_error.c		\
 					parsing_utils.c		\
-					matrix.c)
+					matrix.c			\
+					rotate_camera.c)
 
 FILE_C		+=	$(addprefix geometry/, \
 					vector.c	)

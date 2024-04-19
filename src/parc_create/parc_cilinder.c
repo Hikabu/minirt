@@ -173,7 +173,6 @@ int	parse_sphere(t_entire *ent, char *line, t_objj *objj)
 			 ent->amlight->color, ent->amlight->ratio);
 	objj->object.sphere = *sphere;
 	free_array(params);
-	
 	return (0);
 }
 
@@ -205,7 +204,6 @@ int	parse_plane(t_entire *ent, char *line, t_objj *objj)
 			 ent->amlight->color, ent->amlight->ratio);
 	norm_vector(&plane->norm_vec);
 	objj->object.plane = *plane;
-	printf ("objj->object.plane->color_ambient = %d\n", objj->object.plane.color_ambient);
 	free_array(params);
 	return (0);
 }
@@ -241,7 +239,6 @@ int parse_cylinder(t_entire *ent, char *line, t_objj *objj)
 	}
 	cylinder->color = rgb_to_int(cylinder->rgb);
 	norm_vector(&cylinder->norm_vec);
-	// ent->cyl = cylinder;
 	objj->object.cylinder = *cylinder;
 	free_array(params);
 	return (0);

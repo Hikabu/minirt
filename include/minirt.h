@@ -56,13 +56,16 @@ typedef enum e_type_object // only for clearness
 }	t_type_object;
 
 
-void	ray_trace(t_entire *data);
-void    fill_new_vector(t_crd *result, float x, float y, float z);
-void	print_scene(t_entire *ent, t_scene	*scene);
-int		open_and_parse_file(t_entire *ent, char *path);
-int	is_rt_file(char *path);
-int	show_error(char *msg);
-
+void		rotate_obj(t_entire *scene, t_crd *coord);
+void		apply_rotation_to_objects(t_crd *cam, t_objj *obj, float rotation_matrix[3][3]);
+void		translate_obj(t_objj *obj, t_crd *crd);
+void		ray_trace(t_entire *data);
+void    	fill_new_vector(t_crd *result, float x, float y, float z);
+void		print_scene(t_entire *ent, t_scene	*scene);
+int			open_and_parse_file(t_entire *ent, char *path);
+int			is_rt_file(char *path);
+int			show_error(char *msg);
+void		vector_multiplication(t_crd *res, t_crd *vec1, t_crd *vec2);
 
 // void	error(int er);
 

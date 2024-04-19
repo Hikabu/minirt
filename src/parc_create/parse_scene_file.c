@@ -1,3 +1,4 @@
+
 #include "minirt.h"
 
 char *sanitize_line(const char *line) 
@@ -65,7 +66,6 @@ int open_and_parse_file(t_entire *ent, char *path)
 	}
 	if (!is_rt_file(path))
 		return (!show_error("isn't a rt file"));
-
 	ent->scene = (t_scene *)malloc(sizeof(t_scene));
 	if (!(ent->scene))
 		error(1);
@@ -75,12 +75,12 @@ int open_and_parse_file(t_entire *ent, char *path)
 	initial_scene(ent);
 	parse_success = parse_scene_file(ent, fd);
 	get_fov_angles(ent, ent->scene);
-	// translate_obj(ent->scene, &ent->scene->camera_point);
-	//  rotate_obj(ent->scene, &ent->scene->camera_orientation);
+	// translate_obj(ent->objj, &ent->scene->camera_point);
+	// rotate_obj(ent, &ent->camera->norm_vec);
 	close(fd);
 	return parse_success;
 }
-
+ 
 int	is_rt_file(char *path)
 {
 	int	len;

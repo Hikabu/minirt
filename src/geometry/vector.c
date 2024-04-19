@@ -21,6 +21,18 @@ void    fill_new_vector(t_crd *result, float x, float y, float z) // take pointe
     result->z = z;  
 }
 
+void	vector_multiplication(t_crd *res, t_crd *vec1, t_crd *vec2)
+{
+	t_crd	res2;
+
+	if (!res || !vec1 || !vec2)
+		return ;
+	res2.x = vec1->y * vec2->z - vec1->z * vec2->y;
+	res2.y = vec1->x * vec2->z - vec1->z * vec2->x;
+	res2.z = vec1->x * vec2->y - vec1->y * vec2->x;
+	*res = res2;
+}
+
 void	vector_subtraction(t_crd *res, t_crd *a, t_crd *b)
 {
 	if (res == NULL || a == NULL || b == NULL)

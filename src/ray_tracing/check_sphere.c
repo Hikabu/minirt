@@ -35,7 +35,8 @@ float	check_intersection_sphere(t_sphere *sphere, t_ray *ray, t_crd *rd)
 	vector_subtraction(&orpoint, &sphere->xyz, &(ray->point[0]));
 	float f1 = scalar_vector_product(rd, rd);
 	float f2 = 2 * scalar_vector_product(rd, &orpoint);
-	float f3 = scalar_vector_product(&orpoint, &orpoint) - ((sphere->diametr /2) * (sphere->diametr / 2));
+	float f3 = scalar_vector_product(&orpoint, &orpoint) -
+		((sphere->diametr / 2) * (sphere->diametr / 2));
 	if ((!(int)solve_quadro_eq(f1, f2, f3, points) ))
 		return (-1);
 	if (points[0] < 0)
@@ -72,6 +73,8 @@ t_sphere	*check_for_spheres(t_entire *data, t_ray *ray, t_crd *rd, float *dist)
 		}	
         current = current->next;
 	}
+	// (void)ray;
+	// (void)rd;
 	*dist = lenght;
 	return (closest_sphere);
 }

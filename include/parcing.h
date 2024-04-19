@@ -166,10 +166,6 @@ t_objj	*create_object_plane(t_entire *ent, t_object_id id);
 
 
 
-
-
-void		translate_obj(t_scene *scene, t_crd *crd);
-
 void		vector_addition(t_crd *result, t_crd *a, t_crd *b);
 int			parse_vector(char *str, t_crd *vect);
 int			parse_color(char *str, t_color *color);

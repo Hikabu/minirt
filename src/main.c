@@ -97,14 +97,12 @@ int	main(int ac, char **av)
 {
 	t_entire	entire;
 	
-	if (ac != 2)
+	if (ac != 2) 
 		error(2);
 	if (open_and_parse_file(&entire, av[1]) == 0)
 	{
 		print_scene(&entire, entire.scene);
 		init_image(&entire);
-
-
 		mlx_key_hook(entire.window, key_hook_man, &entire);
 		mlx_hook(entire.window, 17, 0, clos, &entire.pixel);
 		ray_trace(&entire);

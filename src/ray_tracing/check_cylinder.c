@@ -34,7 +34,7 @@ static	float intersection_cyl_plane(t_cyl *cyl, t_plane *plane, t_ray *ray, t_cr
 	dist_plane = check_intersection_plane(plane, ray, d_ray);
 	if (dist_plane == -1)
 		return (-1);
-	scalar_multiplication(&r, d_ray, -1 * dist_plane);
+	scalar_multiplication(&r, d_ray, -1 * dist_plane);     //???
 	vector_addition(&p, &(ray->point[0]), &r);
 	vector_subtraction(&p_ctr, &p, &plane->xyz);
 	if (vector_len(&p_ctr) <= cyl->diam / 2.0f)
@@ -128,15 +128,17 @@ t_cyl   *check_for_cilinder(t_entire *data, t_pixel *pixel, float *dist)
 	cyl = data->cyl;
 	nearest_dist = -1;
 	nearest_cyl = 0;
-	while (cyl)
+	t_objj *current = data->objj;
+	while (current != NULL)
 	{
+		cyl = (t_cyl *)&(current->object.cylinder);
 		*dist = check_intersection_cyl(cyl, pixel);
 		if (*dist > 0 && (nearest_dist = -1 || *dist < nearest_dist ))
 		{
 			nearest_dist = *dist;
-			nearest_cyl = cyl;
+			nearest_cyl = (t_cyl *)&(current->object.sphere);
 		}
-		cyl = cyl->next;
+		current = current->next;
 	}
 	*dist = nearest_dist;
 	return (nearest_cyl);
