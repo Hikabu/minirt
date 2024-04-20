@@ -5,32 +5,36 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/10 12:13:38 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/01/19 17:49:14 by valeriafedo      ###   ########.fr       */
+/*   Created: 2024/04/19 18:33:10 by valeriafedo       #+#    #+#             */
+/*   Updated: 2024/04/19 21:19:30 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "minirt.h"
 
-void	all_exists(t_entire *ent)
+int	main(int argc, char **argv)
 {
-	if (!ent->amlight || !ent->camera
-		|| !ent->light || !ent->plane
-		|| !ent->cyl || !ent->sphere)
-		error_with_free(ent);
+	t_global	data;
+
+	data.scene = parser(argc, argv);
+	// print_scene(data.scene);
+	init_image(&data);
+	clean_image(&data.img);
+	data.nearest_obj = NULL;
+	data.nearest_type = NO_INTERSECT;
+	data.prev_keyhook = 0;
+	raytracer(&data);
+	hook(&data);
+	mlx_loop(data.mlx);
+	minirt_close(&data);
+	exit (0);
 }
 
-int	main(int ac, char **av)
+int	minirt_close(t_global *data)
 {
-	t_entire	entire;
-	t_entire	*ent;
-
-	init_ent(&entire);
-	ent = &entire;
-	if (ac != 2)
-		error(2);
-	readmap(av[1], &ent);
-	all_exists(ent);
-	system("leaks miniRT");
-	return (0);
+	free_scene(data->scene);
+	mlx_destroy_image(data->mlx, data->img.img);
+	mlx_destroy_window(data->mlx, data->window);
+	exit(0);
 }

@@ -5,63 +5,92 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/25 10:05:37 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/02/06 15:36:15 by valeriafedo      ###   ########.fr       */
+/*   Created: 2024/04/19 18:35:15 by valeriafedo       #+#    #+#             */
+/*   Updated: 2024/04/19 18:35:16 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef SCENE_H
 # define SCENE_H
 
-# include "parcing.h"
+# include "minirt.h"
 
-typedef struct s_sphere t_sphere;
+typedef struct s_light		t_light;
+typedef struct s_sphere		t_sphere;
+typedef struct s_plane		t_plane;
+typedef struct s_cylinder	t_cylinder;
+typedef struct s_scene		t_scene;
+typedef struct s_objects	t_objects;
 
-typedef struct s_vector
+typedef struct s_coord
 {
-    float x;
-    float y;
-    float z;
-}   t_vector;
+	float	x;
+	float	y;
+	float	z;
+}	t_coord;
 
-// typedef struct s_sphere
-// {
-// 	int				id;
-// 	float			xyz[3];
-// 	float			radius;
-// 	int				rgb[3];
-// 	t_vector		*center;
-// 	struct s_sphere	*next;
-// }	t_sphere;
-
-float vec_product(t_vector *vec1, t_vector *vec2);
-void vec_normalize(t_vector *vec);
-float vec_length(t_vector *vec);
-t_vector	*vecsubtraction(t_vector *vec1, t_vector *vec2);
-t_vector	*vector_init(float x, float y, float z);
-
-// camera
-typedef struct s_camera
+typedef struct s_ray
 {
-	int			id;
-	float		xyz[3];
-	float		norm_vec[3];
-	int			fov;
-	t_vector	*origin;
-	t_vector	*direction;
-}	t_camera;
+	t_coord	point[2];
+}	t_ray;
 
-t_camera	*init_camera(t_vector *origin, t_vector *direction, float fov);
-
-typedef struct s_scene
+struct s_light
 {
-	t_camera	*cameras;
-	t_sphere	*sphere;
-	float		width;
+	t_coord	point;
+	float	lighting_ratio;
+	int		color;
+	t_light	*next;
+};
+
+struct s_sphere
+{
+	t_coord		point;
+	float		diameter;
+	int			color;
+	int			color_ambient;
+	t_sphere	*next;
+};
+
+struct s_plane
+{
+	t_coord	point;
+	t_coord	orientation;
+	int		color;
+	int		color_ambient;
+	t_plane	*next;
+};
+
+struct s_cylinder
+{
+	t_coord		point;
+	t_coord		orientation;
+	float		diameter;
 	float		height;
-}   t_scene;
+	int			color;
+	int			color_ambient;
+	t_plane		plane_begin;
+	t_plane		plane_end;
+	t_cylinder	*next;
+};
 
-// scene 
-t_scene	*init_scene(t_camera *camera, t_sphere *sphere);
+struct s_objects
+{
+	t_light		*lights;
+	t_sphere	*spheres;
+	t_plane		*planes;
+	t_cylinder	*cylinders;
+};
+
+struct s_scene
+{
+	t_coord		camera_point;
+	t_coord		camera_orientation;
+	float		camera_fov;
+	float		camera_angles[2];
+	float		ambient_light_intensity;
+	int			ambient_light_rgb;
+	t_objects	*obj;
+};
 
 #endif
