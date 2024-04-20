@@ -6,11 +6,9 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:31:41 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/04/19 18:31:42 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/04/20 07:00:17 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 
 #include "minirt.h"
 

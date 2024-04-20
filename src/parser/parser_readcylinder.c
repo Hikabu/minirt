@@ -6,10 +6,9 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:30:48 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/04/19 18:30:49 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/04/20 07:00:46 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "minirt.h"
 t_scene	*parser_createscene(t_parser *p)

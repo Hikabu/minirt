@@ -6,12 +6,9 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:31:44 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/04/19 18:31:45 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/04/20 07:00:14 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
-
 
 #include "minirt.h"
 
@@ -52,6 +49,7 @@ float	check_intersection_cylinder(t_cylinder	*cylinder, t_pixel *pixel)
 			&cylinder->plane_end, &(pixel->ray), &(pixel->d));
 	if (dist_plane != -1 && (dist_plane < dist || dist == -1))
 		dist = define_dist_type_intersection(pixel, dist_plane, PLANE_END);
+	printf("dist = %f\n", dist);
 	return (dist);
 }
 
@@ -85,10 +83,12 @@ static float	intersection_cylinder_pipe(t_cylinder	*cyl,
 	points[0] = nearest_distance(points);
 	if (points[0] == -1)
 		return (-1);
+	
 	pixel->cylinder_m = dot_dv * points[0] + dot_ocv;
 	if (pixel->cylinder_m < 0 || pixel->cylinder_m > cyl->height)
 		return (-1);
 	return (points[0]);
+	
 }
 
 static float	intersection_cylinder_plane(t_cylinder	*cylinder,

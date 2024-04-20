@@ -6,11 +6,9 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:32:52 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/04/19 18:32:53 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/04/20 07:01:40 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 
 #include "vector.h"
 

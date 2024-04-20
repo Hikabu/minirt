@@ -6,11 +6,9 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:31:09 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/04/19 18:31:10 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/04/20 06:55:06 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 
 #include "minirt.h"
 #include "parcing.h"

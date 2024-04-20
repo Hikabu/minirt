@@ -6,11 +6,9 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:32:14 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/04/19 18:32:15 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/04/20 06:59:08 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 
 #include "minirt.h"
 
@@ -35,10 +33,5 @@ void	translate_objects(t_scene *scene, t_coord *coord)
 	{
 		vector_subtraction(&obj.cylinders->point, &obj.cylinders->point, coord);
 		obj.cylinders = obj.cylinders->next;
-	}
-	while (obj.lights)
-	{
-		vector_subtraction(&obj.lights->point, &obj.lights->point, coord);
-		obj.lights = obj.lights->next;
 	}
 }

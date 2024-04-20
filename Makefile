@@ -6,7 +6,7 @@
 #    By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/29 16:43:25 by jmabel            #+#    #+#              #
-#    Updated: 2024/04/19 19:36:02 by valeriafedo      ###   ########.fr        #
+#    Updated: 2024/04/20 07:10:26 by valeriafedo      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,9 +62,8 @@ FILE_C		+=	$(addprefix vector/,\
 				vector_print.c)
 
 FILE_C		+=	$(addprefix utils/,\
-				get_next_line.c\
-				print_scene.c\
-				print_tips.c)
+				get_next_line.c \
+				print_scene.c)
 				
 FILE_C		+=	$(addprefix parser/,\
 				parser.c\

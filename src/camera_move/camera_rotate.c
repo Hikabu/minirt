@@ -6,11 +6,9 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:32:06 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/04/19 18:32:07 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/04/20 06:58:12 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 
 #include "minirt.h"
 #include "../../include/transformation.h"
