@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:32:25 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/04/20 07:09:50 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/04/22 14:10:36 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ void	print_scene(t_scene	*scene)
 	One plane struct is %lu bits,\n\
 	One cylinder struct is %lu bits,\n\
 	One light struct is %lu bits,\n",
-		sizeof(t_pixel), sizeof(t_global), sizeof(t_scene),
+		sizeof(t_pixel), sizeof(t_entire), sizeof(t_scene),
 		sizeof(t_objects), sizeof(t_sphere), sizeof(t_plane),
 		sizeof(t_cylinder), sizeof(t_light));
 	print_scene_characteristics(scene);

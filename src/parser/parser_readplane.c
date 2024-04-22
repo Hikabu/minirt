@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:30:56 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/04/20 07:00:40 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/04/22 14:38:38 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,10 @@ void	parser_readplane(t_parser *p)
 	parser_check_isnotnormailzed(p, plane->orientation);
 	normalizing_vector(&plane->orientation, &plane->orientation);
 	parser_skipspacesifnotspaceerror(p);
-	if (!ft_isdigit(p->s[p->i]))
+	if (!ft_isdigit(p->str[p->i]))
 		parser_error(1, p);
 	plane->color = parser_readcolor(p);
-	parser_skipspaces(p->s, &(p->i));
-	if (p->s[p->i])
+	parser_skipspaces(p->str, &(p->i));
+	if (p->str[p->i])
 		parser_error(1, p);
 }

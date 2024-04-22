@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:31:50 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/04/20 07:00:06 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/04/22 14:10:16 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #define MINIMAL_THRESHOLD 0.0001
 #define MAXIMAL_THRESHOLD 0.9985
 
-int	check_for_shadow_spheres(t_global *global, t_ray *ray, t_coord *d)
+int	check_for_shadow_spheres(t_entire *global, t_ray *ray, t_coord *d)
 {
 	t_sphere	*sphere;
 	float		length;
@@ -32,7 +32,7 @@ int	check_for_shadow_spheres(t_global *global, t_ray *ray, t_coord *d)
 	return (0);
 }
 
-int	check_for_shadow_planes(t_global *global, t_ray *ray, t_coord *d)
+int	check_for_shadow_planes(t_entire *global, t_ray *ray, t_coord *d)
 {
 	t_plane	*plane;
 	float	dist;
@@ -48,7 +48,7 @@ int	check_for_shadow_planes(t_global *global, t_ray *ray, t_coord *d)
 	return (0);
 }
 
-int	check_for_shadow_cylinder(t_global *global, t_ray *ray, t_coord *d)
+int	check_for_shadow_cylinder(t_entire *global, t_ray *ray, t_coord *d)
 {
 	t_pixel		pixel;
 	t_cylinder	*cylinder;
@@ -69,7 +69,7 @@ int	check_for_shadow_cylinder(t_global *global, t_ray *ray, t_coord *d)
 	return (0);
 }
 
-int	check_for_shadow(t_global *global, t_pixel *pixel_initial)
+int	check_for_shadow(t_entire *global, t_pixel *pixel_initial)
 {
 	// float	dist;
 	t_ray	ray;
@@ -92,7 +92,7 @@ int	check_for_shadow(t_global *global, t_pixel *pixel_initial)
 	return (0);
 }
 
-void	pixel_computing(t_global *global, t_pixel *pixel)
+void	pixel_computing(t_entire *global, t_pixel *pixel)
 {
 	if (pixel->length <= 0
 		|| (!pixel->plane && !pixel->sphere && !pixel->cylinder))

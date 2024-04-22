@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:17:39 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/04/19 19:42:04 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/04/22 19:49:48 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # include "../libmlx/mlx.h"
 # include "transformation.h"
 
-# define WIDTH 700
+# define WIDTH 500
 # define HEIGHT 600
 
 # define BACKGROUND_COLOR 0
@@ -72,7 +72,7 @@ typedef struct s_img
 	int		endian;
 }	t_img;
 
-typedef struct s_global
+typedef struct s_entire
 {
 	t_scene		*scene;
 	void		*mlx;
@@ -81,7 +81,7 @@ typedef struct s_global
 	int			nearest_type;
 	int			prev_keyhook;
 	t_img		img;
-}	t_global;
+}	t_entire;
 
 typedef enum e_type_object
 {
@@ -111,7 +111,7 @@ typedef struct s_pixel
 
 t_scene		*parser(int argc, char **argv);
 void		free_scene(t_scene *scene);
-int			minirt_close(t_global *data);
+int			minirt_close(t_entire *data);
 
 void		rotate_objects(t_scene *scene, t_coord *coord);
 void		translate_objects(t_scene *scene, t_coord *coord);
@@ -119,37 +119,37 @@ void		translate_objects(t_scene *scene, t_coord *coord);
 /* 	./image/image.c 
 	functions for mlx management with image*/
 void		ft_mlx_pixel_put_img(t_img	*img, int x, int y, int color);
-void		init_image(t_global *data);
+void		init_image(t_entire *data);
 void		clean_image(void *img);
 
 /* 	./image/hook.c
 	manage events*/
-int			hook(t_global *data);
-int			key_print_hook(int keycode, t_global *data);
+int			hook(t_entire *data);
+int			key_print_hook(int keycode, t_entire *data);
 
 /* ./image/search_objects.c.c
 	search objects for hook */
-void		ft_search_objects(int x, int y, t_global *global);
+void		ft_search_objects(int x, int y, t_entire *global);
 
 /* ./image/resize_objects.c
 	resize objects for hook */
-void		ft_resize_object(int mousecode, t_global	*global);
-void		change_height_cylinder(int keycode, t_global *global);
+void		ft_resize_object(int mousecode, t_entire	*global);
+void		change_height_cylinder(int keycode, t_entire *global);
 
 /* ./image/change_objects.c */
-void		change_sphere(int keycode, t_global *global);
-void		change_cylinder(int keycode, t_global *global);
-void		change_plane(int keycode, t_global *global);
+void		change_sphere(int keycode, t_entire *global);
+void		change_cylinder(int keycode, t_entire *global);
+void		change_plane(int keycode, t_entire *global);
 
 /*	./raytracing/check_intersection.c
 	functions check intersection with objects */
-void		check_intersection(t_global *global, t_pixel *pixel);
+void		check_intersection(t_entire *global, t_pixel *pixel);
 
-t_sphere	*check_for_spheres(t_global *global, t_ray *ray,
+t_sphere	*check_for_spheres(t_entire *global, t_ray *ray,
 				t_coord *d, float *dist);
-t_plane		*check_for_planes(t_global *global, t_ray *ray,
+t_plane		*check_for_planes(t_entire *global, t_ray *ray,
 				t_coord *d, float *dist);
-t_cylinder	*check_for_cylinder(t_global *global, t_pixel *pixel, float *dist);
+t_cylinder	*check_for_cylinder(t_entire *global, t_pixel *pixel, float *dist);
 t_scene		*parser_createscene(t_parser *p);
 
 /*	 ./raytracing/intersection.c
@@ -162,27 +162,27 @@ float		nearest_distance(float	*points);
 float		check_intersection_cylinder(t_cylinder	*cylinder, t_pixel *pixel);
 
 /*	./raytracer/rayracer.c */
-void		raytracer(t_global *global);
+void		raytracer(t_entire *global);
 
 /*	./raytracer/pixel_computing.c */
-void		pixel_computing(t_global *global, t_pixel *pixel);
-int			check_for_shadow(t_global *global, t_pixel *pixel_initial);
+void		pixel_computing(t_entire *global, t_pixel *pixel);
+int			check_for_shadow(t_entire *global, t_pixel *pixel_initial);
 
 /*	./raytracer/compute_pixel_cyliner.c */
 
-void		pixel_computing_cylinder(t_global *global, t_pixel *pixel);
+void		pixel_computing_cylinder(t_entire *global, t_pixel *pixel);
 
 /*	./raytracer/compute_pixel_sphere.c */
 void		pixel_cleaning(t_pixel *pixel);
 int			color_diffusal(int color_sum, int color1,
 				int color2, float intensity);
-void		pixel_computing_sphere(t_global *global, t_pixel *pixel);
-float		pixel_computing_sphere_diffusal_recflect_ratio(t_global *global,
+void		pixel_computing_sphere(t_entire *global, t_pixel *pixel);
+float		pixel_computing_sphere_diffusal_recflect_ratio(t_entire *global,
 				t_pixel *pixel);
 
 /*	./raytracer/compute_pixel_plane.c */
-void		pixel_computing_plane(t_global *global, t_pixel *pixel);
-float		pixel_computing_plane_diffusal_recflect_ratio(t_global *global,
+void		pixel_computing_plane(t_entire *global, t_pixel *pixel);
+float		pixel_computing_plane_diffusal_recflect_ratio(t_entire *global,
 				t_pixel *pixel);
 
 /*	 ./raytracing/solver.c

@@ -6,16 +6,16 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:30:52 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/04/19 18:33:34 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/04/22 14:38:27 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 void	parser_skipspacesifnotspaceerror(t_parser *p)
 {
-	if (!ft_isspace(p->s[p->i]))
+	if (!ft_isspace(p->str[p->i]))
 		parser_error(1, p);
-	parser_skipspaces(p->s, &(p->i));
+	parser_skipspaces(p->str, &(p->i));
 }
 
 static float	parser_readfloat_getfractionalpart(char *s, int i)
@@ -42,11 +42,11 @@ static int	parser_readfloat_getsign(t_parser *p)
 {
 	int	res;
 
-	if (p->s[p->i] == '-')
+	if (p->str[p->i] == '-')
 		res = -1;
 	else
 		res = 1;
-	if (p->s[p->i] == '-' || p->s[p->i] == '+')
+	if (p->str[p->i] == '-' || p->str[p->i] == '+')
 		(p->i)++;
 	return (res);
 }
@@ -57,20 +57,20 @@ float	parser_readfloat(t_parser *p)
 	float	tmp1;
 	int		sign;
 
-	if (!(ft_isdigit(p->s[p->i]) || ((p->s[p->i] == '-' || p->s[p->i] == '+')
-				&& ft_isdigit(p->s[p->i + 1]))))
+	if (!(ft_isdigit(p->str[p->i]) || ((p->str[p->i] == '-' || p->str[p->i] == '+')
+				&& ft_isdigit(p->str[p->i + 1]))))
 		parser_error(1, p);
-	res = (float) ft_atoi(p->s + (p->i));
+	res = (float) ft_atoi(p->str + (p->i));
 	sign = parser_readfloat_getsign(p);
-	while (p->s[p->i] && ft_isdigit(p->s[p->i]))
+	while (p->str[p->i] && ft_isdigit(p->str[p->i]))
 		(p->i)++;
-	if (p->s[p->i] != '.')
+	if (p->str[p->i] != '.')
 		return (res);
-	else if (p->s[p->i] == '.' && !ft_isdigit(p->s[(p->i) + 1]))
+	else if (p->str[p->i] == '.' && !ft_isdigit(p->str[(p->i) + 1]))
 		parser_error(1, p);
 	(p->i)++;
-	tmp1 = parser_readfloat_getfractionalpart(p->s, p->i);
-	while (p->s[p->i] && ft_isdigit(p->s[p->i]))
+	tmp1 = parser_readfloat_getfractionalpart(p->str, p->i);
+	while (p->str[p->i] && ft_isdigit(p->str[p->i]))
 		(p->i)++;
 	if (sign == 1)
 		return (res + tmp1);

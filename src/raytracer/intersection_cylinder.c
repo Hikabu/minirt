@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:31:44 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/04/20 07:00:14 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/04/22 20:18:55 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ float	check_intersection_cylinder(t_cylinder	*cylinder, t_pixel *pixel)
 			&cylinder->plane_end, &(pixel->ray), &(pixel->d));
 	if (dist_plane != -1 && (dist_plane < dist || dist == -1))
 		dist = define_dist_type_intersection(pixel, dist_plane, PLANE_END);
-	printf("dist = %f\n", dist);
 	return (dist);
 }
 

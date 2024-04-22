@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:31:34 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/04/20 07:00:23 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/04/22 14:09:50 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static t_coord	normal_cylinder(t_pixel *pixel)
 }
 
 static float	pixel_computing_cyliner_diffusal_recflect_ratio(
-	t_global *global, t_pixel *pixel)
+	t_entire *global, t_pixel *pixel)
 {
 	t_coord	light_direction;
 	t_coord	normal;
@@ -50,7 +50,7 @@ static float	pixel_computing_cyliner_diffusal_recflect_ratio(
 	return (0);
 }
 
-void	pixel_computing_cylinder(t_global *global, t_pixel *pixel)
+void	pixel_computing_cylinder(t_entire *global, t_pixel *pixel)
 {
 	int		light;
 	float	lightning_ratio;

@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:30:48 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/04/20 07:00:46 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/04/22 14:38:59 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,10 @@ void	parser_readcylinder(t_parser *p)
 	parser_skipspacesifnotspaceerror(p);
 	cylinder->height = parser_readfloat(p);
 	parser_skipspacesifnotspaceerror(p);
-	if (!ft_isdigit(p->s[p->i]))
+	if (!ft_isdigit(p->str[p->i]))
 		parser_error(1, p);
 	cylinder->color = parser_readcolor(p);
-	parser_skipspaces(p->s, &(p->i));
-	if (p->s[p->i])
+	parser_skipspaces(p->str, &(p->i));
+	if (p->str[p->i])
 		parser_error(1, p);
 }

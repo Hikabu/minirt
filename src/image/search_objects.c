@@ -6,15 +6,15 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:30:33 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/04/20 07:00:59 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/04/22 14:09:30 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static void	define_nearest_objects(t_global *global, t_pixel *pixel);
+static void	define_nearest_objects(t_entire *global, t_pixel *pixel);
 
-void	ft_search_objects(int x, int y, t_global *global)
+void	ft_search_objects(int x, int y, t_entire *global)
 {
 	t_pixel	pixel;
 	float	lambda;
@@ -31,7 +31,7 @@ void	ft_search_objects(int x, int y, t_global *global)
 	define_nearest_objects(global, &pixel);
 }
 
-static void	define_nearest_objects(t_global *global, t_pixel *pixel)
+static void	define_nearest_objects(t_entire *global, t_pixel *pixel)
 {
 	if (pixel->sphere != NULL)
 	{

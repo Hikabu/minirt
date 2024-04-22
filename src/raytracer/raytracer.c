@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/19 18:31:54 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/04/20 07:00:02 by valeriafedo      ###   ########.fr       */
+/*   Created: 2024/02/06 23:53:56 by valeriafedo       #+#    #+#             */
+/*   Updated: 2024/04/22 21:02:05 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	raytracer(t_global *global)
+void	raytracer(t_entire *global)
 {
 	float	lambda;
 	t_pixel	pixel;

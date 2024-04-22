@@ -6,13 +6,13 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:30:23 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/04/20 07:01:07 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/04/22 14:09:07 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static void	error_mlx(t_global *data);
+static void	error_mlx(t_entire *data);
 
 void	clean_image(void *img)
 {
@@ -39,7 +39,7 @@ void	ft_mlx_pixel_put_img(t_img	*img, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	init_image(t_global *data)
+void	init_image(t_entire *data)
 {
 	data->mlx = mlx_init();
 	if (!data->mlx)
@@ -54,7 +54,7 @@ void	init_image(t_global *data)
 		error_mlx(data);
 }
 
-static void	error_mlx(t_global *data)
+static void	error_mlx(t_entire *data)
 {
 	free_scene(data->scene);
 	perror(NULL);

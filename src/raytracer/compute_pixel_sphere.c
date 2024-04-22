@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:31:41 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/04/20 07:00:17 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/04/22 14:10:07 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	pixel_cleaning(t_pixel *pixel)
 	pixel->cylinder = 0;
 }
 
-float	pixel_computing_sphere_diffusal_recflect_ratio(t_global *global,
+float	pixel_computing_sphere_diffusal_recflect_ratio(t_entire *global,
 	t_pixel *pixel)
 {
 	t_coord	light_direction;
@@ -74,7 +74,7 @@ int	color_diffusal(int color_sum, int color1, int color2, float intensity)
 	return (res);
 }
 
-void	pixel_computing_sphere(t_global *global, t_pixel *pixel)
+void	pixel_computing_sphere(t_entire *global, t_pixel *pixel)
 {
 	int		light;
 	float	lightning_ratio;

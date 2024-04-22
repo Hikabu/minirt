@@ -6,16 +6,16 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:30:12 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/04/19 18:30:16 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/04/22 14:08:40 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static void	rotate_cylinder(int keycode, t_global *global);
-static void	rotate_plane(int keycode, t_global *global);
+static void	rotate_cylinder(int keycode, t_entire *global);
+static void	rotate_plane(int keycode, t_entire *global);
 
-void	change_sphere(int keycode, t_global *global)
+void	change_sphere(int keycode, t_entire *global)
 {
 	if (global->prev_keyhook == X_KEYHOOK)
 	{
@@ -40,7 +40,7 @@ void	change_sphere(int keycode, t_global *global)
 	}
 }
 
-void	change_cylinder(int keycode, t_global *global)
+void	change_cylinder(int keycode, t_entire *global)
 {
 	if (keycode == UP || keycode == DOWN)
 		rotate_cylinder(keycode, global);
@@ -67,7 +67,7 @@ void	change_cylinder(int keycode, t_global *global)
 	}
 }
 
-static void	rotate_cylinder(int keycode, t_global *global)
+static void	rotate_cylinder(int keycode, t_entire *global)
 {
 	if (global->prev_keyhook == X_KEYHOOK)
 	{
@@ -94,7 +94,7 @@ static void	rotate_cylinder(int keycode, t_global *global)
 		&((t_cylinder *)(global->nearest_obj))->orientation);
 }
 
-void	change_plane(int keycode, t_global *global)
+void	change_plane(int keycode, t_entire *global)
 {
 	if (keycode == UP || keycode == DOWN)
 		rotate_plane(keycode, global);
@@ -121,7 +121,7 @@ void	change_plane(int keycode, t_global *global)
 	}	
 }
 
-static void	rotate_plane(int keycode, t_global *global)
+static void	rotate_plane(int keycode, t_entire *global)
 {
 	if (global->prev_keyhook == X_KEYHOOK)
 	{

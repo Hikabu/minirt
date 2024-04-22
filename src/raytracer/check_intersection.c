@@ -6,16 +6,11 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:31:31 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/04/20 07:00:27 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/04/22 21:20:17 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-/*  ray.point[0] = global->scene->camera_point; Точка камеры (точка a)
-    = координата луча на проецирумой плоскости
-    Vector d = ray.point[0] -  ray.point[1] (вектор луча)
-*/
 
 static void	set_objects_in_pixel(t_pixel *pixel, t_plane *plane,
 	t_sphere *sphere, t_cylinder *cylinder)
@@ -27,7 +22,7 @@ static void	set_objects_in_pixel(t_pixel *pixel, t_plane *plane,
 	pixel->cylinder = cylinder;
 }
 
-void	check_intersection(t_global *global, t_pixel *pixel)
+void	check_intersection(t_entire *global, t_pixel *pixel)
 {
 	float		dist; 
 	
@@ -56,7 +51,7 @@ void	check_intersection(t_global *global, t_pixel *pixel)
 		pixel->cylinder = 0;
 }
 
-t_sphere	*check_for_spheres(t_global *global, t_ray *ray,
+t_sphere	*check_for_spheres(t_entire *global, t_ray *ray,
 					t_coord *d, float *dist)
 {
 	t_sphere	*sphere;
@@ -81,7 +76,7 @@ t_sphere	*check_for_spheres(t_global *global, t_ray *ray,
 	return (closest_sphere);
 }
 
-t_plane	*check_for_planes(t_global *global, t_ray *ray,
+t_plane	*check_for_planes(t_entire *global, t_ray *ray,
 					t_coord *d, float *dist)
 {
 	t_plane	*plane;
@@ -105,7 +100,7 @@ t_plane	*check_for_planes(t_global *global, t_ray *ray,
 	return (nearest_plane);
 }
 
-t_cylinder	*check_for_cylinder(t_global *global, t_pixel *pixel, float *dist)
+t_cylinder	*check_for_cylinder(t_entire *global, t_pixel *pixel, float *dist)
 {
 	t_cylinder	*cylinder;
 	t_cylinder	*nearest_cylinder;

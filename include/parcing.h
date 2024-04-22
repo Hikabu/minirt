@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:25:06 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/04/19 18:28:45 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/04/22 14:34:01 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ typedef struct s_parser
 {
 	t_scene	*scene;
 	int		readelem;
-	char	*s;
+	char	*str;
 	int		i;
 	int		file_fd;
 }	t_parser;

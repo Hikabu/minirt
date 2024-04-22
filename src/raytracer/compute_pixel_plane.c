@@ -6,13 +6,13 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:31:37 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/04/20 07:00:19 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/04/22 14:10:00 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-float	pixel_computing_plane_diffusal_recflect_ratio(t_global *global,
+float	pixel_computing_plane_diffusal_recflect_ratio(t_entire *global,
 	t_pixel *pixel)
 {
 	t_coord	light_direction;
@@ -30,7 +30,7 @@ float	pixel_computing_plane_diffusal_recflect_ratio(t_global *global,
 	return (-light_intensity);
 }
 
-void	pixel_computing_plane(t_global *global, t_pixel *pixel)
+void	pixel_computing_plane(t_entire *global, t_pixel *pixel)
 {
 	int		light;
 	float	lightning_ratio;

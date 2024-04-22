@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:31:16 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/04/20 07:00:29 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/04/22 14:40:05 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static	int	open_file(int argc, char **argv)
 
 	if (argc != 2 || !argv[1] || !argv[1][0] || ft_strlen (argv[1]) < 3)
 	{
-		printf("Usage: miniRT (.rt scene file)\n");
+		printf("Error\n");
 		exit (2);
 	}
 	tmp = argv[1];
@@ -37,7 +37,7 @@ static	int	open_file(int argc, char **argv)
 	tmp = tmp + i - 3;
 	if (ft_strncmp(tmp, ".rt", 4))
 	{
-		printf("Usage: miniRT (.rt scene file)\n");
+		printf("Error\n");
 		exit (2);
 	}
 	i = open (argv[1], O_RDONLY);
@@ -52,20 +52,20 @@ static	int	open_file(int argc, char **argv)
 static void	parser_linehandler(t_parser	*p)
 {
 	p->i = 0;
-	parser_skipspaces(p->s, &(p->i));
-	if (!p->s || !p->s[p->i] || p->s[p->i] == '#')
+	parser_skipspaces(p->str, &(p->i));
+	if (!p->str || !p->str[p->i] || p->str[p->i] == '#')
 		return ;
-	else if (p->s[p->i] == 'A' && ft_isspace(p->s[p->i + 1]))
+	else if (p->str[p->i] == 'A' && ft_isspace(p->str[p->i + 1]))
 		parser_readambient(p);
-	else if (p->s[p->i] == 'C' && ft_isspace(p->s[p->i + 1]))
+	else if (p->str[p->i] == 'C' && ft_isspace(p->str[p->i + 1]))
 		parser_readcamera(p);
-	else if (p->s[p->i] == 'L' && ft_isspace(p->s[p->i + 1]))
+	else if (p->str[p->i] == 'L' && ft_isspace(p->str[p->i + 1]))
 		parser_readlight(p);
-	else if (!ft_strncmp(p->s + p->i, "sp", 2) && ft_isspace(p->s[p->i + 2]))
+	else if (!ft_strncmp(p->str + p->i, "sp", 2) && ft_isspace(p->str[p->i + 2]))
 		parser_readsphere(p);
-	else if (!ft_strncmp(p->s + p->i, "pl", 2) && ft_isspace(p->s[p->i + 2]))
+	else if (!ft_strncmp(p->str + p->i, "pl", 2) && ft_isspace(p->str[p->i + 2]))
 		parser_readplane(p);
-	else if (!ft_strncmp(p->s + p->i, "cy", 2) && ft_isspace(p->s[p->i + 2]))
+	else if (!ft_strncmp(p->str + p->i, "cy", 2) && ft_isspace(p->str[p->i + 2]))
 		parser_readcylinder(p);
 	else
 		parser_error(1, p);
@@ -77,13 +77,12 @@ t_scene	*parser(int argc, char **argv)
 
 	parser_env.file_fd = open_file(argc, argv);
 	parser_env.scene = parser_createscene(&parser_env);
-	parser_env.readelem = 0;
-	parser_env.s = get_next_line(parser_env.file_fd);
-	while (parser_env.s)
+	parser_env.str = get_next_line(parser_env.file_fd);
+	while (parser_env.str)
 	{
 		parser_linehandler(&parser_env);
-		free (parser_env.s);
-		parser_env.s = get_next_line(parser_env.file_fd);
+		free (parser_env.str);
+		parser_env.str = get_next_line(parser_env.file_fd);
 	}
 	close(parser_env.file_fd);
 	get_fov_angles(parser_env.scene);

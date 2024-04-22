@@ -6,17 +6,17 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:30:19 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/04/20 07:01:14 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/04/22 14:08:54 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static int	key_hook(int keycode, t_global *data);
-static int	ft_mouse(int mouse, int x, int y, t_global *data);
-static void	translate_rotate_objects(int keycode, t_global *global);
+static int	key_hook(int keycode, t_entire *data);
+static int	ft_mouse(int mouse, int x, int y, t_entire *data);
+static void	translate_rotate_objects(int keycode, t_entire *global);
 
-int	hook(t_global *data)
+int	hook(t_entire *data)
 {
 	mlx_hook(data->window, ON_DESTROY, 0, minirt_close, data);
 	mlx_hook(data->window, ON_KEYDOWN, 1L << 0, key_hook, data);
@@ -24,7 +24,7 @@ int	hook(t_global *data)
 	return (0);
 }
 
-void	go_by_key(int keycode, t_global *global)
+void	go_by_key(int keycode, t_entire *global)
 {
 	t_coord	coord;
 
@@ -40,7 +40,7 @@ void	go_by_key(int keycode, t_global *global)
 	raytracer(global);
 }
 
-void	rotate_by_key(int keycode, t_global *global)
+void	rotate_by_key(int keycode, t_entire *global)
 {
 	t_coord	coord;
 
@@ -56,7 +56,7 @@ void	rotate_by_key(int keycode, t_global *global)
 	raytracer(global);
 }
 
-static int	key_hook(int keycode, t_global *global)
+static int	key_hook(int keycode, t_entire *global)
 {
 	if (keycode == ESC)
 		minirt_close(global);
@@ -93,7 +93,7 @@ static int	key_hook(int keycode, t_global *global)
 	return (0);
 }
 
-static void	translate_rotate_objects(int keycode, t_global *global)
+static void	translate_rotate_objects(int keycode, t_entire *global)
 {
 	if (global->nearest_type == SPHERE)
 		change_sphere(keycode, global);
@@ -104,7 +104,7 @@ static void	translate_rotate_objects(int keycode, t_global *global)
 	raytracer(global);
 }
 
-static int	ft_mouse(int mousecode, int x, int y, t_global *global)
+static int	ft_mouse(int mousecode, int x, int y, t_entire *global)
 {
 	if (mousecode == 1)
 		ft_search_objects(x, y, global);

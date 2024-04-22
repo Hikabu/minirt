@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:31:12 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/04/20 06:59:40 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/04/22 14:37:41 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,13 @@ void	parser_error(int exitcode, t_parser *p)
 
 static void	parser_skip_toanextnumber(t_parser *p)
 {
-	while (p->s[p->i] && ft_isdigit(p->s[p->i]))
+	while (p->str[p->i] && ft_isdigit(p->str[p->i]))
 		(p->i)++;
-	if (p->s[p->i] != ',')
+	if (p->str[p->i] != ',')
 		parser_error(1, p);
 	(p->i)++;
-	parser_skipspaces(p->s, &(p->i));
-	if (!ft_isdigit(p->s[p->i]) && p->s[p->i] != '-' && p->s[p->i] != '+')
+	parser_skipspaces(p->str, &(p->i));
+	if (!ft_isdigit(p->str[p->i]) && p->str[p->i] != '-' && p->str[p->i] != '+')
 		parser_error(1, p);
 }
 
@@ -52,18 +52,18 @@ int	parser_readcolor(t_parser *p)
 {
 	int	res;
 
-	res = (ft_atoi(p->s + p->i)) << 8;
-	if (ft_atoi(p->s + p->i) > 255 || ft_atoi(p->s + p->i) < 0)
+	res = (ft_atoi(p->str + p->i)) << 8;
+	if (ft_atoi(p->str + p->i) > 255 || ft_atoi(p->str + p->i) < 0)
 		parser_error(1, p);
 	parser_skip_toanextnumber(p);
-	res = (res + ft_atoi(p->s + p->i)) << 8;
-	if (ft_atoi(p->s + p->i) > 255 || ft_atoi(p->s + p->i) < 0)
+	res = (res + ft_atoi(p->str + p->i)) << 8;
+	if (ft_atoi(p->str + p->i) > 255 || ft_atoi(p->str + p->i) < 0)
 		parser_error(1, p);
 	parser_skip_toanextnumber(p);
-	res = (res + ft_atoi(p->s + p->i));
-	if (ft_atoi(p->s + p->i) > 255 || ft_atoi(p->s + p->i) < 0)
+	res = (res + ft_atoi(p->str + p->i));
+	if (ft_atoi(p->str + p->i) > 255 || ft_atoi(p->str + p->i) < 0)
 		parser_error(1, p);
-	while (p->s[p->i] && ft_isdigit(p->s[p->i]))
+	while (p->str[p->i] && ft_isdigit(p->str[p->i]))
 		(p->i)++;
 	return (res);
 }

@@ -6,16 +6,11 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:31:47 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/04/20 07:00:09 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/04/22 21:21:41 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-/*  ray.point[0] = global->scene->camera_point; Точка камеры (точка a)
-    = координата луча на проецирумой плоскости
-    Vector d = ray.point[0] -  ray.point[1] (вектор луча)
-*/
 
 float	check_intersection_plane(t_plane *plane, t_ray *ray, t_coord *d)
 {

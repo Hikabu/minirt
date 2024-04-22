@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:30:59 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/04/20 06:55:17 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/04/22 14:37:04 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ void	parser_readambient(t_parser *p)
 	p->scene->ambient_light_intensity = parser_readfloat(p);
 	parser_skipspacesifnotspaceerror(p);
 	if (p->scene->ambient_light_intensity > 1
-		|| p->scene->ambient_light_intensity < 0 || !ft_isdigit(p->s[p->i]))
+		|| p->scene->ambient_light_intensity < 0 || !ft_isdigit(p->str[p->i]))
 		parser_error(1, p);
 	p->scene->ambient_light_rgb = parser_readcolor(p);
-	parser_skipspaces(p->s, &(p->i));
-	if (p->s[p->i])
+	parser_skipspaces(p->str, &(p->i));
+	if (p->str[p->i])
 		parser_error(1, p);
 }
 
@@ -45,8 +45,8 @@ void	parser_readcamera(t_parser *p)
 		&p->scene->camera_orientation);
 	parser_skipspacesifnotspaceerror(p);
 	p->scene->camera_fov = parser_readfloat(p);
-	parser_skipspaces(p->s, &(p->i));
-	if (p->s[p->i] || p->scene->camera_fov > 180 || p->scene->camera_fov < 0)
+	parser_skipspaces(p->str, &(p->i));
+	if (p->str[p->i] || p->scene->camera_fov > 180 || p->scene->camera_fov < 0)
 		parser_error(1, p);
 }
 
@@ -88,13 +88,13 @@ void	parser_readlight(t_parser *p)
 	parser_skipspacesifnotspaceerror(p);
 	if (light->lighting_ratio > 1 || light->lighting_ratio < 0)
 		parser_error(1, p);
-	if (!p->s[p->i])
+	if (!p->str[p->i])
 		return ;
-	if (!ft_isdigit(p->s[p->i]))
+	if (!ft_isdigit(p->str[p->i]))
 		parser_error(1, p);
 	light->color = parser_readcolor(p);
-	parser_skipspaces(p->s, &(p->i));
-	if (p->s[p->i])
+	parser_skipspaces(p->str, &(p->i));
+	if (p->str[p->i])
 		parser_error(1, p);
 }
 

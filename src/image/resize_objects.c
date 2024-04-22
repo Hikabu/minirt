@@ -6,16 +6,16 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:30:27 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/04/20 07:01:05 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/04/22 14:09:21 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static void	ft_resize_sphere(int mousecode, t_global	*global);
-static void	ft_resize_cylinder(int mousecode, t_global	*global);
+static void	ft_resize_sphere(int mousecode, t_entire	*global);
+static void	ft_resize_cylinder(int mousecode, t_entire	*global);
 
-void	ft_resize_object(int mousecode, t_global	*global)
+void	ft_resize_object(int mousecode, t_entire	*global)
 {
 	if (!global->nearest_obj)
 		return ;
@@ -26,7 +26,7 @@ void	ft_resize_object(int mousecode, t_global	*global)
 	return ;
 }
 
-static void	ft_resize_sphere(int mousecode, t_global	*global)
+static void	ft_resize_sphere(int mousecode, t_entire	*global)
 {
 	if (mousecode == 5)
 	{
@@ -42,7 +42,7 @@ static void	ft_resize_sphere(int mousecode, t_global	*global)
 	}
 }
 
-static void	ft_resize_cylinder(int mousecode, t_global	*global)
+static void	ft_resize_cylinder(int mousecode, t_entire	*global)
 {
 	if (mousecode == 5)
 	{
@@ -58,7 +58,7 @@ static void	ft_resize_cylinder(int mousecode, t_global	*global)
 	}
 }
 
-void	change_height_cylinder(int keycode, t_global *global)
+void	change_height_cylinder(int keycode, t_entire *global)
 {
 	if (keycode == GREATER)
 		((t_cylinder *)(global->nearest_obj))->height += STEP_RESIZE;

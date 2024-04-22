@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/19 18:33:10 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/04/20 07:01:47 by valeriafedo      ###   ########.fr       */
+/*   Created: 2024/01/10 12:13:38 by valeriafedo       #+#    #+#             */
+/*   Updated: 2024/04/22 21:02:38 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(int argc, char **argv)
 {
-	t_global	data;
+	t_entire	data;
 
 	data.scene = parser(argc, argv);
 	init_image(&data);
@@ -29,7 +29,7 @@ int	main(int argc, char **argv)
 	exit (0);
 }
 
-int	minirt_close(t_global *data)
+int	minirt_close(t_entire *data)
 {
 	free_scene(data->scene);
 	mlx_destroy_image(data->mlx, data->img.img);
