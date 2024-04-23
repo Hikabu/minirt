@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 12:13:38 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/04/22 21:02:38 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/04/23 12:12:48 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int argc, char **argv)
 
 	data.scene = parser(argc, argv);
 	init_image(&data);
-	clean_image(&data.img);
+	new_image(&data.img);
 	data.nearest_obj = NULL;
 	data.nearest_type = NO_INTERSECT;
 	data.prev_keyhook = 0;

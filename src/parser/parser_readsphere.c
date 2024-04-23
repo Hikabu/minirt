@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:31:04 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/04/22 14:38:47 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/04/23 12:17:12 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ void	parser_readsphere(t_parser *p)
 
 	sphere = parser_addsphere(p);
 	(p->i) += 2;
-	parser_skipspacesifnotspaceerror(p);
+	parser_error_space(p);
 	sphere->point = parser_readcoord(p);
-	parser_skipspacesifnotspaceerror(p);
+	parser_error_space(p);
 	sphere->diameter = parser_readfloat(p);
-	parser_skipspacesifnotspaceerror(p);
+	parser_error_space(p);
 	if (!ft_isdigit(p->str[p->i]))
 		parser_error(1, p);
 	sphere->color = parser_readcolor(p);

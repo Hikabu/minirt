@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:31:31 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/04/22 21:20:17 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/04/23 12:20:58 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	check_intersection(t_entire *global, t_pixel *pixel)
 	
 	set_objects_in_pixel(pixel, 0, 0, 0); //init
 	dist = -1; // no itrs yet
-	pixel->length = -1; //
+	pixel->length = -1;
 	vector_subtraction(&(pixel->d),
 		&(pixel->ray.point[0]), &(pixel->ray.point[1])); //differences
 	normalizing_vector(&(pixel->d), &(pixel->d));

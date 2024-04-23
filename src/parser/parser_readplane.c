@@ -6,14 +6,14 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:30:56 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/04/22 14:38:38 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/04/23 12:20:24 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
 
-void	parser_check_isnotnormailzed(t_parser *p, t_coord vect)
+void	parser_is_norm(t_parser *p, t_coord vect)
 {
 	float	vec_length;
 
@@ -53,13 +53,13 @@ void	parser_readplane(t_parser *p)
 
 	plane = parser_addplane(p);
 	(p->i) += 2;
-	parser_skipspacesifnotspaceerror(p);
+	parser_error_space(p);
 	plane->point = parser_readcoord (p);
-	parser_skipspacesifnotspaceerror(p);
+	parser_error_space(p);
 	plane->orientation = parser_readcoord(p);
-	parser_check_isnotnormailzed(p, plane->orientation);
+	parser_is_norm(p, plane->orientation);
 	normalizing_vector(&plane->orientation, &plane->orientation);
-	parser_skipspacesifnotspaceerror(p);
+	parser_error_space(p);
 	if (!ft_isdigit(p->str[p->i]))
 		parser_error(1, p);
 	plane->color = parser_readcolor(p);

@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:31:16 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/04/22 14:40:05 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/04/23 12:13:28 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,6 @@ t_scene	*parser(int argc, char **argv)
 	parser_env.scene->camera_point.z ++;
 	translate_objects(parser_env.scene, &parser_env.scene->camera_point);
 	rotate_objects(parser_env.scene, &parser_env.scene->camera_orientation);
-	parser_fill_color_ambient(&parser_env);
+	parser_fill_coam(&parser_env);
 	return (parser_env.scene);
 }

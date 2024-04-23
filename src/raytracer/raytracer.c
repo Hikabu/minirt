@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 23:53:56 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/04/22 21:02:05 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/04/23 12:12:44 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,5 @@ void	raytracer(t_entire *global)
 		pixel.y++;
 	}
 	mlx_put_image_to_window(global->mlx, global->window, global->img.img, 0, 0);
-	clean_image(&(global->img));
+	new_image(&(global->img));
 }

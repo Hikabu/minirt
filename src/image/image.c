@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:30:23 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/04/22 14:09:07 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/04/23 12:12:39 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	error_mlx(t_entire *data);
 
-void	clean_image(void *img)
+void	new_image(void *img)
 {
 	int	i;
 	int	j;

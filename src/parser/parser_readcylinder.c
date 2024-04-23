@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:30:48 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/04/22 14:38:59 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/04/23 12:18:22 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,17 +61,17 @@ void	parser_readcylinder(t_parser *p)
 
 	cylinder = parser_addcylinder(p);
 	(p->i) += 2;
-	parser_skipspacesifnotspaceerror(p);
+	parser_error_space(p);
 	cylinder->point = parser_readcoord(p);
-	parser_skipspacesifnotspaceerror(p);
+	parser_error_space(p);
 	cylinder->orientation = parser_readcoord(p);
-	parser_check_isnotnormailzed(p, cylinder->orientation);
+	parser_is_norm(p, cylinder->orientation);
 	normalizing_vector(&cylinder->orientation, &cylinder->orientation);
-	parser_skipspacesifnotspaceerror(p);
+	parser_error_space(p);
 	cylinder->diameter = parser_readfloat(p);
-	parser_skipspacesifnotspaceerror(p);
+	parser_error_space(p);
 	cylinder->height = parser_readfloat(p);
-	parser_skipspacesifnotspaceerror(p);
+	parser_error_space(p);
 	if (!ft_isdigit(p->str[p->i]))
 		parser_error(1, p);
 	cylinder->color = parser_readcolor(p);

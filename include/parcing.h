@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:25:06 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/04/22 14:34:01 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/04/23 12:18:15 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,17 @@ void	get_fov_angles(t_scene *data);
 
 void	free_scene(t_scene *scene);
 
-void	parser_skipspacesifnotspaceerror(t_parser *parser);
+void	parser_error_space(t_parser *parser);
 float	parser_readfloat(t_parser *parser);
 
 void	parser_readsphere(t_parser *parser);
 
-void	parser_check_isnotnormailzed(t_parser *parser, t_coord vect);
+void	parser_is_norm(t_parser *parser, t_coord vect);
 void	parser_readplane(t_parser *parser);
 
 void	parser_readcylinder(t_parser *parser);
 
-void	parser_fill_color_ambient(t_parser *parser);
+void	parser_fill_coam(t_parser *parser);
 
 void	rotate_objects(t_scene *scene, t_coord *coord);
 void	translate_objects(t_scene *scene, t_coord *coord);

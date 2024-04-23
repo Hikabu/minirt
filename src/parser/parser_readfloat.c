@@ -6,12 +6,12 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:30:52 by valeriafedo       #+#    #+#             */
-/*   Updated: 2024/04/22 14:38:27 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2024/04/23 12:16:50 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-void	parser_skipspacesifnotspaceerror(t_parser *p)
+void	parser_error_space(t_parser *p)
 {
 	if (!ft_isspace(p->str[p->i]))
 		parser_error(1, p);
